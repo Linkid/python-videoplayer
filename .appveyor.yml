@@ -34,8 +34,8 @@ init:
 
 install:
     - python -m pip install cython pkgconfig
+    - 'if "%compiler%"=="msvc" set PKG_CONFIG_PATH=%PKG_CONFIG_PATH%;D:\Data\vcpkg\packages\protobuf_x86-windows\lib\pkgconfig'
     - if "%compiler%"=="msvc"
-        set PKG_CONFIG_PATH=%PKG_CONFIG_PATH%;D:\Data\vcpkg\packages\protobuf_x86-windows\lib\pkgconfig;
         vcpkg install glib:%platform%-windows
                       libogg:%platform%-windows
                       libtheora:%platform%-windows
