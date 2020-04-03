@@ -1,14 +1,14 @@
 environment:
     matrix:
-        # linux
-        - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
-          APPVEYOR_JOB_NAME: "python37-x64-ubuntu"
-          compiler: gcc
+        ## linux
+        #- APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
+        #  APPVEYOR_JOB_NAME: "python37-x64-ubuntu"
+        #  compiler: gcc
 
-        # osx
-        - APPVEYOR_BUILD_WORKER_IMAGE: macos-mojave
-          APPVEYOR_JOB_NAME: "python37-x64-macos-mojave"
-          compiler: clang
+        ## osx
+        #- APPVEYOR_BUILD_WORKER_IMAGE: macos-mojave
+        #  APPVEYOR_JOB_NAME: "python37-x64-macos-mojave"
+        #  compiler: clang
 
         # windows
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
