@@ -12,14 +12,14 @@ environment:
 
         # windows
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          APPVEYOR_JOB_NAME: "python37-x64-vs2015"
-          arch: amd64
+          APPVEYOR_JOB_NAME: "python37-x86-vs2015"
+          arch: x86
           platform: x86
           compiler: msvc
 
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           APPVEYOR_JOB_NAME: "python37-x64-vs2015"
-          arch: x86
+          arch: amd64
           platform: x64
           compiler: msvc
 
@@ -35,6 +35,9 @@ init:
 install:
     - python -m pip install cython pkgconfig
     - 'if "%compiler%"=="msvc" vcpkg install ffnvcodec:%platform%-windows'
+    - ls C:\Tools\vcpkg\packages\ffnvcodec_x86-windows\lib\pkgconfig
+    - ls C:\Tools\vcpkg\packages\ffnvcodec_x86-windows\bin
+    - 'if "%compiler%"=="msvc" vcpkg install protobuf:%platform%-windows'
     - ls C:\Tools\vcpkg\packages\protobuf_x86-windows\lib\pkgconfig
     - ls C:\Tools\vcpkg\packages\protobuf_x86-windows\bin
     - 'if "%compiler%"=="msvc" set PKG_CONFIG_PATH=%PKG_CONFIG_PATH%;C:\Tools\vcpkg\packages\protobuf_x86-windows\lib\pkgconfig'
