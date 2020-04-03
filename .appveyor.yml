@@ -23,7 +23,7 @@ environment:
           arch: amd64
           platform: x64
           compiler: msvc
-          arch_mingw: mingw-w64-i686-
+          arch_mingw: mingw-w64-x86_64-
 
 
 stack: python 3.7
