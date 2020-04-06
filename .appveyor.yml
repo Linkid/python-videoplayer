@@ -58,6 +58,8 @@ install:
         %PKG_PREFIX%-libogg
         %PKG_PREFIX%-libtheora
         %PKG_PREFIX%-ffmpeg
+        %PKG_PREFIX%-freeglut
+        %PKG_PREFIX%-glew
     - set "PATH=C:\\msys64\\%MSYSTEM%\\bin;C:\\msys64\\usr\\bin;C:\\msys64\\bin;%PATH%"
     - doskey pkg-config=%MSYS2_ARCH%-w64-mingw32-pkg-config
     - C:\Python37\python -m pip install cython pkgconfig
