@@ -36,21 +36,20 @@ init:
 
 install:
     - python -m pip install cython pkgconfig
-    #- 'if "%compiler%"=="msvc" vcpkg install protobuf:%platform%-windows'
-    #- ls C:\Tools\vcpkg\packages\protobuf_x86-windows\lib\pkgconfig
-    #- ls C:\Tools\vcpkg\packages\protobuf_x86-windows\bin
-    #- 'if "%compiler%"=="msvc" set PKG_CONFIG_PATH=%PKG_CONFIG_PATH%;C:\Tools\vcpkg\packages\protobuf_%platform%-windows\lib\pkgconfig'
     #- pacman --noconfirm -S base-devel %arch_mingw%-pkg-config
     #- choco install pkgconfiglite
     - 'if "%compiler%"=="msvc" appveyor DownloadFile "https://downloads.sourceforge.net/project/pkgconfiglite/0.28-1/pkg-config-lite-0.28-1_bin-win32.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fpkgconfiglite%2Ffiles%2F0.28-1%2F&ts=1506994037&use_mirror=superb-dca2" -FileName "C:\pkg-config-lite-0.28-1_bin-win32.zip"'
     - 'if "%compiler%"=="msvc" 7z x -y "C:\pkg-config-lite-0.28-1_bin-win32.zip" -o"C:\"'
     - 'if "%compiler%"=="msvc" dir /s/b C:\pkg-config-lite-0.28-1\bin'
     - 'if "%compiler%"=="msvc" set PATH=C:\pkg-config-lite-0.28-1\bin;%PATH%'
+    - 'if "%compiler%"=="msvc" set PKG_CONFIG_EXECUTABLE=C:\pkg-config-lite-0.28-1\bin\pkg-config.exe'
+    - 'if "%compiler%"=="msvc" set PKG_CONFIG_PATH=C:\Tools\vcpkg\installed\x86-windows\lib\pkgconfig;%PKG_CONFIG_PATH%'
     - if "%compiler%"=="msvc"
         vcpkg install glib:%platform%-windows
                       libogg:%platform%-windows
                       libtheora:%platform%-windows
                       ffmpeg:%platform%-windows
+    - 'if "%compiler%"=="msvc" cmake --find-package -DNAME=glib -DLANGUAGE=C -DCOMPILER_ID=GNU -DMODE=COMPILE'
 
 build_script:
     - mkdir wheelhouse
