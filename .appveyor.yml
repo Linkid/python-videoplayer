@@ -49,7 +49,6 @@ install:
                       libogg:%platform%-windows
                       libtheora:%platform%-windows
                       ffmpeg:%platform%-windows
-    - 'if "%compiler%"=="msvc" cmake --find-package -DNAME=glib -DLANGUAGE=C -DCOMPILER_ID=GNU -DMODE=COMPILE'
 
 build_script:
     - mkdir wheelhouse
