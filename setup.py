@@ -103,7 +103,21 @@ ogg_info = pc_info('ogg')
 glib_info = pc_info('glib-2.0')
 swscale_info = pc_info('libswscale')
 theoradec_info = pc_info('theoradec')
-gl_info = pc_info('gl')
+if os.name == 'nt':
+    gl_info = {'libraries': ['opengl32']}
+    glib_info['define_macros'].append(('inline', '__inline'))
+else:
+    try:
+        gl_info = pc_info('gl')
+    except SystemExit:
+        os.environ['LDFLAGS'] = '-framework opengl'
+        os.environ['CFLAGS'] = '-framework opengl'
+        gl_info = {
+            'define_macros': [],
+            'include_dirs': [],
+            'libraries': [],
+            'library_dirs': [],
+        }
 
 
 # sources
