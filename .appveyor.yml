@@ -43,7 +43,7 @@ init:
     - echo %APPVEYOR_BUILD_WORKER_IMAGE%
     #- set "PYTHON_ROOT=C:\python37-x64"
     #- set "PATH=%PYTHON_ROOT%;%PYTHON_ROOT%\Scripts;%PATH%"
-    - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
+    - set "PATH=C:\Python37;C:\Python37\Scripts;%PATH%"
 
 install:
     #- if "%compiler%"=="msvc"
@@ -58,7 +58,7 @@ install:
         %PKG_PREFIX%-libogg
         %PKG_PREFIX%-libtheora
         %PKG_PREFIX%-ffmpeg
-    - set PATH=C:\\msys64\\%MSYSTEM%\\bin;C:\\msys64\\usr\\bin;C:\\msys64\\bin;%PATH%
+    - set "PATH=C:\\msys64\\%MSYSTEM%\\bin;C:\\msys64\\usr\\bin;C:\\msys64\\bin;%PATH%"
     - python -m pip install cython pkgconfig
 
 build_script:
