@@ -99,9 +99,9 @@ except ImportError:
 
 
 # find dependencies
+ogg_info = pc_info('ogg')
 gl_info = pc_info('gl')
 glib_info = pc_info('glib-2.0')
-ogg_info = pc_info('ogg')
 swscale_info = pc_info('libswscale')
 theoradec_info = pc_info('theoradec')
 
