@@ -59,14 +59,14 @@ install:
         %PKG_PREFIX%-libtheora
         %PKG_PREFIX%-ffmpeg
     - set "PATH=C:\\msys64\\%MSYSTEM%\\bin;C:\\msys64\\usr\\bin;C:\\msys64\\bin;%PATH%"
-    - python -m pip install cython pkgconfig
+    - C:\Python37\python -m pip install cython pkgconfig
 
 build_script:
     - mkdir wheelhouse
 
-    - python setup.py build_ext --inplace --force #--compiler=mingw32
-    - python setup.py sdist --dist-dir wheelhouse
-    - python setup.py bdist_wheel --dist-dir wheelhouse
+    - C:\Python37\python setup.py build_ext --inplace --force #--compiler=mingw32
+    - C:\Python37\python setup.py sdist --dist-dir wheelhouse
+    - C:\Python37\python setup.py bdist_wheel --dist-dir wheelhouse
 
 # after_build
 
