@@ -11,20 +11,31 @@ environment:
         #  compiler: clang
 
         # windows
-        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          APPVEYOR_JOB_NAME: "python37-x86-vs2015"
-          arch: x86
-          platform: x86
-          compiler: msvc
-          arch_mingw: mingw-w64-i686-
+        - MSYS2_ARCH: i686
+          MSYSTEM: MINGW32
+          MSYSTEM_: mingw32
+          PKG_PREFIX: "mingw-w64-i686"
 
-        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          APPVEYOR_JOB_NAME: "python37-x64-vs2015"
-          arch: amd64
-          platform: x64
-          compiler: msvc
-          arch_mingw: mingw-w64-x86_64-
+        - MSYS2_ARCH: x86_64
+          MSYSTEM: MINGW64
+          MSYSTEM_: mingw64
+          PKG_PREFIX: "mingw-w64-x86_64"
+        #- APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+        #  APPVEYOR_JOB_NAME: "python37-x86-vs2015"
+        #  arch: x86
+        #  platform: x86
+        #  compiler: msvc
+        #  arch_mingw: mingw-w64-i686-
 
+        #- APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+        #  APPVEYOR_JOB_NAME: "python37-x64-vs2015"
+        #  arch: amd64
+        #  platform: x64
+        #  compiler: msvc
+        #  arch_mingw: mingw-w64-x86_64-
+
+matrix:
+    fast_finish: true
 
 stack: python 3.7
 
@@ -35,27 +46,26 @@ init:
     - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
 
 install:
+    #- if "%compiler%"=="msvc"
+    #    vcpkg install glib:%platform%-windows
+    #                  libogg:%platform%-windows
+    #                  libtheora:%platform%-windows
+    #                  ffmpeg:%platform%-windows
+    - C:\msys64\usr\bin\pacman --noconfirm --ask 20 --sync --refresh --refresh --sysupgrade --sysupgrade
+    - C:\msys64\usr\bin\pacman --noconfirm --needed -Sy bash pacman pacman-mirrors msys2-runtime msys2-runtime-devel
+    - C:\msys64\usr\bin\pacman -S --noconfirm --needed --noprogressbar
+        autoconf automake base-devel %PKG_PREFIX%-toolchain %PKG_PREFIX%-pkg-config
+        %PKG_PREFIX%-libogg
+        %PKG_PREFIX%-libtheora
+        %PKG_PREFIX%-ffmpeg
     - python -m pip install cython pkgconfig
-    #- pacman --noconfirm -S base-devel %arch_mingw%-pkg-config
-    #- choco install pkgconfiglite
-    - 'if "%compiler%"=="msvc" appveyor DownloadFile "https://downloads.sourceforge.net/project/pkgconfiglite/0.28-1/pkg-config-lite-0.28-1_bin-win32.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fpkgconfiglite%2Ffiles%2F0.28-1%2F&ts=1506994037&use_mirror=superb-dca2" -FileName "C:\pkg-config-lite-0.28-1_bin-win32.zip"'
-    - 'if "%compiler%"=="msvc" 7z x -y "C:\pkg-config-lite-0.28-1_bin-win32.zip" -o"C:\"'
-    - 'if "%compiler%"=="msvc" dir /s/b C:\pkg-config-lite-0.28-1\bin'
-    - 'if "%compiler%"=="msvc" set PATH=C:\pkg-config-lite-0.28-1\bin;%PATH%'
-    - 'if "%compiler%"=="msvc" set PKG_CONFIG_EXECUTABLE=C:\pkg-config-lite-0.28-1\bin\pkg-config.exe'
-    - 'if "%compiler%"=="msvc" set PKG_CONFIG_PATH=C:\Tools\vcpkg\installed\x86-windows\lib\pkgconfig;%PKG_CONFIG_PATH%'
-    - if "%compiler%"=="msvc"
-        vcpkg install glib:%platform%-windows
-                      libogg:%platform%-windows
-                      libtheora:%platform%-windows
-                      ffmpeg:%platform%-windows
 
 build_script:
     - mkdir wheelhouse
 
-    - 'if "%compiler%"=="msvc" python setup.py build_ext --inplace --force'
-    - 'if "%compiler%"=="msvc" python setup.py sdist --dist-dir wheelhouse'
-    - 'if "%compiler%"=="msvc" python setup.py bdist_wheel --dist-dir wheelhouse'
+    - if python setup.py build_ext --inplace --force #--compiler=mingw32
+    - if python setup.py sdist --dist-dir wheelhouse
+    - if python setup.py bdist_wheel --dist-dir wheelhouse
 
 # after_build
 
