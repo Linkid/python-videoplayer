@@ -69,7 +69,7 @@ install:
 build_script:
     - mkdir wheelhouse
 
-    - C:\Python37\python setup.py build_ext --inplace --force #--compiler=mingw32
+    - C:\Python37\python setup.py build_ext --inplace --force --compiler=mingw32
     - C:\Python37\python setup.py sdist --dist-dir wheelhouse
     - C:\Python37\python setup.py bdist_wheel --dist-dir wheelhouse
 
