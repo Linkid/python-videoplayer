@@ -14,20 +14,12 @@ environment:
         - MSYS2_ARCH: i686
           MSYSTEM: MINGW32
           MSYSTEM_: mingw32
-          platform: x86
-          compiler: msvc
           PKG_PREFIX: "mingw-w64-i686"
-          APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          APPVEYOR_JOB_NAME: "python37-x86-vs2015"
 
         - MSYS2_ARCH: x86_64
           MSYSTEM: MINGW64
           MSYSTEM_: mingw64
-          platform: x64
-          compiler: msvc
           PKG_PREFIX: "mingw-w64-x86_64"
-          APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          APPVEYOR_JOB_NAME: "python37-x64-vs2015"
         #- APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
         #  APPVEYOR_JOB_NAME: "python37-x86-vs2015"
         #  arch: x86
@@ -54,21 +46,21 @@ init:
     - set "PATH=C:\Python37;C:\Python37\Scripts;%PATH%"
 
 install:
-    - if "%compiler%"=="msvc"
-        vcpkg install glib:%platform%-windows
-                      libogg:%platform%-windows
-                      libtheora:%platform%-windows
-                      ffmpeg:%platform%-windows
+    #- if "%compiler%"=="msvc"
+    #    vcpkg install glib:%platform%-windows
+    #                  libogg:%platform%-windows
+    #                  libtheora:%platform%-windows
+    #                  ffmpeg:%platform%-windows
     - C:\msys64\usr\bin\pacman --noconfirm --ask 20 --sync --refresh --refresh --sysupgrade --sysupgrade
     - C:\msys64\usr\bin\pacman --noconfirm --needed -Sy bash pacman pacman-mirrors msys2-runtime msys2-runtime-devel
     - C:\msys64\usr\bin\pacman -S --noconfirm --needed --noprogressbar
         autoconf automake base-devel %PKG_PREFIX%-toolchain %PKG_PREFIX%-pkg-config
-    #    %PKG_PREFIX%-libogg
-    #    %PKG_PREFIX%-libtheora
-    #    %PKG_PREFIX%-ffmpeg
-    #    %PKG_PREFIX%-freeglut
-    #    %PKG_PREFIX%-glew
-    #    %PKG_PREFIX%-glib2
+        %PKG_PREFIX%-libogg
+        %PKG_PREFIX%-libtheora
+        %PKG_PREFIX%-ffmpeg
+        %PKG_PREFIX%-freeglut
+        %PKG_PREFIX%-glew
+        %PKG_PREFIX%-glib2
     - set "PATH=C:\\msys64\\%MSYSTEM%\\bin;C:\\msys64\\usr\\bin;C:\\msys64\\bin;%PATH%"
     - doskey pkg-config=%MSYS2_ARCH%-w64-mingw32-pkg-config
     - C:\Python37\python -m pip install cython pkgconfig
