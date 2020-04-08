@@ -51,9 +51,9 @@ install:
 build_script:
     - mkdir wheelhouse
 
-    - %MSYS2_ARCH%-w64-mingw32-python setup.py build_ext --inplace --force --compiler=%MSYSTEM_%
-    - %MSYS2_ARCH%-w64-mingw32-python setup.py sdist --dist-dir wheelhouse
-    - %MSYS2_ARCH%-w64-mingw32-python setup.py bdist_wheel --dist-dir wheelhouse
+    - python setup.py build_ext --inplace --force --compiler=msvc
+    - python setup.py sdist --dist-dir wheelhouse
+    - python setup.py bdist_wheel --dist-dir wheelhouse
 
 # after_build
 
