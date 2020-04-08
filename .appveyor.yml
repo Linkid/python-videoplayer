@@ -30,7 +30,8 @@ init:
     - echo %APPVEYOR_BUILD_WORKER_IMAGE%
     #- set "PYTHON_ROOT=C:\python37-x64"
     #- set "PATH=%PYTHON_ROOT%;%PYTHON_ROOT%\Scripts;%PATH%"
-    - set "PATH=C:\Python37;C:\Python37\Scripts;%PATH%"
+    #- set "PATH=C:\Python37;C:\Python37\Scripts;%PATH%"
+    - set "PATH=C:\Python37;C:\Python37\Scripts"
 
 install:
     - C:\msys64\usr\bin\pacman --noconfirm --ask 20 --sync --refresh --refresh --sysupgrade --sysupgrade
