@@ -48,11 +48,12 @@ install:
     - doskey pkg-config=%MSYS2_ARCH%-w64-mingw32-pkg-config
     - C:\Python37\python -m pip install --upgrade pip
     - C:\Python37\python -m pip install cython pkgconfig setuptools wheel
+    - where gcc.exe
 
 build_script:
     - mkdir wheelhouse
 
-    - C:\Python37\python setup.py build_ext --inplace --force
+    - C:\Python37\python setup.py build_ext --inplace --force --compiler=mingw32
     - C:\Python37\python setup.py sdist --dist-dir wheelhouse
     - C:\Python37\python setup.py bdist_wheel --dist-dir wheelhouse
 
