@@ -21,8 +21,8 @@ environment:
           MSYSTEM_: mingw64
           PKG_PREFIX: "mingw-w64-x86_64"
 
-matrix:
-    fast_finish: true
+#matrix:
+#    fast_finish: true
 
 stack: python 3.7
 
@@ -52,7 +52,7 @@ install:
 build_script:
     - mkdir wheelhouse
 
-    - C:\Python37\python setup.py build_ext --inplace --force --compiler=mingw
+    - C:\Python37\python setup.py build_ext --inplace --force --compiler=%MSYSTEM_%
     - C:\Python37\python setup.py sdist --dist-dir wheelhouse
     - C:\Python37\python setup.py bdist_wheel --dist-dir wheelhouse
 
