@@ -49,6 +49,7 @@ install:
     - C:\Python37\python -m pip install --upgrade pip
     - C:\Python37\python -m pip install cython pkgconfig setuptools wheel
     - where gcc.exe
+    - which link.exe
 
 build_script:
     - mkdir wheelhouse
