@@ -51,6 +51,8 @@ install:
     - where gcc.exe
     - where python
     - which link.exe
+    #- rename "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN\\link.exe" "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN\\link.exe.bak"
+    - start C:\msys32\msys2_shell.bat
 
 build_script:
     - mkdir wheelhouse
