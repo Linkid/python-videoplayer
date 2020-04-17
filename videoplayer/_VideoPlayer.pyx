@@ -1,4 +1,4 @@
-#####################################################################
+# distutils: sources = videoplayer/VideoPlayer.c
 # -*- coding: iso-8859-1 -*-                                        #
 #                                                                   #
 # Frets on Fire X (FoFiX)                                           #
@@ -22,6 +22,8 @@
 #####################################################################
 
 # First a thin wrapper around VideoPlayer from graphics.VideoPlayer.c...
+
+__version__ = "1.0"
 
 cdef extern from "VideoPlayer.h":
     ctypedef struct CVideoPlayer "VideoPlayer":
