@@ -1,0 +1,28 @@
+language: python
+python:
+    - 2.7
+    - 3.4
+    - 3.5
+    - 3.6
+    - 3.7
+    - 3.8
+
+#before_install:
+#    - sudo apt-get -qq update
+#    - sudo apt-get install -y
+#        libogg-dev
+#        libswscale-dev
+#        libtheora-dev
+#
+#install:
+#    - python -m pip install cython pkgconfig
+#    - python -m pip install pytest
+
+install:
+    - python -m pip install scikit-build cython
+    - python -m pip install pytest
+
+script:
+    - python setup.py check
+    - python setup.py build_ext --inplace --force -- -D_CONAN=YES
+    - python setup.py test
