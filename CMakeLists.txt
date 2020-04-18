@@ -32,11 +32,11 @@ if(_CONAN)
 
     # run conan install
     conan_cmake_run(CONANFILE conanfile.txt
-                    BASIC_SETUP CMAKE_TARGETS
+                    BASIC_SETUP
                     BUILD missing)
     conan_cmake_run(REQUIRES theora/1.1.1@bincrafters/stable
-                    BASIC_SETUP CMAKE_TARGETS
-                    BUILD theora
+                    BASIC_SETUP
+                    BUILD theora missing
                     GENERATORS cmake_find_package cmake_paths)
 
     # setup conan vars
