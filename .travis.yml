@@ -20,7 +20,7 @@ python:
 
 install:
     - pip install scikit-build
-#    - pip install cython
+    - pip install cython
 #    - pip install conan
 #    - pip install pytest
 #
