@@ -19,7 +19,7 @@ python:
 #    - python -m pip install pytest
 
 install:
-    - python -m pip install scikit-build cython
+    - python -m pip install scikit-build cython conan
     - python -m pip install pytest
 
 script:
