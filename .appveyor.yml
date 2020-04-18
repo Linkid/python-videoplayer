@@ -57,8 +57,8 @@ install:
 build_script:
     - mkdir wheelhouse
 
-    - ps: pip install --upgrade pip
-    - ps: pip install scikit-build cython
+    - ps: python -m pip install --upgrade pip
+    - ps: python -m pip install scikit-build cython
     #- C:\msys64\usr\bin\bash --login -c "python -m pip install scikit-build cython pkgconfig setuptools wheel"
     #- /mingw32/bin/python setup.py build_ext --inplace --force
     #- /mingw32/bin/python setup.py sdist --dist-dir wheelhouse
