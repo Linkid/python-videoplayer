@@ -11,63 +11,24 @@ environment:
         #  compiler: clang
 
         # windows
-        - MSYS2_ARCH: i686
-          MSYSTEM: MINGW32
-          MSYSTEM_: mingw32
-          PKG_PREFIX: "mingw-w64-i686"
-
-        - MSYS2_ARCH: x86_64
-          MSYSTEM: MINGW64
-          MSYSTEM_: mingw64
-          PKG_PREFIX: "mingw-w64-x86_64"
-
-#matrix:
-#    fast_finish: true
-
-stack: python 3.7
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          APPVEYOR_JOB_NAME: "python37-x64-vs2015"
 
 init:
     - echo %APPVEYOR_BUILD_WORKER_IMAGE%
-    #- set "PYTHON_ROOT=C:\python37-x64"
-    #- set "PATH=%PYTHON_ROOT%;%PYTHON_ROOT%\Scripts;%PATH%"
-    #- set "PATH=C:\Python37;C:\Python37\Scripts;%PATH%"
 
 install:
-    - C:\msys64\usr\bin\pacman --noconfirm --ask 20 --sync --refresh --refresh --sysupgrade --sysupgrade
-    - C:\msys64\usr\bin\pacman --noconfirm --needed -Sy bash pacman pacman-mirrors msys2-runtime msys2-runtime-devel
-    - C:\msys64\usr\bin\pacman -S --noconfirm --needed --noprogressbar
-        autoconf automake base-devel %PKG_PREFIX%-toolchain %PKG_PREFIX%-pkg-config
-        %PKG_PREFIX%-libogg
-        %PKG_PREFIX%-libtheora
-        %PKG_PREFIX%-ffmpeg
-        %PKG_PREFIX%-freeglut
-        %PKG_PREFIX%-glew
-        %PKG_PREFIX%-glib2
-        #%PKG_PREFIX%-python2-pip
-        #%PKG_PREFIX%-python2-setuptools
-    #- set "PATH=%PATH%;C:\\msys64\\%MSYSTEM_%\\bin;C:\\msys64\\usr\\bin;C:\\msys64\\bin"
-    #- doskey pkg-config=%MSYS2_ARCH%-w64-mingw32-pkg-config
-    #- where gcc.exe
-    - where python
-    #- which link.exe
-    #- C:/msys64/mingw32/bin/python3 -m pip install --upgrade pip
-    #- /mingw32/bin/pip install scikit-build cython pkgconfig setuptools wheel
-    #- C:\msys64\usr\bin\bash.exe -lc "python2 -m pip install scikit-build cython pkgconfig setuptools wheel"
+    - 
 
 build_script:
     - mkdir wheelhouse
 
     - ps: python -m pip install --upgrade pip
-    - ps: python -m pip install scikit-build cython
-    #- C:\msys64\usr\bin\bash --login -c "python -m pip install scikit-build cython pkgconfig setuptools wheel"
-    #- /mingw32/bin/python setup.py build_ext --inplace --force
-    #- /mingw32/bin/python setup.py sdist --dist-dir wheelhouse
-    #- /mingw32/bin/python setup.py bdist_wheel --dist-dir wheelhouse
-    ##- C:\msys64\usr\bin\bash.exe -lc "python2 setup.py build_ext --inplace --force"  # --compiler=mingw32
-    #- C:\msys64\usr\bin\bash.exe -lc "python2 setup.py sdist --dist-dir wheelhouse"
-    #- C:\msys64\usr\bin\bash.exe -lc "python2 setup.py bdist_wheel --dist-dir wheelhouse"
-
-# after_build
+    - ps: python -m pip install scikit-build cython conan pytest
+    - ps: python setup.py build_ext --inplace --force -- -D_CONAN=YES
+    - ps: python setup.py test
+    #- ps: python setup.py sdist --dist-dir wheelhouse
+    #- ps: python setup.py bdist_wheel --dist-dir wheelhouse
 
 
 artifacts:
