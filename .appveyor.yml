@@ -43,15 +43,15 @@ install:
         %PKG_PREFIX%-freeglut
         %PKG_PREFIX%-glew
         %PKG_PREFIX%-glib2
-        %PKG_PREFIX%-python
-        %PKG_PREFIX%-python-pip
+        %PKG_PREFIX%-python2-pip
+        %PKG_PREFIX%-python2-setuptools
     - set "PATH=%PATH%;C:\\msys64\\%MSYSTEM_%\\bin;C:\\msys64\\usr\\bin;C:\\msys64\\bin"
     - doskey pkg-config=%MSYS2_ARCH%-w64-mingw32-pkg-config
     - where gcc.exe
     - where python
     - which link.exe
     - C:\msys64\usr\bin\bash.exe -lc "python -m pip install --upgrade pip"
-    - C:\msys64\usr\bin\bash.exe -lc "python -m pip install cython pkgconfig setuptools wheel"
+    - C:\msys64\usr\bin\bash.exe -lc "python -m pip install scikit-build cython pkgconfig setuptools wheel"
     #- rename "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN\\link.exe" "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN\\link.exe.bak"
     #- rename /usr/bin/link.exe /usr/bin/link.exe.bak
 
