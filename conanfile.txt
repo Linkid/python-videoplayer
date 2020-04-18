@@ -2,7 +2,7 @@
 glib/2.64.0@bincrafters/stable
 #ogg/1.3.3@bincrafters/stable
 ffmpeg/4.2.1@bincrafters/stable
-#vorbis/1.3.6@bincrafters/stable
+vorbis/1.3.6@bincrafters/stable
 theora/1.1.1@bincrafters/stable
 
 [generators]
