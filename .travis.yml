@@ -26,5 +26,5 @@ install:
 
 script:
     - python setup.py check
-#    - python setup.py build_ext --inplace --force -- -D_CONAN=YES
+    - python setup.py build_ext --inplace --force -- -D_CONAN=YES
 #    - python setup.py test

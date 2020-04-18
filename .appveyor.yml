@@ -50,10 +50,8 @@ install:
     - where gcc.exe
     - where python
     - which link.exe
-    - C:\msys64\usr\bin\bash.exe -lc "python2 -m pip install --upgrade pip"
+    #- C:\msys64\usr\bin\bash.exe -lc "python2 -m pip install --upgrade pip"
     - C:\msys64\usr\bin\bash.exe -lc "python2 -m pip install scikit-build cython pkgconfig setuptools wheel"
-    #- rename "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN\\link.exe" "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\BIN\\link.exe.bak"
-    #- rename /usr/bin/link.exe /usr/bin/link.exe.bak
 
 build_script:
     - mkdir wheelhouse
