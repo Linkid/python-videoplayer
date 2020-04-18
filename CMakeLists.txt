@@ -65,6 +65,14 @@ if(_CONAN)
         cmake_policy(SET CMP0072 OLD)
     endif(POLICY CMP0072)
     find_package(OpenGL)
+
+elseif(_VCPKG)
+    find_package(GLIB2)
+    find_package(OGG)
+    find_package(OpenGL)
+    find_package(THEORADEC)
+    find_package(LIBSWSCALE)
+
 else()
     # pkgconfig
     find_package(PkgConfig REQUIRED)

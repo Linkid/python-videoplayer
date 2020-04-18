@@ -14,6 +14,7 @@ environment:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           APPVEYOR_JOB_NAME: "python37-x64-vs2015"
           arch: Win64
+          platform: x64
 
 stack: python 3.7
 
@@ -26,6 +27,10 @@ init:
 install:
     - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
     # C:\msys64\usr\bin\pacman -S --noconfirm mingw64/mingw-w64-x86_64-python3
+    - cmd: vcpkg install glib:%platform%-windows
+                         libogg:%platform%-windows
+                         libtheora:%platform%-windows
+                         ffmpeg:%platform%-windows
 
 build_script:
     - mkdir wheelhouse
@@ -33,8 +38,8 @@ build_script:
     - cmd: cmake --version
     - cmd: python.exe -m pip install --upgrade pip
     - cmd: python.exe -m pip install scikit-build cython conan pytest
-    - cmd: python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES -G "Visual Studio 14 2015%arch%"
-    #- cmd: python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+    #- cmd: python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES -G "Visual Studio 14 2015%arch%"
+    - cmd: python.exe setup.py build_ext --inplace --force -- -D_VCPGK=YES -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
     - cmd: python.exe setup.py test
     #- cmd: python.exe setup.py sdist --dist-dir wheelhouse
     #- cmd: python.exe setup.py bdist_wheel --dist-dir wheelhouse
