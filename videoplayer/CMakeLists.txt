@@ -23,6 +23,7 @@ add_library(VideoPlayer VideoPlayer.c)
 target_include_directories(VideoPlayer
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${GLIB2_INCLUDE_DIRS}
+    PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}
 )
 target_link_libraries(VideoPlayer
     PRIVATE ${GLIB2_LIBRARIES}

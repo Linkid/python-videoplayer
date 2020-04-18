@@ -5,7 +5,7 @@ theora/1.1.1@bincrafters/stable
 vorbis/1.3.6@bincrafters/stable
 ogg/1.3.4
 ffmpeg/4.2.1@bincrafters/stable
-glew/2.1.0@bincrafters/stable
+#glew/2.1.0@bincrafters/stable
 
 [generators]
 # https://blog.conan.io/2018/06/11/Transparent-CMake-Integration.html
