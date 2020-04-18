@@ -50,13 +50,17 @@ install:
     - where gcc.exe
     - where python
     - which link.exe
-    #- C:\msys64\usr\bin\bash.exe -lc "python2 -m pip install --upgrade pip"
-    - C:\msys64\usr\bin\bash.exe -lc "python2 -m pip install scikit-build cython pkgconfig setuptools wheel"
+    - C:/msys64/mingw32/bin/python3 -m pip install --upgrade pip
+    - /mingw32/bin/pip install scikit-build cython pkgconfig setuptools wheel
+    #- C:\msys64\usr\bin\bash.exe -lc "python2 -m pip install scikit-build cython pkgconfig setuptools wheel"
 
 build_script:
     - mkdir wheelhouse
 
-    - C:\msys64\usr\bin\bash.exe -lc "python2 setup.py build_ext --inplace --force"  # --compiler=mingw32
+    - /mingw32/bin/python setup.py build_ext --inplace --force
+    - /mingw32/bin/python setup.py sdist --dist-dir wheelhouse
+    - /mingw32/bin/python setup.py bdist_wheel --dist-dir wheelhouse
+    #- C:\msys64\usr\bin\bash.exe -lc "python2 setup.py build_ext --inplace --force"  # --compiler=mingw32
     - C:\msys64\usr\bin\bash.exe -lc "python2 setup.py sdist --dist-dir wheelhouse"
     - C:\msys64\usr\bin\bash.exe -lc "python2 setup.py bdist_wheel --dist-dir wheelhouse"
 
