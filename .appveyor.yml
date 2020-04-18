@@ -27,7 +27,7 @@ build_script:
 
     - ps: python.exe -m pip install --upgrade pip
     - ps: python.exe -m pip install scikit-build cython conan pytest
-    - ps: python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES
+    - ps: python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES -G "Visual Studio 15 2017 Win64"
     - ps: python.exe setup.py test
     #- ps: python.exe setup.py sdist --dist-dir wheelhouse
     #- ps: python.exe setup.py bdist_wheel --dist-dir wheelhouse
