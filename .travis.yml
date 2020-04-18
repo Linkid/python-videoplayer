@@ -26,6 +26,10 @@ install:
     - pip install pytest
 
 script:
-    - python setup.py check
-    - python setup.py build_ext --inplace --force -- -D_CONAN=YES
-    - python setup.py test
+    - mkdir -p build
+    - cd build
+    - conan install ..
+    - find ~/.conan/data/ffmpeg/4.2.1/bincrafters/stable/ -name "swscale.h"
+    #- python setup.py check
+    #- python setup.py build_ext --inplace --force -- -D_CONAN=YES
+    #- python setup.py test
