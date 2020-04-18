@@ -1,10 +1,10 @@
 language: python
 python:
     - 2.7
-    - 3.4
-    - 3.5
-    - 3.6
-    - 3.7
+#    - 3.4
+#    - 3.5
+#    - 3.6
+#    - 3.7
     - 3.8
 
 #before_install:
@@ -19,8 +19,10 @@ python:
 #    - python -m pip install pytest
 
 install:
-    - python -m pip install scikit-build cython conan
-    - python -m pip install pytest
+    - pip install scikit-build
+    - pip install cython
+    - pip install conan
+    - pip install pytest
 
 script:
     - python setup.py check
