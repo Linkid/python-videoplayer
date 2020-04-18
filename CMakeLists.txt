@@ -26,18 +26,17 @@ if(_CONAN)
     endif()
     include(${CMAKE_BINARY_DIR}/conan.cmake)
 
+    # check if conan is intalled
+    conan_check(VERSION 1.24.0 REQUIRED)
+
     # add the bincrafters remote
     conan_add_remote(NAME bincrafters INDEX 1
                      URL https://api.bintray.com/conan/bincrafters/public-conan)
 
     # run conan install
     conan_cmake_run(CONANFILE conanfile.txt
-                    BASIC_SETUP
+                    BASIC_SETUP CMAKE_TARGETS
                     BUILD missing)
-    conan_cmake_run(REQUIRES theora/1.1.1@bincrafters/stable
-                    BASIC_SETUP
-                    BUILD theora missing
-                    GENERATORS cmake_find_package cmake_paths)
 
     # setup conan vars
     #include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
