@@ -20,11 +20,11 @@ python:
 
 install:
     - pip install scikit-build
-    - pip install cython
-    - pip install conan
-    - pip install pytest
-
-script:
-    - python setup.py check
-    - python setup.py build_ext --inplace --force -- -D_CONAN=YES
-    - python setup.py test
+#    - pip install cython
+#    - pip install conan
+#    - pip install pytest
+#
+#script:
+#    - python setup.py check
+#    - python setup.py build_ext --inplace --force -- -D_CONAN=YES
+#    - python setup.py test
