@@ -62,6 +62,9 @@ if(_CONAN)
     set(LIBSWSCALE_INCLUDE_DIRS ${ffmpeg_INCLUDE_DIRS})
     set(LIBSWSCALE_LIBRARIES ${ffmpeg_LIBRARIES})
 
+    if (POLICY CMP0072)
+        cmake_policy(SET CMP0072 OLD)
+    endif(POLICY CMP0072)
     find_package(OpenGL)
 else()
     # pkgconfig
