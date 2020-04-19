@@ -34,7 +34,7 @@ install:
     - pwd
     - cd c:\tools\vcpkg
     - vcpkg integrate install
-    - cd -
+    - cd c:\projects\python-videoplayer
 
 build_script:
     - mkdir wheelhouse
