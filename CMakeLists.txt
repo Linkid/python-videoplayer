@@ -17,6 +17,7 @@ find_package(PythonExtensions REQUIRED)
 
 # manage dependencies
 if(_CONAN)
+    message(STATUS "xxx Use conan xxx")
     # conan.io
     # download the the conan.cmake file
     if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
@@ -67,13 +68,38 @@ if(_CONAN)
     find_package(OpenGL)
 
 elseif(_VCPKG)
-    find_package(GLIB2)
-    find_package(OGG)
+    message(STATUS "xxx Use vcpkg xxx")
+
+    find_package(unofficial-glib CONFIG REQUIRED)
+    #list(APPEND THIRD_PARTY_LIBS unofficial::glib::glib)
+    set(GLIB2_FOUND ${unofficial-glib_FOUND})
+    set(GLIB2_INCLUDE_DIRS ${unofficial-glib_INCLUDE_DIRS})
+    set(GLIB2_LIBRARIES ${unofficial-glib_LIBRARIES})
+    message(STATUS "yyy found glib: ${GLIB_FOUND}")
+
+    find_package(Ogg CONFIG REQUIRED)
+    #list(APPEND THIRD_PARTY_LIBS Ogg::ogg)
+    #find_path(OGG_INCLUDE_DIRS NAMES ogg/ogg.h)
+    #find_library(OGG_LIBRARIES NAMES ogg libogg)
+    message(STATUS "yyy found ogg: ${OGG_FOUND}")
+
+    find_path(THEORADEC_INCLUDE_DIRS NAMES theoradec/theoradec.h)
+    find_library(THEORADEC_LIBRARIES NAMES theoradec libtheoradec theora-dec)
+    message(STATUS "yyy found theora: ${THEORADEC_INCLUDE_DIRS}")
+    message(STATUS "yyy found theora: ${THEORADEC_LIBRARIES}")
+
+    find_package(FFMPEG)
+    # FFMPEG_libswscale_INCLUDE_DIRS
+    set(LIBSWSCALE_FOUND ${ffmpeg_FOUND})
+    set(LIBSWSCALE_INCLUDE_DIRS ${ffmpeg_INCLUDE_DIRS})
+    set(LIBSWSCALE_LIBRARIES ${ffmpeg_LIBRARIES})
+    message(STATUS "yyy found ffmpeg: ${FFMPEG_FOUND}")
+
     find_package(OpenGL)
-    find_package(THEORADEC)
-    find_package(LIBSWSCALE)
 
 else()
+    message(STATUS "xxx Use pkgconfig xxx")
+
     # pkgconfig
     find_package(PkgConfig REQUIRED)
     pkg_search_module(GLIB2 REQUIRED glib-2.0>=2.34 IMPORTED_TARGET)
