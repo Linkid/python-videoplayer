@@ -37,7 +37,8 @@ build_script:
 
     - cmd: cmake --version
     - cmd: python.exe -m pip install --upgrade pip
-    - cmd: python.exe -m pip install scikit-build cython conan pytest
+    - cmd: python.exe -m pip install scikit-build cython pytest
+    #- cmd: python.exe -m pip install scikit-build cython conan pytest
     #- cmd: python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES -G "Visual Studio 14 2015%arch%"
     - cmd: python.exe setup.py build_ext --inplace --force -- -D_VCPKG=YES -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
     - cmd: python.exe setup.py test
