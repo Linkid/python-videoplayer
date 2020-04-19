@@ -83,7 +83,7 @@ elseif(_VCPKG)
     #find_library(OGG_LIBRARIES NAMES ogg libogg)
     message(STATUS "yyy found ogg: ${OGG_FOUND}")
 
-    find_path(THEORADEC_INCLUDE_DIRS NAMES theoradec/theoradec.h)
+    find_path(THEORADEC_INCLUDE_DIRS NAMES theora/theoradec.h)
     find_library(THEORADEC_LIBRARIES NAMES theoradec libtheoradec theora-dec)
     message(STATUS "yyy found theora: ${THEORADEC_INCLUDE_DIRS}")
     message(STATUS "yyy found theora: ${THEORADEC_LIBRARIES}")
