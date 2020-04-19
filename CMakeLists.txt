@@ -61,6 +61,7 @@ if(_CONAN)
     set(LIBSWSCALE_FOUND ${ffmpeg_FOUND})
     set(LIBSWSCALE_INCLUDE_DIRS ${ffmpeg_INCLUDE_DIRS})
     set(LIBSWSCALE_LIBRARIES ${ffmpeg_LIBRARIES})
+    find_path(LIBSWSCALE_INCLUDE_DIRS "swscale.h" ${ffmpeg_INCLUDE_DIRS})
 
     if (POLICY CMP0072)
         cmake_policy(SET CMP0072 OLD)
