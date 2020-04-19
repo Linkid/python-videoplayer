@@ -31,6 +31,8 @@ install:
                          libogg:%platform%-windows
                          libtheora:%platform%-windows
                          ffmpeg:%platform%-windows
+    - cd c:\tools\vcpkg
+    - vcpkg integrate install
 
 build_script:
     - mkdir wheelhouse
