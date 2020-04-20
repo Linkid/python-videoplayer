@@ -91,12 +91,12 @@ elseif(_VCPKG)
     message(STATUS "yyy found theora: ${THEORADEC_INCLUDE_DIRS}")
     message(STATUS "yyy found theora: ${THEORADEC_LIBRARIES}")
 
-    find_package(FFMPEG)
-    # FFMPEG_libswscale_INCLUDE_DIRS
-    set(LIBSWSCALE_FOUND ${ffmpeg_FOUND})
-    set(LIBSWSCALE_INCLUDE_DIRS ${ffmpeg_INCLUDE_DIRS})
-    set(LIBSWSCALE_LIBRARIES ${ffmpeg_LIBRARIES})
-    message(STATUS "yyy found ffmpeg: ${FFMPEG_FOUND}")
+    #find_package(FFMPEG)
+    ## FFMPEG_libswscale_INCLUDE_DIRS
+    #set(LIBSWSCALE_FOUND ${ffmpeg_FOUND})
+    #set(LIBSWSCALE_INCLUDE_DIRS ${ffmpeg_INCLUDE_DIRS})
+    #set(LIBSWSCALE_LIBRARIES ${ffmpeg_LIBRARIES})
+    #message(STATUS "yyy found ffmpeg: ${FFMPEG_FOUND}")
 
     find_package(OpenGL)
 
