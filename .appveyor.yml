@@ -6,7 +6,7 @@ init:
     - echo %APPVEYOR_BUILD_WORKER_IMAGE%
 
 install:
-    - set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
+    - set PATH=C:\Python37-x64;C:\Python37-x64\Scripts;%PATH%
 
     # Check that we have the expected version and architecture for Python
     - "python --version"
