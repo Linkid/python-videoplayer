@@ -11,7 +11,7 @@ from videoplayer._VideoPlayer import VideoPlayerError
 
 
 if sys.version_info.major == 3:
-    urllib = urllib.request
+    import urllib.request as urllib
 
 
 class VideoPlayerTest(unittest.TestCase):
