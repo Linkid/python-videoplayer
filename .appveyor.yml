@@ -13,6 +13,7 @@ environment:
         # windows
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           APPVEYOR_JOB_NAME: "python37-x64-vs2015"
+          ARCH: amd64
           arch: Win64
           platform: x64
           PYTHON_ARCH: "64"
