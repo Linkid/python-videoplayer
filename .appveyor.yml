@@ -11,8 +11,8 @@ environment:
         #  compiler: clang
 
         # windows
-        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-          APPVEYOR_JOB_NAME: "python37-x64-vs2015"
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+          APPVEYOR_JOB_NAME: "python37-x64-vs2017"
           arch: Win64
           platform: x64
 
@@ -41,6 +41,7 @@ build_script:
     - mkdir wheelhouse
 
     - cmd: cmake --version
+    - cmd: python.exe -c 'import setuptools; print(setuptools.__version__)'
     - cmd: python.exe -m pip install --upgrade pip
     - cmd: python.exe -m pip install scikit-build cython pytest
     #- cmd: python.exe -m pip install scikit-build cython conan pytest
