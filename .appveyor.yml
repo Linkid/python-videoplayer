@@ -37,7 +37,7 @@ install:
     - cd c:\projects\python-videoplayer
     - vcpkg list --triplet x64-windows
     - set DISTUTILS_USE_SDK=1
-    - setenv /x64 /release
+    #- setenv /x64 /release
 
 build_script:
     - mkdir wheelhouse
