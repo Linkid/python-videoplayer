@@ -43,7 +43,6 @@ build_script:
     - mkdir wheelhouse
 
     - cmd: cmake --version
-    - cmd: python.exe -c 'import setuptools; print(setuptools.__version__)'
     - cmd: python.exe -m pip install --upgrade pip
     - cmd: python.exe -m pip install scikit-build cython pytest
     #- cmd: python.exe -m pip install scikit-build cython conan pytest
