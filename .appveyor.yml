@@ -11,8 +11,8 @@ environment:
         #  compiler: clang
 
         # windows
-        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-          APPVEYOR_JOB_NAME: "python37-x64-vs2017"
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          APPVEYOR_JOB_NAME: "python37-x64-vs2015"
           arch: Win64
           platform: x64
 
@@ -36,6 +36,8 @@ install:
     - vcpkg integrate install
     - cd c:\projects\python-videoplayer
     - vcpkg list --triplet x64-windows
+    - set DISTUTILS_USE_SDK=1
+    - setenv /x64 /release
 
 build_script:
     - mkdir wheelhouse
@@ -46,7 +48,7 @@ build_script:
     - cmd: python.exe -m pip install scikit-build cython pytest
     #- cmd: python.exe -m pip install scikit-build cython conan pytest
     #- cmd: python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES -G "Visual Studio 14 2015%arch%"
-    - cmd: python.exe setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+    - cmd: python.exe setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 14 2015%arch%"
     - cmd: python.exe setup.py test
     #- cmd: python.exe setup.py sdist --dist-dir wheelhouse
     #- cmd: python.exe setup.py bdist_wheel --dist-dir wheelhouse
