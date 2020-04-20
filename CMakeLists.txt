@@ -85,18 +85,25 @@ elseif(_VCPKG)
     #find_path(OGG_INCLUDE_DIRS NAMES ogg/ogg.h)
     #find_library(OGG_LIBRARIES NAMES ogg libogg)
     message(STATUS "yyy found ogg: ${OGG_FOUND}")
+    message(STATUS "yyy found ogg: ${OGG_INCLUDE_DIRS}")
+    message(STATUS "yyy found ogg: ${OGG_LIBRARIES}")
 
     find_path(THEORADEC_INCLUDE_DIRS NAMES theora/theoradec.h)
     find_library(THEORADEC_LIBRARIES NAMES theoradec libtheoradec theora-dec)
     message(STATUS "yyy found theora: ${THEORADEC_INCLUDE_DIRS}")
     message(STATUS "yyy found theora: ${THEORADEC_LIBRARIES}")
 
-    #find_package(FFMPEG)
-    ## FFMPEG_libswscale_INCLUDE_DIRS
-    #set(LIBSWSCALE_FOUND ${ffmpeg_FOUND})
-    #set(LIBSWSCALE_INCLUDE_DIRS ${ffmpeg_INCLUDE_DIRS})
-    #set(LIBSWSCALE_LIBRARIES ${ffmpeg_LIBRARIES})
-    #message(STATUS "yyy found ffmpeg: ${FFMPEG_FOUND}")
+    find_package(FFMPEG)
+    # FFMPEG_libswscale_INCLUDE_DIRS
+    set(LIBSWSCALE_FOUND ${FFMPEG_libswscale_FOUND})
+    set(LIBSWSCALE_INCLUDE_DIRS ${FFMPEG_libswscale_INCLUDE_DIRS})
+    set(LIBSWSCALE_LIBRARIES ${FFMPEG_libswscale_LIBRARY})
+    message(STATUS "yyy found ffmpeg: ${FFMPEG_FOUND}")
+    message(STATUS "yyy found ffmpeg: ${FFMPEG_INCLUDE_DIRS}")
+    message(STATUS "yyy found ffmpeg: ${FFMPEG_LIBRARIES}")
+    message(STATUS "yyy found libswscale: ${FFMPEG_libswscale_FOUND}")
+    message(STATUS "yyy found libswscale: ${FFMPEG_libswscale_INCLUDE_DIRS}")
+    message(STATUS "yyy found libswscale: ${FFMPEG_libswscale_LIBRARY}")
 
     find_package(OpenGL)
 
