@@ -15,6 +15,7 @@ environment:
           APPVEYOR_JOB_NAME: "python37-x64-vs2015"
           arch: Win64
           platform: x64
+          PYTHON_ARCH: "64"
 
 stack: python 3.7
 
@@ -36,21 +37,25 @@ install:
     - vcpkg integrate install
     - cd c:\projects\python-videoplayer
     - vcpkg list --triplet x64-windows
-    - set DISTUTILS_USE_SDK=1
-    #- setenv /x64 /release
+
+    # Check that we have the expected version and architecture for Python
+    - "python --version"
+    - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
+    - "build.cmd python --version"
+    - "build.cmd python -c \"import struct; print(struct.calcsize('P') * 8)\""
 
 build_script:
     - mkdir wheelhouse
 
-    - cmd: cmake --version
-    - cmd: python.exe -m pip install --upgrade pip
-    - cmd: python.exe -m pip install scikit-build cython pytest
-    #- cmd: python.exe -m pip install scikit-build cython conan pytest
-    #- cmd: python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES -G "Visual Studio 14 2015%arch%"
-    - cmd: python.exe setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 14 2015%arch%"
-    - cmd: python.exe setup.py test
-    #- cmd: python.exe setup.py sdist --dist-dir wheelhouse
-    #- cmd: python.exe setup.py bdist_wheel --dist-dir wheelhouse
+    - cmake --version
+    - python.exe -m pip install --upgrade pip
+    - python.exe -m pip install scikit-build cython pytest
+    #- python.exe -m pip install scikit-build cython conan pytest
+    #- python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES -G "Visual Studio 14 2015%arch%"
+    - python.exe setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 14 2015%arch%"
+    - python.exe setup.py test
+    #- python.exe setup.py sdist --dist-dir wheelhouse
+    #- python.exe setup.py bdist_wheel --dist-dir wheelhouse
 
 
 artifacts:
