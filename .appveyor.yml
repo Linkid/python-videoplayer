@@ -36,7 +36,7 @@ build_script:
     - build.cmd python -m pip install scikit-build cython pytest
     #- python.exe -m pip install scikit-build cython conan pytest
     #- python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES # -G "Visual Studio 14 2015%arch%"
-    - build.cmd python setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake # -G "Visual Studio 14 2015%arch%"
+    - build.cmd VERBOSE=1 python setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake # -G "Visual Studio 14 2015%arch%"
     - build.cmd python setup.py test
     #- python.exe setup.py sdist --dist-dir wheelhouse
     #- python.exe setup.py bdist_wheel --dist-dir wheelhouse
