@@ -25,8 +25,8 @@ install:
     - pwd
     - cd c:\tools\vcpkg
     - vcpkg integrate install
-    - cd c:\projects\python-videoplayer
     - vcpkg list --triplet x64-windows
+    - cd %APPVEYOR_BUILD_FOLDER%  # c:\projects\python-videoplayer
 
 build_script:
     - mkdir wheelhouse
