@@ -16,7 +16,22 @@ find_package(PythonExtensions REQUIRED)
 
 
 # manage dependencies
-if(_CONAN)
+## set vars
+set(_CONAN OFF CACHE BOOL "Use dependencies installed via conan (not dependency package)")
+set(_VCPKG OFF CACHE BOOL "Use dependencies installed via vcpkg (not dependency package)")
+set(_WIN_DEP OFF CACHE BOOL "Use dependencies from an external package")
+
+## get deps
+if (WIN32 AND _WIN_DEP)
+    set(DEPENDENCY_FOLDER "${PROJECT_SOURCE_DIR}/win_dep")
+    find_path(GLIB2_INCLUDE_DIRS NAMES glib.h PATHS "${DEPENDENCY_FOLDER}/include/glib-2.0")
+    find_library(GLIB2_LIBRARIES NAMES glib-2.0 PATHS "${DEPENDENCY_FOLDER}/lib")
+    find_library(OGG_LIBRARIES NAMES ogg libogg PATHS "${DEPENDENCY_FOLDER}/lib")
+    find_library(THEORADEC_LIBRARIES NAMES theoradec libtheoradec theora-dec PATHS "${DEPENDENCY_FOLDER}/lib")
+    find_library(LIBSWSCALE_LIBRARIES NAMES swscale libswscale PATHS "${DEPENDENCY_FOLDER}/lib")
+    find_package(OpenGL)
+
+elseif(_CONAN)
     message(STATUS "xxx Use conan xxx")
     # conan.io
     # download the the conan.cmake file
