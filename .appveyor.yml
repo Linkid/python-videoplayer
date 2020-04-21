@@ -29,6 +29,7 @@ install:
     - cd %APPVEYOR_BUILD_FOLDER%  # c:\projects\python-videoplayer
 
 build_script:
+    - set VERBOSE=1
     - mkdir wheelhouse
 
     - cmake --version
@@ -36,7 +37,7 @@ build_script:
     - build.cmd python -m pip install scikit-build cython pytest
     #- python.exe -m pip install scikit-build cython conan pytest
     #- python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES # -G "Visual Studio 14 2015%arch%"
-    - VERBOSE=1 build.cmd python setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake # -G "Visual Studio 14 2015%arch%"
+    - build.cmd python setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake # -G "Visual Studio 14 2015%arch%"
     - build.cmd python setup.py test
     - python.exe setup.py sdist --dist-dir wheelhouse
     - python.exe setup.py bdist_wheel --dist-dir wheelhouse
