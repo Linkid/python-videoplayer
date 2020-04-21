@@ -54,3 +54,13 @@ python_extension_module(_VideoPlayer)
 # install the module
 install(TARGETS _VideoPlayer LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
 install(FILES ${videoplayer_BINARY_DIR}/videoplayer/_VideoPlayer.c DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
+
+# copy dlls
+if (WIN32)
+    message(STATUS "zzz cmake_current_binary_dir: ${CMAKE_CURRENT_BINARY_DIR}")
+    list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/libglib-2.0-0.dll)
+    list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/libogg-0.dll)
+    list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/libtheoradec-1.dll)
+    list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/swscale-2.dll)
+    install(FILES ${DEPENDENCIES_DLL} DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)  #FILES_MATCHING PATTERN "*.dll"
+endif()
