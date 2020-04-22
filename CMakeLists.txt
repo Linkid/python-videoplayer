@@ -89,7 +89,7 @@ elseif(_VCPKG)
     # set vcpkg vars
     set(VCPKG_CRT_LINKAGE dynamic)
     set(VCPKG_LIBRARY_LINKAGE dynamic)
-    set(VCPKG_DLL_FILES "C:\tools\vcpkg\installed\x64-windows\bin")
+    set(VCPKG_DLL_FILES "C:\\tools\\vcpkg\\installed\\x64-windows\\bin")
 
     # find deps
     find_package(unofficial-glib CONFIG REQUIRED)
