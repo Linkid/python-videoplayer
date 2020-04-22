@@ -86,6 +86,12 @@ elseif(_CONAN)
 elseif(_VCPKG)
     message(STATUS "xxx Use vcpkg xxx")
 
+    # set vcpkg vars
+    set(VCPKG_CRT_LINKAGE dynamic)
+    set(VCPKG_LIBRARY_LINKAGE dynamic)
+    set(VCPKG_DLL_FILES "C:\tools\vcpkg\installed\x64-windows\bin")
+
+    # find deps
     find_package(unofficial-glib CONFIG REQUIRED)
     set(GLIB2_FOUND ${unofficial-glib_FOUND})
     find_path(GLIB2_INCLUDE_DIRS NAMES glib.h)
