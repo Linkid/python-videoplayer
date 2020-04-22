@@ -26,7 +26,7 @@ install:
                     libogg:%platform%-windows
                     libtheora:%platform%-windows
                     ffmpeg:%platform%-windows --zip
-    - ps: cp c:\vcpkg\Tools\vcpkg\"vcpkg-export-*.zip" .
+    - ps: cp c:\Tools\vcpkg\"vcpkg-export-*.zip" .
     - pwd
     - cd c:\tools\vcpkg
     - vcpkg integrate install
