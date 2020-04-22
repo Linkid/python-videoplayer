@@ -53,5 +53,5 @@ artifacts:
       name: Wheels
     - path: "skbuild.zip"
       name: skbuid
-    - path: "C:\\Tools\\vcpkg\\vcpkg-export-*.zip"
+    - path: "..\\..\\Tools\\vcpkg\\vcpkg-export-*.zip"
       name: vcpkg-export
