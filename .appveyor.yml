@@ -22,6 +22,10 @@ install:
                     libogg:%platform%-windows
                     libtheora:%platform%-windows
                     ffmpeg:%platform%-windows
+    - vcpkg export  glib:%platform%-windows
+                    libogg:%platform%-windows
+                    libtheora:%platform%-windows
+                    ffmpeg:%platform%-windows --zip
     - pwd
     - cd c:\tools\vcpkg
     - vcpkg integrate install
@@ -47,5 +51,6 @@ build_script:
 artifacts:
     - path: "wheelhouse\\*.whl"
       name: Wheels
-    - path: "skbuild.zip"
-      name: skbuid
+    #- path: "skbuild.zip"
+    #  name: skbuid
+    - path: "*.zip"
