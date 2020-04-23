@@ -1,7 +1,8 @@
 image: Visual Studio 2015
 platform: x64
 
-cache: c:\tools\vcpkg\installed\
+#cache: c:\tools\vcpkg\installed\
+cache: c:\tools\vcpkg\installed -> appveyor.yml
 
 init:
     - set arch= Win64
