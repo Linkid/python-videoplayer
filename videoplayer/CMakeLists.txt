@@ -60,7 +60,7 @@ message(STATUS "yyyyyy CMAKE_INSTALL_PREFIX: ${CMAKE_INSTALL_PREFIX}")
 
 # copy dlls
 if (WIN32)
-    #file(GLOB DEPENDENCIES_DLL "${CMAKE_CURRENT_BINARY_DIR}/Release/*.dll")
+    file(GLOB DEPENDENCIES_DLL "${CMAKE_CURRENT_BINARY_DIR}/Release/*.dll")
     message(STATUS "zzz cmake_current_binary_dir: ${CMAKE_CURRENT_BINARY_DIR}")
     #message(STATUS "zzz list dll: ${DEPENDENCIES_DLL}")
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/avutil-56.dll)
@@ -72,7 +72,8 @@ if (WIN32)
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/pcre.dll)
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/swscale-5.dll)
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/theoradec.dll)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/Release/*.dll
+    install(FILES ${DEPENDENCIES_DLL}
+    #install(FILES ${CMAKE_CURRENT_BINARY_DIR}/Release/*.dll
             DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
-            #FILES_MATCHING PATTERN "*.dll")
+    #        #FILES_MATCHING PATTERN "*.dll")
 endif()
