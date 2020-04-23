@@ -55,9 +55,9 @@ build_script:
     #- python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES # -G "Visual Studio 14 2015%arch%"
     - build.cmd python setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 14 2015%arch%"
     - 7z a skbuild.zip %APPVEYOR_BUILD_FOLDER%/_skbuild/win-amd64-3.7
-    - build.cmd python setup.py test
-    - build.cmd python setup.py sdist --dist-dir wheelhouse
-    - build.cmd python setup.py bdist_wheel --dist-dir wheelhouse
+    #- build.cmd python setup.py test
+    #- build.cmd python setup.py sdist --dist-dir wheelhouse
+    #- build.cmd python setup.py bdist_wheel --dist-dir wheelhouse
 
 
 artifacts:
