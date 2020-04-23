@@ -57,19 +57,19 @@ install(FILES ${videoplayer_BINARY_DIR}/videoplayer/_VideoPlayer.c DESTINATION $
 
 # copy dlls
 if (WIN32)
-    file(GLOB DEPENDENCIES_DLL "${CMAKE_CURRENT_BINARY_DIR}/*.dll")
+    file(GLOB DEPENDENCIES_DLL "${CMAKE_CURRENT_BINARY_DIR}/Release/*.dll")
     message(STATUS "zzz cmake_current_binary_dir: ${CMAKE_CURRENT_BINARY_DIR}")
     message(STATUS "zzz list dll: ${DEPENDENCIES_DLL}")
-    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/avutil-56.dll)
-    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/glib-2.dll)
-    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/libcharset.dll)
-    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/libiconv.dll)
-    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/libintl.dll)
-    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/ogg.dll)
-    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/pcre.dll)
-    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/swscale-5.dll)
-    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/theoradec.dll)
-    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Release
-            DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer
-            FILES_MATCHING PATTERN "*.dll")
+    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/avutil-56.dll)
+    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/glib-2.dll)
+    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/libcharset.dll)
+    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/libiconv.dll)
+    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/libintl.dll)
+    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/ogg.dll)
+    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/pcre.dll)
+    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/swscale-5.dll)
+    #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/theoradec.dll)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/Release/*.dll
+            DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
+            #FILES_MATCHING PATTERN "*.dll")
 endif()
