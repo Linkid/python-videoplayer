@@ -4,6 +4,7 @@ platform: x64
 cache: c:\tools\vcpkg\installed\
 
 init:
+    - set arch= Win64
     - echo %arch%
     - echo %APPVEYOR_BUILD_WORKER_IMAGE%
 
@@ -44,7 +45,7 @@ build_script:
     - build.cmd python -m pip install scikit-build cython pytest
     #- python.exe -m pip install scikit-build cython conan pytest
     #- python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES # -G "Visual Studio 14 2015%arch%"
-    - build.cmd python setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake # -G "Visual Studio 14 2015%arch%"
+    - build.cmd python setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 14 2015%arch%"
     - 7z a skbuild.zip %APPVEYOR_BUILD_FOLDER%/_skbuild/win-amd64-3.7
     #- build.cmd python setup.py test
     #- python.exe setup.py sdist --dist-dir wheelhouse
