@@ -20,6 +20,7 @@ find_package(PythonExtensions REQUIRED)
 set(_CONAN OFF CACHE BOOL "Use dependencies installed via conan (not dependency package)")
 set(_VCPKG OFF CACHE BOOL "Use dependencies installed via vcpkg (not dependency package)")
 set(_WIN_DEP OFF CACHE BOOL "Use dependencies from an external package")
+set(VCPKG_APPLOCAL_DEPS ${_VCPKG} BOOL)
 
 ## get deps
 if (WIN32 AND _WIN_DEP)
