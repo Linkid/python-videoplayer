@@ -54,12 +54,15 @@ python_extension_module(_VideoPlayer)
 # install the module
 install(TARGETS _VideoPlayer LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
 install(FILES ${videoplayer_BINARY_DIR}/videoplayer/_VideoPlayer.c DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
+message(STATUS "yyyyyy videoplayer_BINARY_DIR: ${videoplayer_BINARY_DIR}")
+message(STATUS "yyyyyy CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
+message(STATUS "yyyyyy CMAKE_INSTALL_PREFIX: ${CMAKE_INSTALL_PREFIX}")
 
 # copy dlls
 if (WIN32)
-    file(GLOB DEPENDENCIES_DLL "${CMAKE_CURRENT_BINARY_DIR}/Release/*.dll")
+    #file(GLOB DEPENDENCIES_DLL "${CMAKE_CURRENT_BINARY_DIR}/Release/*.dll")
     message(STATUS "zzz cmake_current_binary_dir: ${CMAKE_CURRENT_BINARY_DIR}")
-    message(STATUS "zzz list dll: ${DEPENDENCIES_DLL}")
+    #message(STATUS "zzz list dll: ${DEPENDENCIES_DLL}")
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/avutil-56.dll)
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/glib-2.dll)
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/libcharset.dll)
