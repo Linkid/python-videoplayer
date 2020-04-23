@@ -1,6 +1,8 @@
 image: Visual Studio 2015
 platform: x64
 
+cache: c:\tools\vcpkg\installed\
+
 init:
     - echo %arch%
     - echo %APPVEYOR_BUILD_WORKER_IMAGE%
