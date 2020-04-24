@@ -55,12 +55,12 @@ python_extension_module(_VideoPlayer)
 
 # install the module
 install(TARGETS _VideoPlayer
-    LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer
-    RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
+    LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
 install(FILES ${videoplayer_BINARY_DIR}/videoplayer/_VideoPlayer.c DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
 message(STATUS "yyyyyy videoplayer_BINARY_DIR: ${videoplayer_BINARY_DIR}")
 message(STATUS "yyyyyy CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
 message(STATUS "yyyyyy CMAKE_INSTALL_PREFIX: ${CMAKE_INSTALL_PREFIX}")
+message(STATUS "yyyyyy CMAKE_INSTALL_CONFIG_NAME: ${CMAKE_INSTALL_CONFIG_NAME}")
 
 # copy dlls
 if (WIN32)
@@ -68,10 +68,10 @@ if (WIN32)
     message(STATUS "zzz cmake_current_binary_dir: ${CMAKE_CURRENT_BINARY_DIR}")
     message(STATUS "zzz list dll: ${DEPENDENCIES_DLL}")
     ## Copy dlls on windows
-    add_custom_command(TARGET _VideoPlayer POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${videoplayer_BINARY_DIR}/videoplayer/Release/glib-2.dll"
-        "${CMAKE_INSTALL_PREFIX}/videoplayer")
+    #add_custom_command(TARGET _VideoPlayer POST_BUILD
+    #    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    #    "${videoplayer_BINARY_DIR}/videoplayer/Release/glib-2.dll"
+    #    "${CMAKE_INSTALL_PREFIX}/videoplayer")
     #    #$<TARGET_FILE_DIR:_VideoPlayer>)
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/avutil-56.dll)
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/glib-2.dll)
@@ -84,7 +84,7 @@ if (WIN32)
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/Release/theoradec.dll)
     #install(FILES ${DEPENDENCIES_DLL}
     #install(FILES ${CMAKE_CURRENT_BINARY_DIR}/Release/*.dll
-    #install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Release/*.dll
-    #        DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
-    #        #FILES_MATCHING PATTERN "*.dll")
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/videoplayer
+            DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer
+            FILES_MATCHING PATTERN "*.dll")
 endif()
