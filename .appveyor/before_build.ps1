@@ -14,6 +14,8 @@ if ($env:platform -eq "x64") {
 & "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" $env:varsall
 
 # vcpkg: install dependencies
+echo "${env:platform}-windows"
+"ls env:"
 vcpkg install glib:${env:platform}-windows
               libogg:${env:platform}-windows
               libtheora:${env:platform}-windows
