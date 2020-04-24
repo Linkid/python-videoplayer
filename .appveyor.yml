@@ -2,7 +2,6 @@ image: Visual Studio 2015
 platform: x64
 
 cache: c:\tools\vcpkg\installed\
-#cache: c:\tools\vcpkg\installed -> appveyor.yml
 
 init:
     - set arch= Win64
@@ -14,21 +13,16 @@ install:
 
     # dumpbin + https://www.appveyor.com/docs/lang/cpp/
     - set PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin
-    #- set PATH=C:\Program Files (x86)\MSBuild\12.0\Bin;%PATH%
-    #- call "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
     - call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
     - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
     - where dumpbin
 
     # Check that we have the expected version and architecture for Python
-    - "python --version"
-    - "build.cmd python --version"
-    - "build.cmd python -c \"import struct; print(struct.calcsize('P') * 8)\""
-    - "build.cmd python -c \"import platform; print(platform.platform())\""
-    - "build.cmd python -c \"import platform; print(platform.processor())\""
-    - "build.cmd python -c \"import platform; print(platform.architecture())\""
+    - python --version
+    - cmake --version
 
     # install 3rd party libs
+    # use vcpkg
     - echo %platform%
     - vcpkg install glib:%platform%-windows
                     libogg:%platform%-windows
@@ -39,27 +33,20 @@ install:
     #                libtheora:%platform%-windows
     #                ffmpeg:%platform%-windows --zip
     #- ps: cp c:\Tools\vcpkg\"vcpkg-export-*.zip" .
-    - pwd
     - cd c:\tools\vcpkg
     - vcpkg integrate install
     - vcpkg list --triplet x64-windows
     - cd %APPVEYOR_BUILD_FOLDER%  # c:\projects\python-videoplayer
 
 build_script:
-    - set VERBOSE=1
+    #- set VERBOSE=1
     - mkdir wheelhouse
 
-    - cmake --version
-    - build.cmd python -m pip install --upgrade pip
-    - build.cmd python -m pip install scikit-build cython pytest
-    #- python.exe -m pip install scikit-build cython conan pytest
-    #- python.exe setup.py build_ext --inplace --force -- -D_CONAN=YES # -G "Visual Studio 14 2015%arch%"
-    #- build.cmd python setup.py build_ext --inplace --force -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake -G "Visual Studio 14 2015%arch%"
-    #- build.cmd python setup.py test
-    #- build.cmd python setup.py sdist --dist-dir wheelhouse
-    - build.cmd python setup.py bdist_wheel --dist-dir wheelhouse -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake  -G "Visual Studio 14 2015%arch%"
-    - 7z a skbuild.zip %APPVEYOR_BUILD_FOLDER%/_skbuild/win-amd64-3.7
-    #- 7z a videoplayer.zip %APPVEYOR_BUILD_FOLDER%/videoplayer
+    - python -m pip install --upgrade pip
+    - python -m pip install scikit-build cython pytest
+    - python setup.py bdist_wheel --dist-dir wheelhouse -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake  -G "Visual Studio 14 2015%arch%"
+    - python setup.py test
+    #- 7z a skbuild.zip %APPVEYOR_BUILD_FOLDER%/_skbuild/win-amd64-3.7
     #- cd c:\tools
     #- python -m pip install %APPVEYOR_BUILD_FOLDER%/wheelhouse/videoplayer-1.0-cp37-cp37m-win_amd64.whl
     #- python -c "from videoplayer import _VideoPlayer; print(_VideoPlayer.__version__)
@@ -68,6 +55,6 @@ build_script:
 artifacts:
     - path: "wheelhouse\\*.whl"
       name: Wheels
-    - path: "skbuild.zip"
-      name: skbuid
-    - path: "*.zip"
+    #- path: "skbuild.zip"
+    #  name: skbuid
+    #- path: "*.zip"
