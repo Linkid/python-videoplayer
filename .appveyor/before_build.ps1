@@ -17,9 +17,9 @@ if ($env:platform -eq "x64") {
 echo "${env:platform}-windows"
 ls env:
 vcpkg install glib:"${env:platform}"-windows
-              libogg:"${env:platform}"-windows
-              libtheora:"${env:platform}"-windows
-              ffmpeg:"${env:platform}"-windows
+vcpkg install libogg:"${env:platform}"-windows
+vcpkg install libtheora:"${env:platform}"-windows
+vcpkg install ffmpeg:"${env:platform}"-windows
 #vcpkg export  glib:${env:platform}-windows
 #              libogg:${env:platform}-windows
 #              libtheora:${env:platform}-windows
