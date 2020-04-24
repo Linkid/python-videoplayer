@@ -11,7 +11,7 @@ if ($env:platform -eq "x64") {
     set varsall="x68"
 }
 #call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /%platform%
-call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" $env:varsall
+& "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" $env:varsall
 
 # vcpkg: install dependencies
 vcpkg install glib:$env:platform-windows
