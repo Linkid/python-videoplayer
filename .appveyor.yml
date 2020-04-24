@@ -17,22 +17,12 @@ install:
     #- call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
     - where dumpbin
 
-    # Check that we have the expected version and architecture for Python
-    - python --version
-    - cmake --version
-
     # install 3rd party libs
     # use vcpkg
-    - echo %platform%
     - vcpkg install glib:%platform%-windows
                     libogg:%platform%-windows
                     libtheora:%platform%-windows
                     ffmpeg:%platform%-windows
-    #- vcpkg export  glib:%platform%-windows
-    #                libogg:%platform%-windows
-    #                libtheora:%platform%-windows
-    #                ffmpeg:%platform%-windows --zip
-    #- ps: cp c:\Tools\vcpkg\"vcpkg-export-*.zip" .
     - cd c:\tools\vcpkg
     - vcpkg integrate install
     - vcpkg list --triplet x64-windows
@@ -45,16 +35,8 @@ build_script:
     - python -m pip install --upgrade pip
     - python -m pip install scikit-build cython pytest
     - python setup.py bdist_wheel --dist-dir wheelhouse -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
-    - python setup.py test
-    #- 7z a skbuild.zip %APPVEYOR_BUILD_FOLDER%/_skbuild/win-amd64-3.7
-    #- cd c:\tools
-    #- python -m pip install %APPVEYOR_BUILD_FOLDER%/wheelhouse/videoplayer-1.0-cp37-cp37m-win_amd64.whl
-    #- python -c "from videoplayer import _VideoPlayer; print(_VideoPlayer.__version__)
 
 
 artifacts:
     - path: "wheelhouse\\*.whl"
       name: Wheels
-    #- path: "skbuild.zip"
-    #  name: skbuid
-    #- path: "*.zip"
