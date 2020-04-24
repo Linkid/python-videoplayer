@@ -3,18 +3,13 @@ platform: x64
 
 cache: c:\tools\vcpkg\installed\
 
-init:
-    - set arch= Win64
-    - echo %arch%
-    - echo %APPVEYOR_BUILD_WORKER_IMAGE%
-
 install:
     - set PATH=C:\Python37-x64;C:\Python37-x64\Scripts;%PATH%
 
     # dumpbin + https://www.appveyor.com/docs/lang/cpp/
     - set PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin
     #- call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
-    #- call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
+    - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
     - where dumpbin
 
     # install 3rd party libs
@@ -35,6 +30,7 @@ build_script:
     - python -m pip install --upgrade pip
     - python -m pip install scikit-build cython pytest
     - python setup.py bdist_wheel --dist-dir wheelhouse -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+    # -G "Visual Studio 14 2015 Win64"
 
 
 artifacts:
