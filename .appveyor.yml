@@ -58,11 +58,11 @@ build_script:
     #- build.cmd python setup.py test
     #- build.cmd python setup.py sdist --dist-dir wheelhouse
     - build.cmd python setup.py bdist_wheel --dist-dir wheelhouse -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake # -G "Visual Studio 14 2015%arch%"
-    - 7z a skbuild.zip %APPVEYOR_BUILD_FOLDER%/_skbuild/win-amd64-3.7
+    #- 7z a skbuild.zip %APPVEYOR_BUILD_FOLDER%/_skbuild/win-amd64-3.7
     #- 7z a videoplayer.zip %APPVEYOR_BUILD_FOLDER%/videoplayer
     #- cd c:\tools
-    #- python -m pip install %APPVEYOR_BUILD_FOLDER%/wheelhouse/videoplayer-1.0-cp37-cp37m-win_amd64.whl
-    #- python -c "from videoplayer import _VideoPlayer; print(_VideoPlayer.__version__)
+    - python -m pip install %APPVEYOR_BUILD_FOLDER%/wheelhouse/videoplayer-1.0-cp37-cp37m-win_amd64.whl
+    - python -c "from videoplayer import _VideoPlayer; print(_VideoPlayer.__version__)
 
 
 artifacts:
