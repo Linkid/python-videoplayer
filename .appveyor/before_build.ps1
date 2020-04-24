@@ -14,14 +14,14 @@ if ($env:platform -eq "x64") {
 & "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" $env:varsall
 
 # vcpkg: install dependencies
-vcpkg install glib:$env:platform-windows
-              libogg:$env:platform-windows
-              libtheora:$env:platform-windows
-              ffmpeg:$env:platform-windows
-#vcpkg export  glib:$env:platform-windows
-#              libogg:$env:platform-windows
-#              libtheora:$env:platform-windows
-#              ffmpeg:$env:platform-windows --zip
+vcpkg install glib:${env:platform}-windows
+              libogg:${env:platform}-windows
+              libtheora:${env:platform}-windows
+              ffmpeg:${env:platform}-windows
+#vcpkg export  glib:${env:platform}-windows
+#              libogg:${env:platform}-windows
+#              libtheora:${env:platform}-windows
+#              ffmpeg:${env:platform}-windows --zip
 #cp c:\Tools\vcpkg\"vcpkg-export-*.zip" $env:APPVEYOR_BUILD_FOLDER
 
 # vcpkg: integrate
