@@ -84,7 +84,7 @@ if (WIN32)
     #list(APPEND DEPENDENCIES_DLL ${CMAKE_CURRENT_BINARY_DIR}/theoradec.dll)
     message(STATUS "zzz list dll 2: ${DEPENDENCIES_DLL}")
     #install(FILES ${DEPENDENCIES_DLL}
-    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/videoplayer/Realease
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/videoplayer/Release
             DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer
             FILES_MATCHING PATTERN "*.dll")
 endif()
