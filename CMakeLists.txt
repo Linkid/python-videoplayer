@@ -8,6 +8,13 @@ if(SKBUILD)
     message(STATUS "The project is built using scikit-build")
 endif()
 message(STATUS "The generator is: ${CMAKE_GENERATOR}")
+message(STATUS "The build type is: ${CMAKE_BUILD_TYPE}")
+message(STATUS "aaaaa CMAKE_SHARED_LIBRARY_PREFIX: ${CMAKE_SHARED_LIBRARY_PREFIX}")
+message(STATUS "aaaaa CMAKE_SHARED_LIBRARY_SUFFIX: ${CMAKE_SHARED_LIBRARY_SUFFIX}")
+message(STATUS "aaaaa CMAKE_SHARED_MODULE_PREFIX: ${CMAKE_SHARED_MODULE_PREFIX}")
+message(STATUS "aaaaa CMAKE_SHARED_MODULE_SUFFIX: ${CMAKE_SHARED_MODULE_SUFFIX}")
+message(STATUS "aaaaa BUILD_SHARED_LIBS: ${BUILD_SHARED_LIBS}")
+message(STATUS "aaaaa CMAKE_CONFIGURATION_TYPES: ${CMAKE_CONFIGURATION_TYPES}")
 
 # add path to a FindSomePackage.cmake file
 #list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
