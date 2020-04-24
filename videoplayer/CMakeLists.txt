@@ -54,7 +54,9 @@ target_link_libraries(_VideoPlayer
 python_extension_module(_VideoPlayer)
 
 # install the module
-install(TARGETS _VideoPlayer LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
+install(TARGETS _VideoPlayer
+    LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer
+    RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
 install(FILES ${videoplayer_BINARY_DIR}/videoplayer/_VideoPlayer.c DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
 message(STATUS "yyyyyy videoplayer_BINARY_DIR: ${videoplayer_BINARY_DIR}")
 message(STATUS "yyyyyy CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
