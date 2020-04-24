@@ -9,21 +9,13 @@ if(SKBUILD)
 endif()
 message(STATUS "The generator is: ${CMAKE_GENERATOR}")
 message(STATUS "The build type is: ${CMAKE_BUILD_TYPE}")
-message(STATUS "aaaaa CMAKE_SHARED_LIBRARY_PREFIX: ${CMAKE_SHARED_LIBRARY_PREFIX}")
-message(STATUS "aaaaa CMAKE_SHARED_LIBRARY_SUFFIX: ${CMAKE_SHARED_LIBRARY_SUFFIX}")
-message(STATUS "aaaaa CMAKE_SHARED_MODULE_PREFIX: ${CMAKE_SHARED_MODULE_PREFIX}")
-message(STATUS "aaaaa CMAKE_SHARED_MODULE_SUFFIX: ${CMAKE_SHARED_MODULE_SUFFIX}")
-message(STATUS "aaaaa BUILD_SHARED_LIBS: ${BUILD_SHARED_LIBS}")
-message(STATUS "aaaaa CMAKE_CONFIGURATION_TYPES: ${CMAKE_CONFIGURATION_TYPES}")
-
-# add path to a FindSomePackage.cmake file
-#list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-
-find_package(Cython REQUIRED)
-find_package(PythonExtensions REQUIRED)
 
 
 # manage dependencies
+## find python deps
+find_package(Cython REQUIRED)
+find_package(PythonExtensions REQUIRED)
+
 ## set vars
 set(_CONAN OFF CACHE BOOL "Use dependencies installed via conan (not dependency package)")
 set(_VCPKG OFF CACHE BOOL "Use dependencies installed via vcpkg (not dependency package)")
@@ -32,6 +24,7 @@ set(VCPKG_APPLOCAL_DEPS ${_VCPKG} BOOL)
 
 ## get deps
 if (WIN32 AND _WIN_DEP)
+    message(STATUS "Use downloaded dependencies")
     set(DEPENDENCY_FOLDER "${PROJECT_SOURCE_DIR}/win_dep")
     find_path(GLIB2_INCLUDE_DIRS NAMES glib.h PATHS "${DEPENDENCY_FOLDER}/include/glib-2.0")
     find_library(GLIB2_LIBRARIES NAMES glib-2.0 PATHS "${DEPENDENCY_FOLDER}/lib")
@@ -41,8 +34,8 @@ if (WIN32 AND _WIN_DEP)
     find_package(OpenGL)
 
 elseif(_CONAN)
-    message(STATUS "xxx Use conan xxx")
     # conan.io
+    message(STATUS "Use Conan")
     # download the the conan.cmake file
     if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
        message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
@@ -93,52 +86,33 @@ elseif(_CONAN)
     find_package(OpenGL)
 
 elseif(_VCPKG)
-    message(STATUS "xxx Use vcpkg xxx")
+    message(STATUS "Use vcpkg")
 
     # set vcpkg vars
     set(VCPKG_CRT_LINKAGE dynamic)
     set(VCPKG_LIBRARY_LINKAGE dynamic)
-    set(VCPKG_DLL_FILES "C:\\tools\\vcpkg\\installed\\x64-windows\\bin")
+    #set(VCPKG_DLL_FILES "C:\\tools\\vcpkg\\installed\\x64-windows\\bin")
 
     # find deps
-    find_package(unofficial-glib CONFIG REQUIRED)
-    set(GLIB2_FOUND ${unofficial-glib_FOUND})
+    find_package(unofficial-glib CONFIG REQUIRED)  # unofficial::glib::glib
     find_path(GLIB2_INCLUDE_DIRS NAMES glib.h)
     find_library(GLIB2_LIBRARIES glib-2.0)
-    #list(APPEND GLIB2_LIBRARIES unofficial::glib::glib)
-    message(STATUS "yyy found glib: ${GLIB2_FOUND}")
-    message(STATUS "yyy found glib: ${GLIB2_INCLUDE_DIRS}")
-    message(STATUS "yyy found glib: ${GLIB2_LIBRARIES}")
+    set(GLIB2_FOUND ${unofficial-glib_FOUND})
 
-    find_package(Ogg CONFIG REQUIRED)
-    #list(APPEND THIRD_PARTY_LIBS Ogg::ogg)
-    #find_path(OGG_INCLUDE_DIRS NAMES ogg/ogg.h)
-    #find_library(OGG_LIBRARIES NAMES ogg libogg)
-    message(STATUS "yyy found ogg: ${OGG_FOUND}")
-    message(STATUS "yyy found ogg: ${OGG_INCLUDE_DIRS}")
-    message(STATUS "yyy found ogg: ${OGG_LIBRARIES}")
+    find_package(Ogg CONFIG REQUIRED)  # Ogg::ogg
 
     find_path(THEORADEC_INCLUDE_DIRS NAMES theora/theoradec.h)
     find_library(THEORADEC_LIBRARIES NAMES theoradec libtheoradec theora-dec)
-    message(STATUS "yyy found theora: ${THEORADEC_INCLUDE_DIRS}")
-    message(STATUS "yyy found theora: ${THEORADEC_LIBRARIES}")
 
     find_package(FFMPEG)
-    # FFMPEG_libswscale_INCLUDE_DIRS
     set(LIBSWSCALE_FOUND ${FFMPEG_libswscale_FOUND})
     set(LIBSWSCALE_INCLUDE_DIRS ${FFMPEG_libswscale_INCLUDE_DIRS})
     set(LIBSWSCALE_LIBRARIES ${FFMPEG_libswscale_LIBRARY})
-    message(STATUS "yyy found ffmpeg: ${FFMPEG_FOUND}")
-    message(STATUS "yyy found ffmpeg: ${FFMPEG_INCLUDE_DIRS}")
-    message(STATUS "yyy found ffmpeg: ${FFMPEG_LIBRARIES}")
-    message(STATUS "yyy found libswscale: ${FFMPEG_libswscale_FOUND}")
-    message(STATUS "yyy found libswscale: ${FFMPEG_libswscale_INCLUDE_DIRS}")
-    message(STATUS "yyy found libswscale: ${FFMPEG_libswscale_LIBRARY}")
 
     find_package(OpenGL)
 
 else()
-    message(STATUS "xxx Use pkgconfig xxx")
+    message(STATUS "Use pkgconfig")
 
     # pkgconfig
     find_package(PkgConfig REQUIRED)
