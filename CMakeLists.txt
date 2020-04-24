@@ -7,6 +7,7 @@ project(videoplayer)
 if(SKBUILD)
     message(STATUS "The project is built using scikit-build")
 endif()
+message(STATUS "The generator is: ${CMAKE_GENERATOR}")
 
 # add path to a FindSomePackage.cmake file
 #list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
