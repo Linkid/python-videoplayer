@@ -181,5 +181,5 @@ setup(
     #    'clean': CleanCommand,
     #},
     # skbuild options
-    cmake_with_sdist=True,
+    #cmake_with_sdist=True,
 )
