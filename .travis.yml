@@ -30,4 +30,6 @@ script:
     - export VERBOSE=1
     - python setup.py check
     - python setup.py build_ext --inplace --force
-    - python setup.py test
+    - ls _skbuild/*/cmake-build/videoplayer
+    - ls _skbuild/*/cmake-install/*
+    #- python setup.py test

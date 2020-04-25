@@ -39,11 +39,11 @@ target_link_libraries(_VideoPlayer
 )
 python_extension_module(_VideoPlayer)
 
-## install the module
-#install(TARGETS _VideoPlayer
-#    LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer
-#)
-#install(FILES ${videoplayer_BINARY_DIR}/videoplayer/_VideoPlayer.c DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
+# install the module
+install(TARGETS _VideoPlayer
+    LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer
+)
+install(FILES ${videoplayer_BINARY_DIR}/videoplayer/_VideoPlayer.c DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
 
 # Copy dlls on windows
 if (WIN32)
