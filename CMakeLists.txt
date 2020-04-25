@@ -1,11 +1,5 @@
 cmake_minimum_required(VERSION 3.5.0)
 
-# set vars
-set(_WIN_DEP OFF CACHE BOOL "Use dependencies from an external package")
-set(_CONAN OFF CACHE BOOL "Use dependencies installed via conan (not dependency package)")
-set(_VCPKG OFF CACHE BOOL "Use dependencies installed via vcpkg (not dependency package)")
-set(VCPKG_APPLOCAL_DEPS ${_VCPKG} BOOL)
-
 if (WIN32)
     message("xxx Win32")
     if ($ENV{VCPKG_BUILD})
@@ -28,6 +22,12 @@ project(videoplayer)
 
 
 # manage dependencies
+## set vars
+set(_WIN_DEP OFF CACHE BOOL "Use dependencies from an external package")
+set(_CONAN OFF CACHE BOOL "Use dependencies installed via conan (not dependency package)")
+set(_VCPKG OFF CACHE BOOL "Use dependencies installed via vcpkg (not dependency package)")
+set(VCPKG_APPLOCAL_DEPS ${_VCPKG} BOOL)
+
 ## find python deps
 find_package(Cython REQUIRED)
 find_package(PythonExtensions REQUIRED)
