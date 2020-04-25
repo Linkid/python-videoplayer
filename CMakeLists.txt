@@ -22,9 +22,13 @@ set(_CONAN OFF CACHE BOOL "Use dependencies installed via conan (not dependency 
 set(_VCPKG OFF CACHE BOOL "Use dependencies installed via vcpkg (not dependency package)")
 set(VCPKG_APPLOCAL_DEPS ${_VCPKG} BOOL)
 
-if (WIN32 AND $ENV{VCPKG_BUILD})
-    set(_VCPKG ON)
-    set(CMAKE_TOOLCHAIN_FILE "c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake")
+if (WIN32)
+    message("xxx Win32")
+    if ($ENV{VCPKG_BUILD})
+        message("xxx vcpkg_build")
+        set(_VCPKG ON)
+        set(CMAKE_TOOLCHAIN_FILE "c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake")
+    endif()
 endif()
 
 ## get deps
