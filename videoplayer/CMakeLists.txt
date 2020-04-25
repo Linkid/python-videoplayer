@@ -7,7 +7,7 @@
 ##################
 
 # compile the external lib
-add_library(VideoPlayer VideoPlayer.c)
+add_library(VideoPlayer SHARED VideoPlayer.c)
 target_include_directories(VideoPlayer
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${GLIB2_INCLUDE_DIRS}
