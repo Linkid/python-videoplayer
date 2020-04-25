@@ -1,8 +1,5 @@
 cmake_minimum_required(VERSION 3.5.0)
 
-# set the project name
-project(videoplayer)
-
 # scikit-build test
 if(SKBUILD)
     message(STATUS "The project is built using scikit-build")
@@ -10,13 +7,7 @@ endif()
 message(STATUS "The generator is: ${CMAKE_GENERATOR}")
 message(STATUS "The build type is: ${CMAKE_BUILD_TYPE}")
 
-
-# manage dependencies
-## find python deps
-find_package(Cython REQUIRED)
-find_package(PythonExtensions REQUIRED)
-
-## set vars
+# set vars
 set(_WIN_DEP OFF CACHE BOOL "Use dependencies from an external package")
 set(_CONAN OFF CACHE BOOL "Use dependencies installed via conan (not dependency package)")
 set(_VCPKG OFF CACHE BOOL "Use dependencies installed via vcpkg (not dependency package)")
@@ -28,8 +19,19 @@ if (WIN32)
         message("xxx vcpkg_build")
         set(_VCPKG ON)
         set(CMAKE_TOOLCHAIN_FILE "c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake")
+        set(VCPKG_TARGET_TRIPLET:STRING $ENV{platform}-windows)
     endif()
 endif()
+
+
+# set the project name
+project(videoplayer)
+
+
+# manage dependencies
+## find python deps
+find_package(Cython REQUIRED)
+find_package(PythonExtensions REQUIRED)
 
 ## get deps
 if (WIN32 AND _WIN_DEP)

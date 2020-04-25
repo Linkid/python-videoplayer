@@ -3,6 +3,7 @@
 # PATH: add dumpbin
 # https://www.appveyor.com/docs/lang/cpp/
 set PATH=$env:PATH;"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
+set VCPKG_BUILD=1
 
 # set the arch
 if ($env:platform -eq "x64") {
@@ -29,5 +30,5 @@ vcpkg install ffmpeg:"${env:platform}"-windows
 # vcpkg: integrate
 cd c:\tools\vcpkg
 vcpkg integrate install
-vcpkg list --triplet x64-windows
+vcpkg list --triplet "${env:platform}"-windows
 cd $env:APPVEYOR_BUILD_FOLDER
