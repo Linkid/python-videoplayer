@@ -2,7 +2,7 @@
 
 uname -a
 echo $APPVEYOR_BUILD_WORKER_IMAGE
-if [[ $APPVEYOR_BUILD_WORKER_IMAGE == "Ubuntu" ]]
+if [[ $APPVEYOR_BUILD_WORKER_IMAGE == "GNU/Linux" ]]
 then
     # linux
     echo "linux"
