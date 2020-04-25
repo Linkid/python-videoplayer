@@ -3,10 +3,10 @@
 # set the arch for VS 2015
 # https://www.appveyor.com/docs/lang/cpp/
 if ($env:platform -eq "x64") {
-    "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
-    "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
+    C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd /x64
+    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat x86_amd64
 } else {
-    "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
+    C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat x86
 }
 
 # vcpkg: install dependencies
