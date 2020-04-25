@@ -11,7 +11,6 @@ add_library(VideoPlayer VideoPlayer.c)
 target_include_directories(VideoPlayer
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${GLIB2_INCLUDE_DIRS}
-    PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}
 )
 target_link_libraries(VideoPlayer
     PRIVATE ${GLIB2_LIBRARIES}
@@ -40,11 +39,11 @@ target_link_libraries(_VideoPlayer
 )
 python_extension_module(_VideoPlayer)
 
-# install the module
-install(TARGETS _VideoPlayer
-    LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer
-)
-install(FILES ${videoplayer_BINARY_DIR}/videoplayer/_VideoPlayer.c DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
+## install the module
+#install(TARGETS _VideoPlayer
+#    LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer
+#)
+#install(FILES ${videoplayer_BINARY_DIR}/videoplayer/_VideoPlayer.c DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer)
 
 # Copy dlls on windows
 if (WIN32)
