@@ -2,7 +2,7 @@
 
 # PATH: add dumpbin
 # https://www.appveyor.com/docs/lang/cpp/
-set PATH=$env:PATH;"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
+set PATH="${env:PATH}";"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
 set VCPKG_BUILD=1
 where dumpbin
 
@@ -12,7 +12,7 @@ if ($env:platform -eq "x64") {
 } else {
     set varsall="x86"
 }
-#call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /%platform%
+& "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /${env:platform}
 & "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" $env:varsall
 
 # vcpkg: install dependencies
