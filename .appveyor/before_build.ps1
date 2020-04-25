@@ -8,13 +8,14 @@ echo "${env:PATH}"
 
 # set the arch
 if ($env:platform -eq "x64") {
-    $varsall="amd64"  # "x86_amd64"
+    #$varsall="amd64"  # "x86_amd64"
+    $varsall="x86_amd64"
 } else {
     New-Variable -Name "varsall" -Value "x86"
     $varsall="x86"
 }
 echo $varsall
-#& "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /${env:platform}
+& "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /${env:platform}
 & "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" $varsall
 
 # vcpkg: install dependencies
