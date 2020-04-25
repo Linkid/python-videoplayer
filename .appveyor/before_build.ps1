@@ -8,7 +8,7 @@ echo "${env:PATH}"
 
 # set the arch
 if ($env:platform -eq "x64") {
-    $varsall="x86_amd64"
+    $varsall="amd64"  # "x86_amd64"
 } else {
     New-Variable -Name "varsall" -Value "x86"
     $varsall="x86"
