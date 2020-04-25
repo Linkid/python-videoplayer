@@ -1,19 +1,27 @@
-image: Visual Studio 2015
-platform: x64
+environment:
+  CIBW_BEFORE_BUILD: "pip install cython scikit-build cmake ninja"
+  CIBW_BEFORE_BUILD_WINDOWS: "ps: .appveyor/before_build.ps1"
+  CIBW_BEFORE_BUILD_MACOS: "bash .appveyor/before_build.sh"
+  CIBW_BEFORE_BUILD_LINUX: "bash .appveyor/before_build.sh"
+
+  matrix:
+    - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
+      APPVEYOR_JOB_NAME: "python37-x64-ubuntu"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      APPVEYOR_JOB_NAME: "python37-x64-vs2015"
+    - APPVEYOR_BUILD_WORKER_IMAGE: macos-mojave
+      APPVEYOR_JOB_NAME: "python37-x64-macos-mojave"
 
 cache: c:\tools\vcpkg\installed\
+stack: python 3.7
 
-install:
-    - set PATH=C:\Python37-x64;C:\Python37-x64\Scripts;%PATH%
-    - ps: ./.appveyor/before_build.ps1
-    - where dumpbin
+init:
+- cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
 
-build_script:
-    - set VERBOSE=1
-    - mkdir wheelhouse
+install: python -m pip install cibuildwheel==1.3.0
 
-    - python -m pip install --upgrade pip
-    - python -m pip install scikit-build cython pytest
-    - python setup.py bdist_wheel --dist-dir wheelhouse
-    - python setup.py test
-    # -G "Visual Studio 14 2015 Win64"
+build_script: python -m cibuildwheel --output-dir wheelhouse
+
+artifacts:
+  - path: "wheelhouse\\*.whl"
+    name: Wheels
