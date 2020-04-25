@@ -142,6 +142,7 @@ except ImportError:
 build_cmake_args = list()
 if os.getenv("VCPKG_BUILD"):
     build_cmake_args.append('-D_VCPKG=ON')
+    build_cmake_args.append('-DVCPKG_TARGET_TRIPLET:STRING={}-windows'.format(os.getenv("platform")))
     build_cmake_args.append('-DCMAKE_TOOLCHAIN_FILE={}'.format(os.getenv("VCPKG_TOOLCHAIN")))
 
 # setup

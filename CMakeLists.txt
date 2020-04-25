@@ -1,13 +1,5 @@
 cmake_minimum_required(VERSION 3.5.0)
 
-if (WIN32)
-    message("xxx Win32")
-    if ($ENV{VCPKG_BUILD})
-        message("xxx vcpkg_build")
-        set(VCPKG_TARGET_TRIPLET:STRING $ENV{platform}-windows)
-    endif()
-endif()
-
 # scikit-build test
 if(SKBUILD)
     message(STATUS "The project is built using scikit-build")
