@@ -6,6 +6,7 @@ cache: c:\tools\vcpkg\installed\
 install:
     - set PATH=C:\Python37-x64;C:\Python37-x64\Scripts;%PATH%
     - ps: ./.appveyor/before_build.ps1
+    - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
     - where dumpbin
 
 build_script:
