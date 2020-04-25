@@ -9,15 +9,11 @@ install:
     - where dumpbin
 
 build_script:
-    #- set VERBOSE=1
+    - set VERBOSE=1
     - mkdir wheelhouse
 
     - python -m pip install --upgrade pip
     - python -m pip install scikit-build cython pytest
     - python setup.py bdist_wheel --dist-dir wheelhouse
+    - python setup.py test
     # -G "Visual Studio 14 2015 Win64"
-
-
-artifacts:
-    - path: "wheelhouse\\*.whl"
-      name: Wheels
