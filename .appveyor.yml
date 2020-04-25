@@ -6,6 +6,7 @@ cache: c:\tools\vcpkg\installed\
 install:
     - set PATH=C:\Python37-x64;C:\Python37-x64\Scripts;%PATH%
     - ps: ./.appveyor/before_build.ps1
+    - where dumpbin
 
 build_script:
     #- set VERBOSE=1
@@ -13,7 +14,6 @@ build_script:
 
     - python -m pip install --upgrade pip
     - python -m pip install scikit-build cython pytest
-    #- python setup.py bdist_wheel --dist-dir wheelhouse -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
     - python setup.py bdist_wheel --dist-dir wheelhouse
     # -G "Visual Studio 14 2015 Win64"
 

@@ -4,12 +4,11 @@
 # https://www.appveyor.com/docs/lang/cpp/
 $env:Path += "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
 $env:VCPKG_BUILD = 1
-where dumpbin
 echo "${env:PATH}"
 
 # set the arch
 if ($env:platform -eq "x64") {
-    $varsall="amd64"  # x86_amd64
+    $varsall="x86_amd64"
 } else {
     New-Variable -Name "varsall" -Value "x86"
     $varsall="x86"
@@ -38,4 +37,4 @@ vcpkg list --triplet '"${env:platform}"-windows'
 cd $env:APPVEYOR_BUILD_FOLDER
 
 # set var
-$env:VCPKG_TOOLCHAIN="c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
+$env:VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
