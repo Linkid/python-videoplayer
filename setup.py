@@ -142,7 +142,7 @@ except ImportError:
 build_cmake_args = list()
 if os.getenv("VCPKG_BUILD"):
     build_cmake_args.append('-D_VCPKG=ON')
-    build_cmake_args.append('-DCMAKE_TOOLCHAIN_FILE="c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"')
+    build_cmake_args.append('-DCMAKE_TOOLCHAIN_FILE={}'.format(os.getenv("VCPKG_TOOLCHAIN")))
 
 # setup
 setup(

@@ -34,5 +34,8 @@ vcpkg install ffmpeg:"${env:platform}"-windows
 # vcpkg: integrate
 cd c:\tools\vcpkg
 vcpkg integrate install
-vcpkg list --triplet "${env:platform}"-windows
+vcpkg list --triplet '"${env:platform}"-windows'
 cd $env:APPVEYOR_BUILD_FOLDER
+
+# set var
+$env:VCPKG_TOOLCHAIN="c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
