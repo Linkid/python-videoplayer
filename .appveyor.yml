@@ -13,7 +13,8 @@ build_script:
 
     - python -m pip install --upgrade pip
     - python -m pip install scikit-build cython pytest
-    - python setup.py bdist_wheel --dist-dir wheelhouse -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+    #- python setup.py bdist_wheel --dist-dir wheelhouse -- -D_VCPKG=YES -DVCPKG_TARGET_TRIPLET:STRING=x64-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+    - python setup.py bdist_wheel --dist-dir wheelhouse
     # -G "Visual Studio 14 2015 Win64"
 
 
