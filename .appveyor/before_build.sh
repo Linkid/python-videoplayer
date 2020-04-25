@@ -1,6 +1,7 @@
 # before build
 
-
+uname -a
+echo $APPVEYOR_BUILD_WORKER_IMAGE
 if [[ $APPVEYOR_BUILD_WORKER_IMAGE == "Ubuntu" ]]
 then
     # linux
@@ -13,5 +14,6 @@ then
     # macos
     echo "osx"
     brew update
+    brew cask install xquartz
     brew install glib freeglut libogg theora ffmpeg
 fi
