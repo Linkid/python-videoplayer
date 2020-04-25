@@ -28,11 +28,10 @@ vcpkg install glib:"${env:platform}"-windows {
 #              libogg:${env:platform}-windows
 #              libtheora:${env:platform}-windows
 #              ffmpeg:${env:platform}-windows --zip
-#cp c:\Tools\vcpkg\"vcpkg-export-*.zip" $env:APPVEYOR_BUILD_FOLDER
+#cp c:\Tools\vcpkg\"vcpkg-export-*.zip" $env:APPVEYOR_BUILD_FOLDER --output=vcpkg-export.zip
 
 # vcpkg: integrate
 cd c:\tools\vcpkg
 vcpkg integrate install
 vcpkg list --triplet "${env:platform}"-windows
 cd $env:APPVEYOR_BUILD_FOLDER
-vcpkg export --help
