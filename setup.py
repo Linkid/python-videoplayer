@@ -139,6 +139,11 @@ except ImportError:
 #    )
 #)
 
+build_cmake_args = list()
+if os.getenv("VCPKG_BUILD"):
+    build_cmake_args.append('-D_VCPKG=ON')
+    build_cmake_args.append('-DCMAKE_TOOLCHAIN_FILE "c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"')
+
 # setup
 setup(
     name='videoplayer',
@@ -181,5 +186,6 @@ setup(
     #    'clean': CleanCommand,
     #},
     # skbuild options
-    #cmake_with_sdist=True,
+    cmake_with_sdist=True,
+    cmake_args=build_cmake_args,
 )
