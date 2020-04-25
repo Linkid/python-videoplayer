@@ -1,7 +1,7 @@
 # before build
 
 
-if [ $APPVEYOR_BUILD_WORKER_IMAGE -eq "macos-mojave" ]
+if [ $APPVEYOR_BUILD_WORKER_IMAGE -eq "Ubuntu" ]
 then
     # linux
     sudo apt-get -qq update
