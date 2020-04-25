@@ -1,6 +1,6 @@
 environment:
   CIBW_BEFORE_BUILD: "pip install cython scikit-build cmake ninja"
-  CIBW_BEFORE_BUILD_WINDOWS: "./.appveyor/before_build.ps1"
+  CIBW_BEFORE_BUILD_WINDOWS: "call .appveyor/before_build.ps1"
   CIBW_BEFORE_BUILD_MACOS: "bash .appveyor/before_build.sh"
   CIBW_BEFORE_BUILD_LINUX: "bash .appveyor/before_build.sh"
 
