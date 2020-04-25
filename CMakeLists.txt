@@ -7,6 +7,7 @@ endif()
 message(STATUS "The generator is: ${CMAKE_GENERATOR}")
 message(STATUS "The build type is: ${CMAKE_BUILD_TYPE}")
 message(STATUS "The toolchain is: ${CMAKE_TOOLCHAIN_FILE}")
+message(STATUS "xxx BUILD_SHARED_LIBS: ${BUILD_SHARED_LIBS}")
 
 
 # set the project name
