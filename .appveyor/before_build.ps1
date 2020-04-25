@@ -2,7 +2,7 @@
 
 # PATH: add dumpbin
 # https://www.appveyor.com/docs/lang/cpp/
-$env:Path = "${env:PATH}";"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
+$env:Path += "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
 $env:VCPKG_BUILD = 1
 where dumpbin
 echo "${env:PATH}"
