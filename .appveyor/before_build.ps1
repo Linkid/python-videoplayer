@@ -5,6 +5,7 @@
 set PATH="${env:PATH}";"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
 set VCPKG_BUILD=1
 where dumpbin
+echo "${env:PATH}"
 
 # set the arch
 if ($env:platform -eq "x64") {
