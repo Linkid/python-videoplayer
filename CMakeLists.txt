@@ -1,12 +1,5 @@
 cmake_minimum_required(VERSION 3.5.0)
 
-# scikit-build test
-if(SKBUILD)
-    message(STATUS "The project is built using scikit-build")
-endif()
-message(STATUS "The generator is: ${CMAKE_GENERATOR}")
-message(STATUS "The build type is: ${CMAKE_BUILD_TYPE}")
-
 # set vars
 set(_WIN_DEP OFF CACHE BOOL "Use dependencies from an external package")
 set(_CONAN OFF CACHE BOOL "Use dependencies installed via conan (not dependency package)")
@@ -22,6 +15,14 @@ if (WIN32)
         set(VCPKG_TARGET_TRIPLET:STRING $ENV{platform}-windows)
     endif()
 endif()
+
+# scikit-build test
+if(SKBUILD)
+    message(STATUS "The project is built using scikit-build")
+endif()
+message(STATUS "The generator is: ${CMAKE_GENERATOR}")
+message(STATUS "The build type is: ${CMAKE_BUILD_TYPE}")
+message(STATUS "The toolchain is: ${CMAKE_TOOLCHAIN_FILE}")
 
 
 # set the project name
