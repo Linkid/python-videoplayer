@@ -159,7 +159,7 @@ setup(
     url='https://github.com/fofix/python-videoplayer',
     packages=['videoplayer'],
     package_data={'videoplayer': ['*.dll']},
-    include_package_data=True,
+    #include_package_data=True,
     zip_safe=False,
     classifiers=[
         'Intended Audience :: Developers',
