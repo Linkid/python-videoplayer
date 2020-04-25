@@ -10,10 +10,10 @@ python:
 before_install:
     - sudo apt-get -qq update
     - sudo apt-get install -y
-         freeglut3-dev
-#        libogg-dev
-#        libswscale-dev
-#        libtheora-dev
+#         freeglut3-dev
+        libogg-dev
+        libswscale-dev
+        libtheora-dev
 #
 #install:
 #    - python -m pip install cython pkgconfig
@@ -22,7 +22,6 @@ before_install:
 install:
     - pip install scikit-build
     - pip install cython
-    - pip install conan
     - pip install pytest
 
 script:
@@ -32,5 +31,5 @@ script:
     #- conan install ..
     #- find ~/.conan/data/ffmpeg/4.2.1/bincrafters/stable/ -name "swscale.h"
     - python setup.py check
-    - python setup.py build_ext --inplace --force -- -D_CONAN=YES
+    - python setup.py build_ext --inplace --force
     - python setup.py test
