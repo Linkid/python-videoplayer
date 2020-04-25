@@ -1,5 +1,8 @@
 # before build on Windows
 
+# set the arch
+$env:platform = $env:PROCESSOR_ARCHITECTURE
+
 # set the arch for VS 2015
 # https://www.appveyor.com/docs/lang/cpp/
 # https://help.appveyor.com/discussions/questions/18777-how-to-use-vcvars64bat-from-powershell#comment_44999171
