@@ -19,10 +19,11 @@ if ($env:platform -eq "x64") {
 # vcpkg: install dependencies
 echo "${env:platform}-windows"
 ls env:
-vcpkg install glib:"${env:platform}"-windows
-vcpkg install libogg:"${env:platform}"-windows
-vcpkg install libtheora:"${env:platform}"-windows
-vcpkg install ffmpeg:"${env:platform}"-windows
+vcpkg install glib:"${env:platform}"-windows {
+              libogg:"${env:platform}"-windows
+              libtheora:"${env:platform}"-windows
+              ffmpeg:"${env:platform}"-windows
+}
 #vcpkg export  glib:${env:platform}-windows
 #              libogg:${env:platform}-windows
 #              libtheora:${env:platform}-windows
@@ -34,3 +35,4 @@ cd c:\tools\vcpkg
 vcpkg integrate install
 vcpkg list --triplet "${env:platform}"-windows
 cd $env:APPVEYOR_BUILD_FOLDER
+vcpkg export --help
