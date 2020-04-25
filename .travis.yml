@@ -16,7 +16,7 @@ before_install:
         libtheora-dev
 
 install:
-    - pip install scikit-build
+    - pip install scikit-build cmake ninja
     - pip install cython
     - pip install pytest
 
