@@ -1,7 +1,6 @@
 # before build on Windows
 
 # set the arch
-$VCPKG_BUILD=1
 $env:platform = $env:PROCESSOR_ARCHITECTURE
 
 # set the arch for VS 2015
@@ -42,7 +41,7 @@ cd $env:APPVEYOR_BUILD_FOLDER
 # set var
 $VCPKG_BUILD=1
 $VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
-Set-Content "env:VCPKG_BUILD" $VCPKG_BUILD
-Set-Content "env:VCPKG_TOOLCHAIN" $VCPKG_TOOLCHAIN
+[Environment]::SetEnvironmentVariable("VCPKG_BUILD", $VCPKG_BUILD, 'Machine')
+[Environment]::SetEnvironmentVariable("VCPKG_TOOLCHAIN", $VCPKG_TOOLCHAIN, 'Machine')
 #echo "${env:PATH}"
 #ls env:
