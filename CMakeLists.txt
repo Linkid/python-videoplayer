@@ -14,6 +14,10 @@ message(STATUS "xxx BUILD_SHARED_LIBS: ${BUILD_SHARED_LIBS}")
 project(videoplayer)
 
 
+if (POLICY CMP0072)
+    cmake_policy(SET CMP0072 OLD)
+endif(POLICY CMP0072)
+
 # manage dependencies
 ## set vars
 set(_WIN_DEP OFF CACHE BOOL "Use dependencies from an external package")
@@ -22,8 +26,8 @@ set(_VCPKG OFF CACHE BOOL "Use dependencies installed via vcpkg (not dependency 
 set(VCPKG_APPLOCAL_DEPS ${_VCPKG} BOOL)
 
 ## find python deps
-find_package(Cython REQUIRED)
 find_package(PythonExtensions REQUIRED)
+find_package(Cython REQUIRED)
 
 ## get deps
 if (WIN32 AND _WIN_DEP)
@@ -82,10 +86,6 @@ elseif(_CONAN)
     set(LIBSWSCALE_INCLUDE_DIRS ${ffmpeg_INCLUDE_DIRS})
     set(LIBSWSCALE_LIBRARIES ${ffmpeg_LIBRARIES})
     find_path(LIBSWSCALE_INCLUDE_DIRS "swscale.h" ${ffmpeg_INCLUDE_DIRS})
-
-    if (POLICY CMP0072)
-        cmake_policy(SET CMP0072 OLD)
-    endif(POLICY CMP0072)
     find_package(OpenGL)
 
 elseif(_VCPKG)
