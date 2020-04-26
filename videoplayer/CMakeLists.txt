@@ -1,6 +1,10 @@
 # include local headers (deprecated)
 #include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
+
+message(STATUS "zzzz LIBSWSCALE_LIBRARIES: ${LIBSWSCALE_LIBRARIES}")
+message(STATUS "zzzz LIBSWSCALE_INCLUDE_DIRS: ${LIBSWSCALE_INCLUDE_DIRS}")
+
 add_cython_target(_VideoPlayer _VideoPlayer.pyx)
 add_library(_VideoPlayer MODULE ${_VideoPlayer} VideoPlayer.c)
 
