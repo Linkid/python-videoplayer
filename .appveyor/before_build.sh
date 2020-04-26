@@ -11,7 +11,7 @@ then
         basearch=i686
     fi
     yum -y install glib2-devel freeglut-devel libogg-devel libtheora-devel
-    rpm --Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
+    rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
     yum -y install libswscale-devel
 
 elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "macos-mojave" ]]
