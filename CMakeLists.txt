@@ -122,7 +122,7 @@ else()
     pkg_search_module(GLIB2 REQUIRED glib-2.0>=2.34 IMPORTED_TARGET)
     #pkg_search_module(OPENGL REQUIRED gl IMPORTED_TARGET)
     pkg_search_module(OGG ogg>=1.3.0 IMPORTED_TARGET)  # OGG::OGG
-    pkg_search_module(THEORADEC REQUIRED theoradec>=1.1.0 IMPORTED_TARGET)  # THEORA::DEC
+    pkg_search_module(THEORADEC theoradec>=1.1.0 IMPORTED_TARGET)  # THEORA::DEC
     pkg_search_module(LIBSWSCALE REQUIRED libswscale>=1.1.3 IMPORTED_TARGET)  # FFMPEG::swscale
     find_package(OpenGL)
 endif()
