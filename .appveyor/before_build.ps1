@@ -19,7 +19,7 @@ Get-Content "$env:temp\vcvars.txt" | Foreach-Object {
     Set-Content "env:\$($matches[1])" $matches[2]
   }
 }
-Get-Content "$env:temp\vcvars.txt"
+#Get-Content "$env:temp\vcvars.txt"
 
 # vcpkg: install dependencies
 vcpkg install glib:"${env:platform}"-windows
