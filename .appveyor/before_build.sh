@@ -1,8 +1,6 @@
 # before build
 
-uname -a
-echo "yyy" $APPVEYOR_BUILD_WORKER_IMAGE
-if [[ $APPVEYOR_BUILD_WORKER_IMAGE == "GNU/Linux" ]]
+if [[ `uname` == "Linux" ]]
 then
     # linux
     echo "xxx linux"
@@ -17,3 +15,5 @@ then
     brew cask install xquartz
     brew install glib freeglut libogg theora ffmpeg
 fi
+uname -a
+uname
