@@ -1,6 +1,7 @@
 # before build on Windows
 
 # set the arch
+$VCPKG_BUILD=1
 $env:platform = $env:PROCESSOR_ARCHITECTURE
 
 # set the arch for VS 2015
