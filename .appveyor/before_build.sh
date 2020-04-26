@@ -28,6 +28,8 @@ then
     # windows
     echo "windows"
     platform=$PROCESSOR_ARCHITECTURE
+    echo $platform
+    printenv
     if [[ $platform == "x64" ]]
     then
         "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
@@ -40,7 +42,7 @@ then
                   libogg:${platform}-windows \
                   libtheora:${platform}-windows \
                   ffmpeg:${platform}-windows
-    cd c:\tools\vcpkg
+    cd "c:/tools/vcpkg"
     vcpkg integrate install
     vcpkg list --triplet '"${platform}"-windows'
     cd $APPVEYOR_BUILD_FOLDER
