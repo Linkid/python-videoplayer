@@ -21,6 +21,7 @@ then
     #brew update
     #brew cask install xquartz
     #brew install glib freeglut libogg theora ffmpeg
+    brew install ffmpeg
 
 elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "Visual Studio 2015" ]]
 then
