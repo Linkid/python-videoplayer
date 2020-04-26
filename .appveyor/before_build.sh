@@ -21,6 +21,31 @@ then
     #brew update
     #brew cask install xquartz
     #brew install glib freeglut libogg theora ffmpeg
+
+elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "Visual Studio 2015" ]]
+then
+    # windows
+    echo "windows"
+    platform=$PROCESSOR_ARCHITECTURE
+    if [[ $platform == "x64" ]]
+    then
+        ./"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
+        ./"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
+    else
+        ./"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
+    fi
+
+    vcpkg install glib:${platform}-windows \
+                  libogg:${platform}-windows \
+                  libtheora:${platform}-windows \
+                  ffmpeg:${platform}-windows
+    cd c:\tools\vcpkg
+    vcpkg integrate install
+    vcpkg list --triplet '"${platform}"-windows'
+    cd $APPVEYOR_BUILD_FOLDER
+
+    export VCPKG_BUILD=1
+    export VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
 fi
 uname -a
 uname
