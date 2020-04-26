@@ -4,8 +4,8 @@ if [[ `uname` == "Linux" ]]
 then
     # linux
     echo "xxx linux"
-    sudo apt-get -qq update
-    sudo apt-get install -y freeglut3-dev libogg-dev libtheora-dev libswscale-dev
+    apt-get -qq update
+    apt-get install -y freeglut3-dev libogg-dev libtheora-dev libswscale-dev
 
 elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "macos-mojave" ]]
 then
