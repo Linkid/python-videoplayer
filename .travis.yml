@@ -29,6 +29,5 @@ script:
     - export VERBOSE=1
     - python setup.py check
     - python setup.py build_ext --inplace --force
-    - ldd _skbuild/*/cmake-build/videoplayer/_VideoPlayer.so
-    - ldd _skbuild/*/cmake-install/videoplayer/_VideoPlayer.so
+    - ldd _skbuild/*/cmake-install/videoplayer/_VideoPlayer*.so
     - python setup.py test
