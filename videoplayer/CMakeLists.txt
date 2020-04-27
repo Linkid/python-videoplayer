@@ -3,7 +3,10 @@
 
 
 execute_process(
-    COMMAND ls -l ${LIBSWSCALE_INCLUDE_DIRS}
+    COMMAND ls -l /usr/include/libswscale/
+)
+execute_process(
+    COMMAND ls -l /usr/include/ffmpeg/libswscale/
 )
 message(STATUS "zzzz LIBSWSCALE_LIBRARIES: ${LIBSWSCALE_LIBRARIES}")
 message(STATUS "zzzz LIBSWSCALE_INCLUDE_DIRS: ${LIBSWSCALE_INCLUDE_DIRS}")
