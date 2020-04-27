@@ -3,7 +3,7 @@
 if [[ `uname` == "Linux" ]]
 then
     # linux (centos 6)
-    echo "yyyy `cat /etc/redhat-release` (`arch`)"
+    echo "`cat /etc/redhat-release` (`arch`)"
     if [[ `arch` == 'i686' ]]
     then
         basearch=i386
@@ -43,14 +43,14 @@ then
         echo 4
     fi
 
-    vcpkg install glib:${platform}-windows \
-                  libogg:${platform}-windows \
-                  libtheora:${platform}-windows \
-                  ffmpeg:${platform}-windows
-    cd "c:/tools/vcpkg"
-    vcpkg integrate install
-    vcpkg list --triplet '"${platform}"-windows'
-    cd $APPVEYOR_BUILD_FOLDER
+#    vcpkg install glib:${platform}-windows \
+#                  libogg:${platform}-windows \
+#                  libtheora:${platform}-windows \
+#                  ffmpeg:${platform}-windows
+#    cd "c:/tools/vcpkg"
+#    vcpkg integrate install
+#    vcpkg list --triplet '"${platform}"-windows'
+#    cd $APPVEYOR_BUILD_FOLDER
 
     export VCPKG_BUILD=1
     export VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
