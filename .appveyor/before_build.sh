@@ -4,11 +4,11 @@ if [[ `uname` == "Linux" ]]
 then
     # linux (centos 6)
     echo "yyyy `cat /etc/redhat-release` (`arch`)"
-    if [[ `arch` == 'x86_64' ]]
+    if [[ `arch` == 'i686' ]]
     then
         basearch=i386
     else
-        basearch=i686
+        basearch=x86_64
     fi
     yum -y install glib2-devel freeglut-devel libogg-devel libtheora-devel
     rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
