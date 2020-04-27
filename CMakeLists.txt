@@ -128,15 +128,15 @@ else()
     #pkg_search_module(OPENGL REQUIRED gl IMPORTED_TARGET)
     pkg_search_module(OGG ogg>=1.3.0 IMPORTED_TARGET)  # OGG::OGG
     pkg_search_module(THEORADEC theoradec>=1.1.0 IMPORTED_TARGET)  # THEORA::DEC
-    #pkg_search_module(LIBSWSCALE libswscale>=1.1.3)  # FFMPEG::swscale
-    find_path(LIBSWSCALE_INCLUDE_DIRS
-        NAMES libswscale/swscale.h
-        PATH_SUFFIXES include include/ffmpeg
-    )
-    find_library(LIBSWSCALE_LIBRARIES
-        NAMES swscale
-        PATH_SUFFIXES bin lib
-    )
+    pkg_search_module(LIBSWSCALE libswscale>=1.1.3)  # FFMPEG::swscale
+    #find_path(LIBSWSCALE_INCLUDE_DIRS
+    #    NAMES libswscale/swscale.h
+    #    PATH_SUFFIXES include include/ffmpeg
+    #)
+    #find_library(LIBSWSCALE_LIBRARIES
+    #    NAMES swscale
+    #    PATH_SUFFIXES bin lib
+    #)
     find_package(OpenGL)
 endif()
 

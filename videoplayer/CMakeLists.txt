@@ -2,12 +2,12 @@
 #include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 
-execute_process(
-    COMMAND ls -l /usr/include/libswscale/
-)
-execute_process(
-    COMMAND ls -l /usr/include/ffmpeg/libswscale/
-)
+#execute_process(
+#    COMMAND ls -l /usr/include/libswscale/
+#)
+#execute_process(
+#    COMMAND ls -l /usr/include/ffmpeg/libswscale/
+#)
 message(STATUS "zzzz LIBSWSCALE_LIBRARIES: ${LIBSWSCALE_LIBRARIES}")
 message(STATUS "zzzz LIBSWSCALE_INCLUDE_DIRS: ${LIBSWSCALE_INCLUDE_DIRS}")
 
