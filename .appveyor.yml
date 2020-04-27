@@ -5,6 +5,7 @@ environment:
   CIBW_BEFORE_BUILD_MACOS: "bash .appveyor/before_build.sh"
   CIBW_BEFORE_BUILD_LINUX: "bash .appveyor/before_build.sh"
   #CIBW_ENVIRONMENT_WINDOWS: "VCPKG_BUILD=1 VCPKG_TOOLCHAIN='C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake'"
+  CIBW_BUILD: cp27-*
 
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu
