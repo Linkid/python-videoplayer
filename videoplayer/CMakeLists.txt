@@ -18,6 +18,7 @@ target_include_directories(_VideoPlayer
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${GLIB2_INCLUDE_DIRS}
+    PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}
 )
 target_link_libraries(_VideoPlayer
     ${GLIB2_LIBRARIES}
