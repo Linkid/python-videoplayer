@@ -39,9 +39,9 @@ vcpkg list --triplet '"${env:platform}"-windows'
 cd $env:APPVEYOR_BUILD_FOLDER
 
 # set var
-$VCPKG_BUILD=1
-$VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
-[Environment]::SetEnvironmentVariable("VCPKG_BUILD", $VCPKG_BUILD, 'Machine')
-[Environment]::SetEnvironmentVariable("VCPKG_TOOLCHAIN", $VCPKG_TOOLCHAIN, 'Machine')
+$env:VCPKG_BUILD=1
+$env:VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
+[Environment]::SetEnvironmentVariable("VCPKG_BUILD", $env:VCPKG_BUILD, 'Machine')
+[Environment]::SetEnvironmentVariable("VCPKG_TOOLCHAIN", $env:VCPKG_TOOLCHAIN, 'Machine')
 #echo "${env:PATH}"
 #ls env:
