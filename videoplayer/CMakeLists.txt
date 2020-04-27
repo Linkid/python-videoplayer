@@ -8,6 +8,8 @@
 #execute_process(
 #    COMMAND ls -l /usr/include/ffmpeg/libswscale/
 #)
+message(STATUS "zzzz GLIB2_LIBRARIES: ${GLIB2_LIBRARIES}")
+message(STATUS "zzzz GLIB2_INCLUDE_DIRS: ${GLIB2_INCLUDE_DIRS}")
 message(STATUS "zzzz LIBSWSCALE_LIBRARIES: ${LIBSWSCALE_LIBRARIES}")
 message(STATUS "zzzz LIBSWSCALE_INCLUDE_DIRS: ${LIBSWSCALE_INCLUDE_DIRS}")
 

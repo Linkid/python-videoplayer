@@ -18,10 +18,10 @@ elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "macos-mojave" ]]
 then
     # macos
     echo "osx"
-    #brew update
+    brew update
     #brew cask install xquartz
     #brew install glib freeglut libogg theora ffmpeg
-    brew install ffmpeg
+    brew install glib ffmpeg
 
 elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "Visual Studio 2015" ]]
 then
