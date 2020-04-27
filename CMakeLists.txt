@@ -133,6 +133,10 @@ else()
         NAMES libswscale/swscale.h
         PATH_SUFFIXES include include/ffmpeg
     )
+    find_library(LIBSWSCALE_LIBRARIES
+        NAMES swscale
+        PATH_SUFFIXES bin lib
+    )
     find_package(OpenGL)
 endif()
 
