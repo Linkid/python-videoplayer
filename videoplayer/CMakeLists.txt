@@ -9,6 +9,11 @@
 #    COMMAND ls -l /usr/include/ffmpeg/libswscale/
 #)
 message(STATUS "zzzz GLIB2_LIBRARIES: ${GLIB2_LIBRARIES}")
+message(STATUS "zzzz GLIB2_LIB_DIRS: ${GLIB2_LIB_DIRS}")
+message(STATUS "zzzz GLIB2_LDFLAGS: ${GLIB2_LDFLAGS}")
+message(STATUS "zzzz GLIB2_VERSION: ${GLIB2_VERSION}")
+message(STATUS "zzzz GLIB2_LIBDIR: ${GLIB2_LIBDIR}")
+message(STATUS "zzzz GLIB2_LINK_LIBRARIES: ${GLIB2_LINK_LIBRARIES}")
 message(STATUS "zzzz GLIB2_INCLUDE_DIRS: ${GLIB2_INCLUDE_DIRS}")
 message(STATUS "zzzz LIBSWSCALE_LIBRARIES: ${LIBSWSCALE_LIBRARIES}")
 message(STATUS "zzzz LIBSWSCALE_INCLUDE_DIRS: ${LIBSWSCALE_INCLUDE_DIRS}")
@@ -23,7 +28,8 @@ target_include_directories(_VideoPlayer
     PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}
 )
 target_link_libraries(_VideoPlayer
-    ${GLIB2_LIBRARIES}
+#    ${GLIB2_LIBRARIES}
+    ${GLIB2_LINK_LIBRARIES}
     ${OGG_LIBRARIES}
     ${THEORADEC_LIBRARIES}
     ${OPENGL_LIBRARIES}
