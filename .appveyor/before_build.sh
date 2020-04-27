@@ -29,8 +29,7 @@ then
     echo "windows"
     platform=$PROCESSOR_ARCHITECTURE
     echo $platform
-    printenv
-    if [[ $platform == "x64" ]]
+    if [[ $platform == "AMD64" ]]
     then
         "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
         "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
@@ -49,6 +48,7 @@ then
 
     export VCPKG_BUILD=1
     export VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
+    printenv
 fi
 uname -a
 uname
