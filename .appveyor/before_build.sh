@@ -27,11 +27,11 @@ elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "Visual Studio 2015" ]]
 then
     # windows
     echo "windows"
-    platform=$PROCESSOR_ARCHITECTURE
-    echo $platform
-    if [[ $platform == "AMD64" ]]
-    then
-        platform=x64
+    #platform=$PROCESSOR_ARCHITECTURE
+    #echo $platform
+    #if [[ $platform == "AMD64" ]]
+    #then
+    #    platform=x64
     #    echo 0
     #    C:/"Program Files"/Microsoft\ SDKs/Windows/v7.1/Bin/SetEnv.cmd /x64
     #    echo 1
@@ -41,15 +41,15 @@ then
     #    echo 3
     #    C:/"Program Files (x86)"/Microsoft\ Visual\ Studio\ 14.0/VC/vcvarsall.bat x86
     #    echo 4
-    fi
+    #fi
 
-    vcpkg install glib:${platform}-windows \
-                  libogg:${platform}-windows \
-                  libtheora:${platform}-windows \
-                  ffmpeg:${platform}-windows
+    vcpkg install glib \
+                  libogg \
+                  libtheora \
+                  ffmpeg
     cd "c:/tools/vcpkg"
     vcpkg integrate install
-    vcpkg list --triplet '"${platform}"-windows'
+    vcpkg list
     cd $APPVEYOR_BUILD_FOLDER
 
     export VCPKG_BUILD=1
