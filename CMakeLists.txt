@@ -7,6 +7,11 @@ cmake_minimum_required(VERSION 3.5.0)
 #if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
 #  set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "")
 #endif()
+if ($ENV{PYTHON_ARCH} EQUAL 32)
+    set(VCPKG_TARGET_TRIPLET "x86-windows" CACHE STRING "")
+else()
+    set(VCPKG_TARGET_TRIPLET "x64-windows" CACHE STRING "")
+endif()
 
 # scikit-build test
 if(SKBUILD)
@@ -115,11 +120,6 @@ elseif(_VCPKG)
     # set vcpkg vars
     set(VCPKG_CRT_LINKAGE dynamic)
     set(VCPKG_LIBRARY_LINKAGE dynamic)
-    if ($ENV{PYTHON_ARCH} EQUAL 32)
-        set(VCPKG_TARGET_TRIPLET "x86-windws" CACHE STRING "")
-    else()
-        set(VCPKG_TARGET_TRIPLET "x64-windws" CACHE STRING "")
-    endif()
     #set(VCPKG_DLL_FILES "C:\\tools\\vcpkg\\installed\\x64-windows\\bin")
 
     # find deps
