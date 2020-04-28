@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.5.0)
 
-if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-  set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-      CACHE STRING "")
-endif()
-if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
-  set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "")
-endif()
+#if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+#  set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+#      CACHE STRING "")
+#endif()
+#if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
+#  set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "")
+#endif()
 
 # scikit-build test
 if(SKBUILD)
@@ -115,15 +115,20 @@ elseif(_VCPKG)
     # set vcpkg vars
     set(VCPKG_CRT_LINKAGE dynamic)
     set(VCPKG_LIBRARY_LINKAGE dynamic)
+    if ($ENV{PYTHON_ARCH} EQUAL 32)
+        set(VCPKG_TARGET_TRIPLET "x86-windws" CACHE STRING "")
+    else()
+        set(VCPKG_TARGET_TRIPLET "x64-windws" CACHE STRING "")
+    endif()
     #set(VCPKG_DLL_FILES "C:\\tools\\vcpkg\\installed\\x64-windows\\bin")
 
     # find deps
     find_package(unofficial-glib CONFIG REQUIRED)  # unofficial::glib::glib
-    #find_path(GLIB2_INCLUDE_DIRS NAMES glib.h)
-    #find_library(GLIB2_LIBRARIES glib-2.0)
+    find_path(GLIB2_INCLUDE_DIRS NAMES glib.h)
+    find_library(GLIB2_LIBRARIES glib-2.0)
     set(GLIB2_FOUND ${unofficial-glib_FOUND})
-    set(GLIB2_INCLUDE_DIRS ${unofficial-glib_INCLUDE_DIRS})
-    set(GLIB2_LIBRARIES ${unofficial-glib_LIBRARIES})
+    #set(GLIB2_INCLUDE_DIRS ${unofficial-glib_INCLUDE_DIRS})
+    #set(GLIB2_LIBRARIES ${unofficial-glib_LIBRARIES})
 
     find_package(Ogg CONFIG REQUIRED)  # Ogg::ogg
 
