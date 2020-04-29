@@ -36,6 +36,7 @@ target_link_libraries(_VideoPlayer
     ${LIBSWSCALE_LIBRARIES}
 )
 python_extension_module(_VideoPlayer)
+# add_python_extension
 install(TARGETS _VideoPlayer
     LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/videoplayer
     PRIVATE_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
