@@ -104,6 +104,8 @@ elseif(_VCPKG)
     #set(GLIB2_LIBRARIES ${unofficial-glib_LIBRARIES})
 
     find_package(Ogg CONFIG REQUIRED)  # Ogg::ogg
+    find_path(OGG_INCLUDE_DIRS NAMES ogg/ogg.h)
+    find_library(OGG_LIBRARIES ogg libogg)
 
     find_path(THEORADEC_INCLUDE_DIRS NAMES theora/theoradec.h)
     find_library(THEORADEC_LIBRARIES NAMES theoradec libtheoradec theora-dec)
