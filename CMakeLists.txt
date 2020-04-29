@@ -103,7 +103,7 @@ elseif(_VCPKG)
     #set(GLIB2_INCLUDE_DIRS ${unofficial-glib_INCLUDE_DIRS})
     #set(GLIB2_LIBRARIES ${unofficial-glib_LIBRARIES})
 
-    find_package(Ogg CONFIG REQUIRED)  # Ogg::ogg
+    #find_package(Ogg CONFIG REQUIRED)  # Ogg::ogg
     find_path(OGG_INCLUDE_DIRS NAMES ogg/ogg.h)
     find_library(OGG_LIBRARIES ogg libogg)
 
