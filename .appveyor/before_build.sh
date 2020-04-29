@@ -46,7 +46,8 @@ then
     vcpkg install glib \
                   libogg \
                   libtheora \
-                  ffmpeg
+                  ffmpeg \
+                  msinttypes
     cd "c:/tools/vcpkg"
     vcpkg integrate install
     vcpkg list
