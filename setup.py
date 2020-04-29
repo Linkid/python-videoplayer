@@ -145,7 +145,9 @@ if os.getenv("VCPKG_BUILD"):
     build_cmake_args.append('-D_VCPKG=ON')
     build_cmake_args.append('-DVCPKG_TARGET_TRIPLET:STRING={}-windows'.format(platform_windows))
     build_cmake_args.append('-DCMAKE_TOOLCHAIN_FILE={}'.format(os.getenv("VCPKG_TOOLCHAIN")))
-    build_cmake_args.append('-DCMAKE_C_COMPILER="cl.exe"')
+    # C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin/x86_amd64/cl.exe
+    # C:/Users/appveyor/AppData/Local/Programs/Common/Microsoft/Visual C++ for Python/9.0/VC/bin/cl.exe
+    #build_cmake_args.append('-DCMAKE_C_COMPILER="cl.exe"')
 
     print("****")
     print(build_cmake_args)
