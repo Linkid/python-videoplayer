@@ -29,7 +29,7 @@ target_include_directories(_VideoPlayer
 )
 target_link_libraries(_VideoPlayer
 #    ${GLIB2_LIBRARIES}
-    ${PYTHON_LINK_LIBRARIES}
+#    ${PYTHON_LINK_LIBRARIES}
     ${GLIB2_LINK_LIBRARIES}
     ${OGG_LIBRARIES}
     ${THEORADEC_LIBRARIES}
