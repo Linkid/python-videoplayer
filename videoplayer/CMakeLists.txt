@@ -17,7 +17,7 @@ add_library(_VideoPlayer MODULE ${_VideoPlayer} VideoPlayer.c)
 
 target_include_directories(_VideoPlayer
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
-    #PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${GLIB2_INCLUDE_DIRS}
     #PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}
 )
