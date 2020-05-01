@@ -2,12 +2,6 @@
 #include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 
-#execute_process(
-#    COMMAND ls -l /usr/include/libswscale/
-#)
-#execute_process(
-#    COMMAND ls -l /usr/include/ffmpeg/libswscale/
-#)
 message(STATUS "zzzz GLIB2_LIBRARIES: ${GLIB2_LIBRARIES}")
 message(STATUS "zzzz GLIB2_LIB_DIRS: ${GLIB2_LIB_DIRS}")
 message(STATUS "zzzz GLIB2_LDFLAGS: ${GLIB2_LDFLAGS}")
@@ -23,12 +17,12 @@ add_library(_VideoPlayer MODULE ${_VideoPlayer} VideoPlayer.c)
 
 target_include_directories(_VideoPlayer
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+    #PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${GLIB2_INCLUDE_DIRS}
-    PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}
+    #PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}
 )
 target_link_libraries(_VideoPlayer
-#    ${GLIB2_LIBRARIES}
+    ${GLIB2_LIBRARIES}
 #    ${PYTHON_LINK_LIBRARIES}
     ${GLIB2_LINK_LIBRARIES}
     ${OGG_LIBRARIES}
