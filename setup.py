@@ -147,8 +147,8 @@ if os.getenv("VCPKG_BUILD"):
     build_cmake_args.append('-DCMAKE_TOOLCHAIN_FILE={}'.format(os.getenv("VCPKG_TOOLCHAIN")))
     # C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin/x86_amd64/cl.exe
     # C:/Users/appveyor/AppData/Local/Programs/Common/Microsoft/Visual C++ for Python/9.0/VC/bin/cl.exe
-    #build_cmake_args.append('-DCMAKE_C_COMPILER="cl.exe"')
-    build_cmake_args.append('-G "NMake Makefiles"')
+    build_cmake_args.append('-DCMAKE_C_COMPILER="cl.exe"')
+    #build_cmake_args.append('-DCMAKE_C_COMPILER=clang-cl.exe')
 
     print("****")
     print(build_cmake_args)
