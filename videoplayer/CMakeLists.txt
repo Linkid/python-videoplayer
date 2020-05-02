@@ -22,7 +22,7 @@ target_include_directories(_VideoPlayer
     #PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}
 )
 target_link_libraries(_VideoPlayer
-#    ${GLIB2_LIBRARIES}
+    ${GLIB2_LIBRARIES}
 #    ${PYTHON_LINK_LIBRARIES}
 #    ${GLIB2_LINK_LIBRARIES}
     ${OGG_LIBRARIES}
