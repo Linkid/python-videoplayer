@@ -16,7 +16,7 @@ environment:
     - APPVEYOR_BUILD_WORKER_IMAGE: macos-mojave
       APPVEYOR_JOB_NAME: "python37-x64-macos-mojave"
 
-cache: c:\tools\vcpkg\installed\
+#cache: c:\tools\vcpkg\installed\
 stack: python 3.7
 
 init:
