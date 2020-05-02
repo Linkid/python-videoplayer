@@ -2,10 +2,10 @@ environment:
   CIBW_BEFORE_BUILD: "pip install cython scikit-build cmake ninja"
   #CIBW_BEFORE_BUILD_WINDOWS: "Powershell.exe -executionpolicy remotesigned -File .appveyor/before_build.ps1"
   CIBW_BEFORE_BUILD_WINDOWS: "bash -c .appveyor/before_build.sh"
-  #CIBW_BEFORE_BUILD_MACOS: "bash .appveyor/before_build.sh"
+  CIBW_BEFORE_BUILD_MACOS: "bash .appveyor/before_build.sh"
   #CIBW_BEFORE_BUILD_LINUX: "bash .appveyor/before_build.sh"
   CIBW_ENVIRONMENT_WINDOWS: "VCPKG_BUILD=1 VCPKG_TOOLCHAIN='C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake'"
-  CIBW_BUILD: cp37-win*
+  CIBW_BUILD: cp37-win* cp37-macosx*
   #CIBW_SKIP: pp*-manylinux
 
   matrix:
