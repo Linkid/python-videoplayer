@@ -27,7 +27,6 @@ init:
   # python 3, VS 2015
   #- cmd: "%VSINSTALLDIR%\VC\vcvarsall.bat" x86
   #- cmd: "%VCINSTALLDIR%\vcvarsall.bat" x86
-  - cmd: dir "%VS140COMNTOOLS%"
   - cmd: call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" x86
 
 install: python -m pip install cibuildwheel==1.3.0

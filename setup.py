@@ -143,7 +143,7 @@ build_cmake_args = list()
 if os.getenv("VCPKG_BUILD"):
     platform_windows = "x86" if os.getenv("PYTHON_ARCH") == "32" else "x64"
     build_cmake_args.append('-D_VCPKG=ON')
-    build_cmake_args.append('-DVCPKG_TARGET_TRIPLET:STRING={}-windows'.format(platform_windows))
+    #build_cmake_args.append('-DVCPKG_TARGET_TRIPLET:STRING={}-windows'.format(platform_windows))
     build_cmake_args.append('-DCMAKE_TOOLCHAIN_FILE={}'.format(os.getenv("VCPKG_TOOLCHAIN")))
     # C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin/x86_amd64/cl.exe
     # C:/Users/appveyor/AppData/Local/Programs/Common/Microsoft/Visual C++ for Python/9.0/VC/bin/cl.exe
@@ -152,6 +152,7 @@ if os.getenv("VCPKG_BUILD"):
 
     print("****")
     print(build_cmake_args)
+    print(platform_windows)
     print("****")
 
 # setup
