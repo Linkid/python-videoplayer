@@ -52,8 +52,8 @@ then
     vcpkg list
     cd $APPVEYOR_BUILD_FOLDER
 
-    export VCPKG_BUILD=1
-    export VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
+    #export VCPKG_BUILD=1
+    #export VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
     printenv
 fi
 uname -a
