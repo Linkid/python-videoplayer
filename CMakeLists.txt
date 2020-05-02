@@ -96,10 +96,10 @@ elseif(_VCPKG)
     #set(VCPKG_DLL_FILES "C:\\tools\\vcpkg\\installed\\x64-windows\\bin")
 
     # find deps
-    find_package(unofficial-glib CONFIG REQUIRED)  # unofficial::glib::glib
+    #find_package(unofficial-glib CONFIG REQUIRED)  # unofficial::glib::glib
     find_path(GLIB2_INCLUDE_DIRS NAMES glib.h)
     find_library(GLIB2_LIBRARIES glib-2.0)
-    set(GLIB2_FOUND ${unofficial-glib_FOUND})
+    #set(GLIB2_FOUND ${unofficial-glib_FOUND})
     #set(GLIB2_INCLUDE_DIRS ${unofficial-glib_INCLUDE_DIRS})
     #set(GLIB2_LIBRARIES ${unofficial-glib_LIBRARIES})
 
