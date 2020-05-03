@@ -2,7 +2,7 @@
 
 #from distutils.command.clean import clean as Clean
 from skbuild import setup
-import subprocess
+#import subprocess
 import os
 
 
@@ -38,14 +38,14 @@ try:
 except ImportError:
     long_description = open(readme_filepath).read()
 
-# Windows
-if os.getenv("CI_WINDOWS"):
-    arch = "x86" if os.getenv("PYTHON_ARCH") == "32" else "x86_amd64"
-    call_args = ["C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/vcvarsall.bat", arch]
-    subprocess.Popen(call_args, shell=True)
-    print("***")
-    print("args", call_args)
-    print("***")
+## Windows
+#if os.getenv("CI_WINDOWS"):
+#    arch = "x86" if os.getenv("PYTHON_ARCH") == "32" else "x86_amd64"
+#    call_args = ["C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/vcvarsall.bat", arch]
+#    subprocess.Popen(call_args, shell=True)
+#    print("***")
+#    print("args", call_args)
+#    print("***")
 
 # Windows / vcpkg
 build_cmake_args = list()
