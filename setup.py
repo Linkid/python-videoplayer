@@ -40,12 +40,13 @@ except ImportError:
 
 # Windows
 if os.getenv("CI_WINDOWS"):
+    print("****")
+    print("VCINSTALLDIR: ", os.getenv("VCINSTALLDIR"))
+    print("VS140COMNTOOLS", os.getenv("VS140COMNTOOLS"))
+    print("****")
     arch = "x86" if os.getenv("PYTHON_ARCH") == "32" else "x86_amd64"
-    call_args = ["cmd.exe", "/c", "call", "%VCINSTALLDIR%/vcvarsall.bat", arch]
+    call_args = ["cmd.exe", "/c", "call", "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/vcvarsall.bat", arch]
     subprocess.check_call(call_args)
-    print("****")
-    print(os.getenv("VCINSTALLDIR"))
-    print("****")
 
 # Windows / vcpkg
 build_cmake_args = list()

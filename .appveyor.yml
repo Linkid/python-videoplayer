@@ -34,9 +34,6 @@ install: python -m pip install cibuildwheel==1.3.0
 
 build_script: python -m cibuildwheel --output-dir wheelhouse
 
-on_failure:
-  - appveyor PushArtifact "wheelhouse\\*.whl"
-
 artifacts:
   - path: "wheelhouse\\*.whl"
     name: Wheels
