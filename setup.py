@@ -1,18 +1,8 @@
 #!/usr/bin/env python
 
-# from distutils.core import setup
-# from distutils.extension import Extension
-# from distutils.sysconfig import get_python_lib
 #from distutils.command.clean import clean as Clean
-# from setuptools import setup
-from skbuild import setup  # This line replaces 'from setuptools import setup'
-#from setuptools import Extension
+from skbuild import setup
 import os
-#import sys
-
-#from Cython.Build import cythonize
-# from Cython.Distutils import build_ext
-#import pkgconfig
 
 
 #class CleanCommand(Clean):
@@ -39,56 +29,6 @@ import os
 #                        os.unlink(os.path.join(dirpath, filename))
 
 
-#def pc_info(pkg):
-#    """
-#    Obtain build options for a library from pkg-config and return a dict
-#    that can be expanded into the argument list for Extension.
-#    """
-#
-#    sys.stdout.write('checking for library %s... ' % pkg)
-#
-#    # pkg not found
-#    if not pkgconfig.exists(pkg):
-#        sys.stdout.write('not found')
-#        sys.stderr.write('Could not find required library "%s".\n' % pkg)
-#        sys.exit(1)
-#
-#    # get infos about the pkg
-#    pkg_info = pkgconfig.parse(pkg)
-#    info = {
-#        'define_macros': pkg_info['define_macros'],
-#        'include_dirs': pkg_info['include_dirs'],
-#        'libraries': pkg_info['libraries'],
-#        'library_dirs': pkg_info['library_dirs'],
-#    }
-#    sys.stdout.write('ok\n')
-#    #sys.stdout.write('- cflags: %s\n' % cflags)
-#    #sys.stdout.write('- libs: %s\n' % libs)
-#
-#    return info
-#
-#
-#def combine_info(*args):
-#    """ Combine multiple result dicts from L{pc_info} into one. """
-#
-#    # init
-#    info = {
-#        'define_macros': [],
-#        'include_dirs': [],
-#        'libraries': [],
-#        'library_dirs': [],
-#    }
-#
-#    # fill
-#    for a in args:
-#        info['define_macros'].extend(a.get('define_macros', []))
-#        info['include_dirs'].extend(a.get('include_dirs', []))
-#        info['libraries'].extend(a.get('libraries', []))
-#        info['library_dirs'].extend(a.get('library_dirs', []))
-#
-#    return info
-
-
 # Readme
 readme_filepath = os.path.join(os.path.dirname(__file__), "README.md")
 try:
@@ -98,47 +38,7 @@ except ImportError:
     long_description = open(readme_filepath).read()
 
 
-## find dependencies
-#ogg_info = pc_info('ogg')
-#glib_info = pc_info('glib-2.0')
-#swscale_info = pc_info('libswscale')
-#theoradec_info = pc_info('theoradec')
-#if os.name == 'nt':
-#    gl_info = {'libraries': ['opengl32']}
-#    glib_info['define_macros'].append(('inline', '__inline'))
-#else:
-#    try:
-#        gl_info = pc_info('gl')
-#    except SystemExit:
-#        os.environ['LDFLAGS'] = '-framework opengl'
-#        os.environ['CFLAGS'] = '-framework opengl'
-#        gl_info = {
-#            'define_macros': [],
-#            'include_dirs': [],
-#            'libraries': [],
-#            'library_dirs': [],
-#        }
-#
-#
-## sources
-#ext_sources = [
-#    'videoplayer/_VideoPlayer.pyx',
-#    'videoplayer/VideoPlayer.c'
-#]
-#
-## extension
-#ext = Extension(
-#    name='videoplayer.VideoPlayer',
-#    sources=ext_sources,
-#    **combine_info(
-#        gl_info,
-#        glib_info,
-#        ogg_info,
-#        swscale_info,
-#        theoradec_info
-#    )
-#)
-
+# Windows / vcpkg
 build_cmake_args = list()
 if os.getenv("VCPKG_BUILD"):
     platform_windows = "x86" if os.getenv("PYTHON_ARCH") == "32" else "x64"
