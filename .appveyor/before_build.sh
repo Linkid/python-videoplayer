@@ -49,6 +49,9 @@ then
                  libogg \
                  libtheora \
                  ffmpeg
+    vcpkg list
+
+    VCPKG_DEFAULT_TRIPLET=${platform}-windows
     vcpkg install glib \
                   libogg \
                   libtheora \
