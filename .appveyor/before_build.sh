@@ -43,7 +43,7 @@ then
     #    echo 4
     #fi
 
-    vcpkg update glib
+    vcpkg update
     vcpkg list
     vcpkg remove glib \
                  libogg \
