@@ -43,6 +43,12 @@ then
     #    echo 4
     #fi
 
+    vcpkg update glib
+    vcpkg list
+    vcpkg remove glib \
+                 libogg \
+                 libtheora \
+                 ffmpeg
     vcpkg install glib \
                   libogg \
                   libtheora \
