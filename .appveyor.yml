@@ -25,12 +25,10 @@ init:
   #- cmd: "%VS90COMMONTOOLS%\vsvars32.bat"
   #- cmd: "%VS90COMMONTOOLS%\vsvars64.bat"
   # python 3, VS 2015
-  #- cmd: if "%PYTHON_ARCH%" == "32" call "%VCINSTALLDIR%\vcvarsall.bat" x86
-  #- cmd: if "%PYTHON_ARCH%" == "64" call "%VCINSTALLDIR%\vcvarsall.bat" x86_amd64
   #- cmd: "%VSINSTALLDIR%\VC\vcvarsall.bat" x86
   #- cmd: "%VCINSTALLDIR%\vcvarsall.bat" x86_amd64
-  - cmd: echo "%PYTHON_ARCH%"
-  - cmd: call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" x86
+  #- cmd: call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" x86
+  - cmd: call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" x86_amd64
 
 install: python -m pip install cibuildwheel==1.3.0
 
