@@ -1,3 +1,4 @@
+#!/bin/bash
 # before build
 
 if [[ `uname` == "Linux" ]]
@@ -32,11 +33,11 @@ then
     if [[ $PYTHON_ARCH == 32 ]]
     then
         platform=x86
-        $VS140COMNTOOLS/../../VC/vcvarsall.bat x86
+        "${VS140COMNTOOLS}"/../../VC/vcvarsall.bat x86
     else
         platform=x64
-        $EXTENSIONSDKDIR/../../../Windows/v7.1/Bin/SetEnv.cmd /x64
-        $VS140COMNTOOLS/../../VC/vcvarsall.bat x86_amd64
+        "${EXTENSIONSDKDIR}"/../../../Windows/v7.1/Bin/SetEnv.cmd /x64
+        "${VS140COMNTOOLS}"/../../VC/vcvarsall.bat x86_amd64
     fi
 
     #vcpkg update
