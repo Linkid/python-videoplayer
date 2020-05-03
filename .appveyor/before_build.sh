@@ -29,15 +29,15 @@ then
     echo "windows"
     echo $VCINSTALLDIR
 
-    #if [[ $PYTHON_ARCH == 32 ]]
-    #then
-    #    platform=x86
-    #    $VS140COMNTOOLS/../../VC/vcvarsall.bat x86
-    #else
-    #    platform=x64
-    #    $EXTENSIONSDKDIR/../../../Windows/v7.1/Bin/SetEnv.cmd /x64
-    #    $VS140COMNTOOLS/../../VC/vcvarsall.bat x86_amd64
-    #fi
+    if [[ $PYTHON_ARCH == 32 ]]
+    then
+        platform=x86
+        $VS140COMNTOOLS/../../VC/vcvarsall.bat x86
+    else
+        platform=x64
+        $EXTENSIONSDKDIR/../../../Windows/v7.1/Bin/SetEnv.cmd /x64
+        $VS140COMNTOOLS/../../VC/vcvarsall.bat x86_amd64
+    fi
 
     #vcpkg update
     #vcpkg list
@@ -47,7 +47,6 @@ then
     #             ffmpeg
     #vcpkg list
 
-    platform=x64
     export VCPKG_DEFAULT_TRIPLET=${platform}-windows
     vcpkg install glib \
                   libogg \
