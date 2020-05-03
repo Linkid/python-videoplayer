@@ -27,30 +27,27 @@ elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "Visual Studio 2015" ]]
 then
     # windows
     echo "windows"
-    #platform=$PROCESSOR_ARCHITECTURE
-    #echo $platform
-    #if [[ $platform == "AMD64" ]]
+    echo $VCINSTALLDIR
+
+    #if [[ $PYTHON_ARCH == 32 ]]
     #then
-    #    platform=x64
-    #    echo 0
-    #    C:/"Program Files"/Microsoft\ SDKs/Windows/v7.1/Bin/SetEnv.cmd /x64
-    #    echo 1
-    #    C:/"Program Files (x86)"/Microsoft\ Visual\ Studio\ 14.0/VC/vcvarsall.bat x86_amd64
-    #    echo 2
+    #    platform=x86
+    #    $VS140COMNTOOLS/../../VC/vcvarsall.bat x86
     #else
-    #    echo 3
-    #    C:/"Program Files (x86)"/Microsoft\ Visual\ Studio\ 14.0/VC/vcvarsall.bat x86
-    #    echo 4
+    #    platform=x64
+    #    $EXTENSIONSDKDIR/../../../Windows/v7.1/Bin/SetEnv.cmd /x64
+    #    $VS140COMNTOOLS/../../VC/vcvarsall.bat x86_amd64
     #fi
 
-    vcpkg update
-    vcpkg list
-    vcpkg remove glib \
-                 libogg \
-                 libtheora \
-                 ffmpeg
-    vcpkg list
+    #vcpkg update
+    #vcpkg list
+    #vcpkg remove glib \
+    #             libogg \
+    #             libtheora \
+    #             ffmpeg
+    #vcpkg list
 
+    platform=x64
     VCPKG_DEFAULT_TRIPLET=${platform}-windows
     vcpkg install glib \
                   libogg \
