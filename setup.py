@@ -2,6 +2,7 @@
 
 #from distutils.command.clean import clean as Clean
 from skbuild import setup
+import subprocess
 import os
 
 
@@ -37,6 +38,14 @@ try:
 except ImportError:
     long_description = open(readme_filepath).read()
 
+# Windows
+if os.getenv("CI_WINDOWS"):
+    arch = "x86" if os.getenv("PYTHON_ARCH") == "32" else "x86_amd64"
+    call_args = ["cmd.exe", "/c", "call", "%VCINSTALLDIR%/vcvarsall.bat", arch]
+    subprocess.check_call(call_args)
+    print("****")
+    print(os.getenv("VCINSTALLDIR"))
+    print("****")
 
 # Windows / vcpkg
 build_cmake_args = list()
