@@ -38,14 +38,14 @@ try:
 except ImportError:
     long_description = open(readme_filepath).read()
 
-# Windows
-if os.getenv("CI_WINDOWS"):
-    arch = "x86" if os.getenv("PYTHON_ARCH") == "32" else "x86_amd64"
-    call_args = ["call", "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/vcvarsall.bat", arch]
-    subprocess.Popen(call_args, shell=True)
-    print("***")
-    print("args", call_args)
-    print("***")
+## Windows
+#if os.getenv("CI_WINDOWS"):
+#    arch = "x86" if os.getenv("PYTHON_ARCH") == "32" else "x86_amd64"
+#    call_args = ["call", "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/vcvarsall.bat", arch]
+#    subprocess.Popen(call_args, shell=True)
+#    print("***")
+#    print("args", call_args)
+#    print("***")
 
 # Windows / vcpkg
 build_cmake_args = list()
@@ -56,7 +56,7 @@ if os.getenv("VCPKG_BUILD"):
     build_cmake_args.append('-DCMAKE_TOOLCHAIN_FILE={}'.format(os.getenv("VCPKG_TOOLCHAIN")))
     # C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/bin/x86_amd64/cl.exe
     # C:/Users/appveyor/AppData/Local/Programs/Common/Microsoft/Visual C++ for Python/9.0/VC/bin/cl.exe
-    build_cmake_args.append('-DCMAKE_C_COMPILER="cl.exe"')
+    #build_cmake_args.append('-DCMAKE_C_COMPILER="cl.exe"')
     #build_cmake_args.append('-DCMAKE_C_COMPILER=clang-cl.exe')
 
     print("****")
