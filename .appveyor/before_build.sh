@@ -48,7 +48,7 @@ then
     #vcpkg list
 
     platform=x64
-    VCPKG_DEFAULT_TRIPLET=${platform}-windows
+    export VCPKG_DEFAULT_TRIPLET=${platform}-windows
     vcpkg install glib \
                   libogg \
                   libtheora \
