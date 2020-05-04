@@ -16,11 +16,23 @@ environment:
 #    - APPVEYOR_BUILD_WORKER_IMAGE: macos-mojave
 #      APPVEYOR_JOB_NAME: "python37-x64-macos-mojave"
 
-#cache: c:\tools\vcpkg\installed\
+cache: c:\tools\vcpkg\installed\
 stack: python 3.7
 
 init:
   - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
+  - cmd: vcpkg install glib:x86-windows \
+                       libogg:x86-windows \
+                       libtheora:x86-windows \
+                       ffmpeg:x86-windows \
+                       glib:x64-windows \
+                       libogg:x64-windows \
+                       libtheora:x64-windows \
+                       ffmpeg:x64-windows
+  - cmd: cd c:\tools\vcpkg
+  - cmd: vcpkg integrate install
+  - cmd: cd %APPVEYOR_BUILD_FOLDER%
+
   # python 2.7, VS 9.0
   #- cmd: "%VS90COMMONTOOLS%\vsvars32.bat"
   #- cmd: "%VS90COMMONTOOLS%\vsvars64.bat"
