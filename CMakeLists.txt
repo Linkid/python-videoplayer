@@ -25,6 +25,7 @@ set(_VCPKG OFF CACHE BOOL "Use dependencies installed via vcpkg (not dependency 
 set(VCPKG_APPLOCAL_DEPS ${_VCPKG} BOOL)
 
 ## find python deps
+find_package(Python REQUIRED)
 find_package(PythonExtensions REQUIRED)
 find_package(Cython REQUIRED)
 
