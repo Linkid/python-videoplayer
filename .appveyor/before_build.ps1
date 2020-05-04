@@ -37,6 +37,10 @@ vcpkg integrate install
 vcpkg list --triplet '"${env:platform}"-windows'
 cd $env:APPVEYOR_BUILD_FOLDER
 
+
+# python
+python setup.py build_ext -i -f
+
 # set var
 #$env:VCPKG_BUILD=1
 #$env:VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
