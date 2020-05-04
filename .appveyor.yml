@@ -21,13 +21,13 @@ stack: python 3.7
 
 init:
   - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
-  - cmd: vcpkg install glib:x86-windows \
-                       libogg:x86-windows \
-                       libtheora:x86-windows \
-                       ffmpeg:x86-windows \
-                       glib:x64-windows \
-                       libogg:x64-windows \
-                       libtheora:x64-windows \
+  - cmd: vcpkg install glib:x86-windows
+                       libogg:x86-windows
+                       libtheora:x86-windows
+                       ffmpeg:x86-windows
+                       glib:x64-windows
+                       libogg:x64-windows
+                       libtheora:x64-windows
                        ffmpeg:x64-windows
   - cmd: cd c:\tools\vcpkg
   - cmd: vcpkg integrate install
