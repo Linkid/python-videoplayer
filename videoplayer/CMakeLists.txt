@@ -27,7 +27,7 @@ target_include_directories(_VideoPlayer
     PUBLIC ${PYTHON_INCLUDE_DIRS}  # for clang on windows
 )
 target_link_libraries(_VideoPlayer
-#    ${PYTHON_LINK_LIBRARIES}
+    ${PYTHON_LIBRARIES}  # for clang on windows
     ${GLIB2_LIBRARIES}
     ${GLIB2_LINK_LIBRARIES}  # for osx
     ${OGG_LIBRARIES}
