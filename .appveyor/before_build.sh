@@ -33,11 +33,11 @@ then
     if [[ $PYTHON_ARCH == 32 ]]
     then
         platform=x86
-        #"${VS140COMNTOOLS}"/../../VC/vcvarsall.bat x86
+        "${VS140COMNTOOLS}"/../../VC/vcvarsall.bat x86
     else
         platform=x64
-        #"${EXTENSIONSDKDIR}"/../../../Windows/v7.1/Bin/SetEnv.cmd /x64
-        #"${VS140COMNTOOLS}"/../../VC/vcvarsall.bat x86_amd64
+        "${EXTENSIONSDKDIR}"/../../../Windows/v7.1/Bin/SetEnv.cmd /x64
+        "${VS140COMNTOOLS}"/../../VC/vcvarsall.bat x86_amd64
     fi
 
     #vcpkg update
@@ -57,6 +57,8 @@ then
     vcpkg integrate install
     vcpkg list
     cd $APPVEYOR_BUILD_FOLDER
+
+    python setup.py build_ext -i -f
 
     #export VCPKG_BUILD=1
     #export VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
