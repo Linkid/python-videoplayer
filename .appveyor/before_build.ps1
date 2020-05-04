@@ -39,6 +39,8 @@ cd $env:APPVEYOR_BUILD_FOLDER
 
 
 # python
+
+pip install cython scikit-build cmake ninja
 python setup.py build_ext -i -f
 
 # set var

@@ -58,6 +58,7 @@ then
     vcpkg list
     cd $APPVEYOR_BUILD_FOLDER
 
+    pip install cython scikit-build cmake ninja
     python setup.py build_ext -i -f
 
     #export VCPKG_BUILD=1
