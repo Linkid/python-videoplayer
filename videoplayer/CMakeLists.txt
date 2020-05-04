@@ -12,9 +12,9 @@ message(STATUS "zzzz GLIB2_INCLUDE_DIRS: ${GLIB2_INCLUDE_DIRS}")
 message(STATUS "zzzz LIBSWSCALE_LIBRARIES: ${LIBSWSCALE_LIBRARIES}")
 message(STATUS "zzzz LIBSWSCALE_INCLUDE_DIRS: ${LIBSWSCALE_INCLUDE_DIRS}")
 
-message(STATUS "ppppp Python_INCLUDE_DIRS: ${Python_INCLUDE_DIRS}")
-message(STATUS "ppppp Python_LIBRARIES: ${Python_LIBRARIES}")
-message(STATUS "ppppp Python_LIBRARY_DIRS: ${Python_LIBRARY_DIRS}")
+message(STATUS "ppppp PYTHON_INCLUDE_DIRS: ${PYTHON_INCLUDE_DIRS}")
+message(STATUS "ppppp PYTHON_LIBRARIES: ${PYTHON_LIBRARIES}")
+message(STATUS "ppppp PYTHON_LIBRARY_DIRS: ${PYTHON_LIBRARY_DIRS}")
 
 add_cython_target(_VideoPlayer _VideoPlayer.pyx)
 add_library(_VideoPlayer MODULE ${_VideoPlayer} VideoPlayer.c)
@@ -24,7 +24,7 @@ target_include_directories(_VideoPlayer
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${GLIB2_INCLUDE_DIRS}
     PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}  # for osx
-    PUBLIC ${Python_INCLUDE_DIRS}  # for clang on windows
+    PUBLIC ${PYTHON_INCLUDE_DIRS}  # for clang on windows
 )
 target_link_libraries(_VideoPlayer
 #    ${PYTHON_LINK_LIBRARIES}
