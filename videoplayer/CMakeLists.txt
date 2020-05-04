@@ -24,7 +24,7 @@ target_include_directories(_VideoPlayer
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${GLIB2_INCLUDE_DIRS}
     PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}  # for osx
-    PUBLIC ${PYTHON_INCLUDE_DIRS}  # for clang on windows
+    #PUBLIC ${PYTHON_INCLUDE_DIRS}  # for clang on windows
 )
 target_link_libraries(_VideoPlayer
     ${PYTHON_LIBRARIES}  # for clang on windows
