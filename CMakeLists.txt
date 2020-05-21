@@ -20,7 +20,6 @@ endif(POLICY CMP0072)
 # manage dependencies
 ## set vars
 set(_WIN_DEP OFF CACHE BOOL "Use dependencies from an external package")
-set(_CONAN OFF CACHE BOOL "Use dependencies installed via conan (not dependency package)")
 set(_VCPKG OFF CACHE BOOL "Use dependencies installed via vcpkg (not dependency package)")
 set(VCPKG_APPLOCAL_DEPS ${_VCPKG} BOOL)
 
@@ -38,54 +37,6 @@ if (WIN32 AND _WIN_DEP)
     find_library(OGG_LIBRARIES NAMES ogg libogg PATHS "${DEPENDENCY_FOLDER}/lib")
     find_library(THEORADEC_LIBRARIES NAMES theoradec libtheoradec theora-dec PATHS "${DEPENDENCY_FOLDER}/lib")
     find_library(LIBSWSCALE_LIBRARIES NAMES swscale libswscale PATHS "${DEPENDENCY_FOLDER}/lib")
-    find_package(OpenGL)
-
-elseif(_CONAN)
-    # conan.io
-    message(STATUS "Use Conan")
-    # download the the conan.cmake file
-    if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
-       message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
-       file(DOWNLOAD "https://github.com/conan-io/cmake-conan/raw/v0.15/conan.cmake"
-                     "${CMAKE_BINARY_DIR}/conan.cmake")
-    endif()
-    include(${CMAKE_BINARY_DIR}/conan.cmake)
-
-    # check if conan is intalled
-    conan_check(VERSION 1.24.0 REQUIRED)
-
-    # add the bincrafters remote
-    conan_add_remote(NAME bincrafters INDEX 1
-                     URL https://api.bintray.com/conan/bincrafters/public-conan)
-
-    # run conan install
-    conan_cmake_run(CONANFILE conanfile.txt
-                    BASIC_SETUP CMAKE_TARGETS
-                    BUILD missing)
-
-    # setup conan vars
-    #include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-    #conan_basic_setup(TARGETS)
-
-    # find dependencies
-    include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
-    find_package(glib)
-    set(GLIB2_FOUND ${glib_FOUND})
-    set(GLIB2_INCLUDE_DIRS ${glib_INCLUDE_DIRS})
-    set(GLIB2_LIBRARIES ${glib_LIBRARIES})
-    find_package(ogg)
-    set(OGG_FOUND ${ogg_FOUND})
-    set(OGG_INCLUDE_DIRS ${ogg_INCLUDE_DIRS})
-    set(OGG_LIBRARIES ${ogg_LIBRARIES})
-    find_package(theora)
-    set(THEORADEC_FOUND ${theora_FOUND})
-    set(THEORADEC_INCLUDE_DIRS ${theora_INCLUDE_DIRS})
-    set(THEORADEC_LIBRARIES ${theora_LIBRARIES})
-    find_package(ffmpeg)
-    set(LIBSWSCALE_FOUND ${ffmpeg_FOUND})
-    set(LIBSWSCALE_INCLUDE_DIRS ${ffmpeg_INCLUDE_DIRS})
-    set(LIBSWSCALE_LIBRARIES ${ffmpeg_LIBRARIES})
-    find_path(LIBSWSCALE_INCLUDE_DIRS "swscale.h" ${ffmpeg_INCLUDE_DIRS})
     find_package(OpenGL)
 
 elseif(_VCPKG)
