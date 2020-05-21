@@ -14,11 +14,11 @@ environment:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       APPVEYOR_JOB_NAME: "python37-x64-vs2015"
       CIBW_BUILD: cp27-win*
-      VCVARSALL: "%VS90COMMONTOOLS%\vsvars32.bat"
+      VCVARSALL: "%VS90COMMONTOOLS%\\vsvars32.bat"
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       APPVEYOR_JOB_NAME: "python37-x64-vs2015"
       CIBW_BUILD: cp3*-win*
-      VCVARSALL: "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat"
+      VCVARSALL: "%VS140COMNTOOLS%..\\..\\VC\\vcvarsall.bat"
 #    - APPVEYOR_BUILD_WORKER_IMAGE: macos-mojave
 #      APPVEYOR_JOB_NAME: "python37-x64-macos-mojave"
 
