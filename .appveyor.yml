@@ -34,10 +34,7 @@ init:
     #- cmd: cd %APPVEYOR_BUILD_FOLDER%
 
   # python 2.7, VS 9.0
-  - cmd: echo %VS90COMMONTOOLS%
-  - cmd: echo %%VS140COMNTOOLS%
-  - cmd: echo %VSINSTALLDIR%
-  - cmd: echo %VCINSTALLDIR%
+  - cmd: set
 
   - cmd: dir /s %VS90COMMONTOOLS%
   - cmd: dir /s %%VS140COMNTOOLS%
