@@ -5,7 +5,7 @@ environment:
   #CIBW_BEFORE_BUILD_MACOS: "bash .appveyor/before_build.sh"
   #CIBW_BEFORE_BUILD_LINUX: "bash .appveyor/before_build.sh"
   CIBW_ENVIRONMENT_WINDOWS: "VCPKG_BUILD=1 VCPKG_TOOLCHAIN='C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake'"
-  CIBW_BUILD: cp37-win*
+  #CIBW_BUILD: cp37-win*
   #CIBW_SKIP: pp*-manylinux
 
   matrix:
@@ -13,6 +13,12 @@ environment:
 #      APPVEYOR_JOB_NAME: "python37-x64-ubuntu"
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       APPVEYOR_JOB_NAME: "python37-x64-vs2015"
+      CIBW_BUILD: cp27-win*
+      VCVARSALL: "%VS90COMMONTOOLS%\vsvars32.bat"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      APPVEYOR_JOB_NAME: "python37-x64-vs2015"
+      CIBW_BUILD: cp3*-win*
+      VCVARSALL: "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat"
 #    - APPVEYOR_BUILD_WORKER_IMAGE: macos-mojave
 #      APPVEYOR_JOB_NAME: "python37-x64-macos-mojave"
 
@@ -21,6 +27,10 @@ stack: python 3.7
 
 init:
   - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
+  - cmd: if "%PYTHON_ARCH%"==32 set ARCH=x86
+  - cmd: if "%PYTHON_ARCH%"==64 set ARCH=x86_amd64
+  - cmd: call %VCVARSALL% %ARCH%
+
     #- cmd: vcpkg install glib:x86-windows
     #                     libogg:x86-windows
     #                     libtheora:x86-windows
