@@ -25,10 +25,12 @@ init:
                        libogg:x86-windows
                        libtheora:x86-windows
                        ffmpeg:x86-windows
+                       msinttypes:x86-windows
                        glib:x64-windows
                        libogg:x64-windows
                        libtheora:x64-windows
                        #ffmpeg:x64-windows
+                       msinttypes:x64-windows
   - cmd: cd c:\tools\vcpkg
   - cmd: vcpkg integrate install
   - cmd: cd %APPVEYOR_BUILD_FOLDER%
