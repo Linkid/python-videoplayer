@@ -27,6 +27,8 @@ then
 elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "Visual Studio 2015" ]]
 then
     # windows
+    printenv
+    exit
     echo "windows"
     echo $VCINSTALLDIR
 

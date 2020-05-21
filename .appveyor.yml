@@ -36,10 +36,6 @@ init:
   # python 2.7, VS 9.0
   - cmd: set
 
-  - cmd: dir /s %VS90COMMONTOOLS%
-  - cmd: dir /s %%VS140COMNTOOLS%
-  - cmd: dir /s %VSINSTALLDIR%
-  - cmd: dir /s %VCINSTALLDIR%
   #- cmd: "%VS90COMMONTOOLS%\vsvars32.bat"
   #- cmd: "%VS90COMMONTOOLS%\vsvars64.bat"
   # python 3, VS 2015
