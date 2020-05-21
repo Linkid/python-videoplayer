@@ -29,8 +29,8 @@ init:
                        glib:x64-windows
                        libogg:x64-windows
                        libtheora:x64-windows
-                       #ffmpeg:x64-windows
                        msinttypes:x64-windows
+                       #ffmpeg:x64-windows
   - cmd: cd c:\tools\vcpkg
   - cmd: vcpkg integrate install
   - cmd: cd %APPVEYOR_BUILD_FOLDER%
