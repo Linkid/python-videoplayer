@@ -1,7 +1,7 @@
 environment:
   CIBW_BEFORE_BUILD: "pip install cython scikit-build cmake ninja"
-  CIBW_BEFORE_BUILD_WINDOWS: "Powershell.exe -executionpolicy remotesigned -File .appveyor/before_build.ps1"
-  #CIBW_BEFORE_BUILD_WINDOWS: "bash -c .appveyor/before_build.sh"
+  #CIBW_BEFORE_BUILD_WINDOWS: "Powershell.exe -executionpolicy remotesigned -File .appveyor/before_build.ps1"
+  CIBW_BEFORE_BUILD_WINDOWS: "bash -c .appveyor/before_build.sh"
   #CIBW_BEFORE_BUILD_MACOS: "bash .appveyor/before_build.sh"
   #CIBW_BEFORE_BUILD_LINUX: "bash .appveyor/before_build.sh"
   CIBW_ENVIRONMENT_WINDOWS: "VCPKG_BUILD=1 VCPKG_TOOLCHAIN='C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake'"
@@ -21,21 +21,23 @@ stack: python 3.7
 
 init:
   - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
-  - cmd: vcpkg install glib:x86-windows
-                       libogg:x86-windows
-                       libtheora:x86-windows
-                       ffmpeg:x86-windows
-                       msinttypes:x86-windows
-                       glib:x64-windows
-                       libogg:x64-windows
-                       libtheora:x64-windows
-                       msinttypes:x64-windows
-                       #ffmpeg:x64-windows
-  - cmd: cd c:\tools\vcpkg
-  - cmd: vcpkg integrate install
-  - cmd: cd %APPVEYOR_BUILD_FOLDER%
+    #- cmd: vcpkg install glib:x86-windows
+    #                     libogg:x86-windows
+    #                     libtheora:x86-windows
+    #                     ffmpeg:x86-windows
+    #                     glib:x64-windows
+    #                     libogg:x64-windows
+    #                     libtheora:x64-windows
+    #                     ffmpeg:x64-windows
+    #- cmd: cd c:\tools\vcpkg
+    #- cmd: vcpkg integrate install
+    #- cmd: cd %APPVEYOR_BUILD_FOLDER%
 
   # python 2.7, VS 9.0
+  - cmd: dir /s %VS90COMMONTOOLS%
+  - cmd: dir /s %%VS140COMNTOOLS%
+  - cmd: dir /s %VSINSTALLDIR%
+  - cmd: dir /s %VCINSTALLDIR%
   #- cmd: "%VS90COMMONTOOLS%\vsvars32.bat"
   #- cmd: "%VS90COMMONTOOLS%\vsvars64.bat"
   # python 3, VS 2015
