@@ -20,6 +20,7 @@ environment:
       APPVEYOR_JOB_NAME: "python37-x64-vs2015"
       CIBW_BUILD: cp3*-win*
       VCVARSALL: "%VS140COMNTOOLS%..\\..\\VC\\vcvarsall.bat"
+      CIBW_BEFORE_BUILD: "pip install cython scikit-build cmake ninja"
 #    - APPVEYOR_BUILD_WORKER_IMAGE: macos-mojave
 #      APPVEYOR_JOB_NAME: "python37-x64-macos-mojave"
 
