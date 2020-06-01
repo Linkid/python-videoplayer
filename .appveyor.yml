@@ -14,7 +14,8 @@ environment:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       APPVEYOR_JOB_NAME: "python37-x64-vs2015"
       CIBW_BUILD: cp27-win*
-      VCVARSALL: "%VS90COMMONTOOLS%\\vsvars32.bat"
+      VCVARSALL: "C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\Tools\vsvars32.bat"
+#      VCVARSALL: "%VS90COMMONTOOLS%\\vsvars32.bat"
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       APPVEYOR_JOB_NAME: "python37-x64-vs2015"
       CIBW_BUILD: cp3*-win*
@@ -29,8 +30,7 @@ init:
   - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
   - cmd: if "%PYTHON_ARCH%"==32 set ARCH=x86
   - cmd: if "%PYTHON_ARCH%"==64 set ARCH=x86_amd64
-  - cmd: echo %VS90COMMONTOOLS%
-  - cmd: echo %VCVARSALL%
+  - cmd: echo %ARCH%
   - cmd: call "%VCVARSALL%" %ARCH%
 
     #- cmd: vcpkg install glib:x86-windows
