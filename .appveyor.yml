@@ -29,6 +29,7 @@ init:
   - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
   - cmd: if "%PYTHON_ARCH%"==32 set ARCH=x86
   - cmd: if "%PYTHON_ARCH%"==64 set ARCH=x86_amd64
+  - cmd: echo %VCVARSALL%
   - cmd: call %VCVARSALL% %ARCH%
 
     #- cmd: vcpkg install glib:x86-windows
