@@ -58,14 +58,14 @@ then
     #vcpkg list
 
     export VCPKG_DEFAULT_TRIPLET=${platform}-windows
-    #vcpkg install glib \
-    #              libogg \
-    #              libtheora \
-    #              ffmpeg \
-    #              msinttypes
-    #cd "c:/tools/vcpkg"
-    #vcpkg integrate install
-    #vcpkg list
+    vcpkg install glib \
+                  libogg \
+                  libtheora \
+                  ffmpeg \
+                  msinttypes
+    cd "c:/tools/vcpkg"
+    vcpkg integrate install
+    vcpkg list
     cd $APPVEYOR_BUILD_FOLDER
 
     #export VCPKG_BUILD=1
