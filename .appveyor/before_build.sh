@@ -18,6 +18,10 @@ then
     rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
     yum -y install libswscale-devel
 
+    # debugs
+    uname -a
+    uname
+
 elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "macos-mojave" ]]
 then
     # macos
@@ -30,8 +34,8 @@ then
 elif [[ $APPVEYOR_BUILD_WORKER_IMAGE == "Visual Studio 2015" ]]
 then
     # windows
-    printenv
-    exit
+    #printenv
+    #exit
     echo "windows"
     echo $VCINSTALLDIR
 
@@ -66,15 +70,10 @@ then
 
     #export VCPKG_BUILD=1
     #export VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
-    printenv
+    #printenv
 fi
 
 #
 # install python dependencies
 #
 pip install cython scikit-build cmake ninja
-
-
-# debugs
-uname -a
-uname
