@@ -9,11 +9,12 @@ cache: c:\tools\vcpkg\installed\
 stack: python 3.7
 
 init:
+  - cmd: cd c:\tools\vcpkg
+  - cmd: vcpkg update
   - cmd: vcpkg install glib:x64-windows
                        libogg:x64-windows
                        libtheora:x64-windows
                        ffmpeg:x64-windows
-  - cmd: cd c:\tools\vcpkg
   - cmd: vcpkg integrate install
   - cmd: cd %APPVEYOR_BUILD_FOLDER%
 
