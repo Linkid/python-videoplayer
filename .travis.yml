@@ -26,6 +26,6 @@ script:
     #- conan install ..
     #- find ~/.conan/data/ffmpeg/4.2.1/bincrafters/stable/ -name "swscale.h"
     - export VERBOSE=1
-    - python setup.py check
-    - python setup.py build_ext --inplace --force
-    - python setup.py test
+    #- python setup.py check
+    #- python setup.py build_ext --inplace --force
+    #- python setup.py test
