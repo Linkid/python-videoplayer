@@ -1,6 +1,9 @@
 #!/bin/bash
 # before build
 
+#
+# install system dependencies
+#
 if [[ `uname` == "Linux" ]]
 then
     # linux (centos 6)
@@ -65,5 +68,13 @@ then
     #export VCPKG_TOOLCHAIN="C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake"
     printenv
 fi
+
+#
+# install python dependencies
+#
+pip install cython scikit-build cmake ninja
+
+
+# debugs
 uname -a
 uname
