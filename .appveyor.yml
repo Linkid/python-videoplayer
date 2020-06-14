@@ -2,6 +2,8 @@ environment:
   CIBW_ENVIRONMENT_WINDOWS: "VCPKG_BUILD=1 VCPKG_TOOLCHAIN='C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake'"
   CIBW_BEFORE_BUILD: "pip install cython scikit-build cmake ninja"
   CIBW_BUILD: cp27-win_amd64
+  VCVARSALL: "C:\\Program Files (x86)\\Microsoft Visual Studio 9.0\\Common7\\Tools\\vsvars32.bat"
+  ARCH: x86_amd64
 
 
 
@@ -10,6 +12,11 @@ stack: python 3.7
 
 init:
   - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
+  - cmd: echo %VS90COMNTOOLS%
+  - cmd: echo %VS140COMNTOOLS%
+  - cmd: dir "C:\\Program Files (x86)\\Microsoft Visual Studio 9.0"
+  - cmd: dir "C:\\Program Files (x86)\\Microsoft Visual Studio 9.0\\VC"
+  - cmd: call "%VCVARSALL%" %ARCH%
   - cmd: cd c:\tools\vcpkg
   - cmd: git pull
   - cmd: .\bootstrap-vcpkg.bat
