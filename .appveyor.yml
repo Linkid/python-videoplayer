@@ -2,8 +2,8 @@ environment:
   CIBW_ENVIRONMENT_WINDOWS: "VCPKG_BUILD=1 VCPKG_TOOLCHAIN='C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake'"
   CIBW_BEFORE_BUILD: "pip install cython scikit-build cmake ninja"
   CIBW_BUILD: cp27-win_amd64
-  VCVARSALL: "C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/vcvarsall.bat"
-  #VCVARSALL: "C:\\Program Files (x86)\\Microsoft Visual Studio 9.0\\Common7\\Tools\\vsvars32.bat"
+  #VCVARSALL: "C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/vcvarsall.bat"
+  VCVARSALL: "C:\\Program Files (x86)\\Microsoft Visual Studio 9.0\\Common7\\Tools\\vsvars32.bat"
   ARCH: x86_amd64
 
 
@@ -14,22 +14,21 @@ stack: python 3.7
 init:
   - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
   - cmd: echo "%VS90COMNTOOLS%..\..\VC"
-  - cmd: call "%VCVARSALL%" --help
-  #- cmd: cd c:\tools\vcpkg
-  #- cmd: git pull
-  #- cmd: .\bootstrap-vcpkg.bat
-  #- cmd: vcpkg install glib:x64-windows
-  #                     libogg:x64-windows
-  #                     libtheora:x64-windows
-  #                     ffmpeg:x64-windows
-  #- cmd: vcpkg integrate install
-  #- cmd: cd %APPVEYOR_BUILD_FOLDER%
-  #- python --version
+  - cmd: call "%VCVARSALL%" %ARCH%
+  - cmd: cd c:\tools\vcpkg
+  - cmd: git pull
+  - cmd: .\bootstrap-vcpkg.bat
+  - cmd: vcpkg install glib:x64-windows
+                       libogg:x64-windows
+                       libtheora:x64-windows
+                       ffmpeg:x64-windows
+  - cmd: vcpkg integrate install
+  - cmd: cd %APPVEYOR_BUILD_FOLDER%
 
-#install: python -m pip install cibuildwheel==1.4.2
-#
-#build_script: python -m cibuildwheel --output-dir wheelhouse
-#
-#artifacts:
-#  - path: "wheelhouse\\*.whl"
-#    name: Wheels
+install: python -m pip install cibuildwheel==1.4.2
+
+build_script: python -m cibuildwheel --output-dir wheelhouse
+
+artifacts:
+  - path: "wheelhouse\\*.whl"
+    name: Wheels
