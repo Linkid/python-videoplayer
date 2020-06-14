@@ -14,8 +14,8 @@ init:
   - cmd: set PATH=C:\Python37;C:\Python37\Scripts;%PATH%
   - cmd: echo %VS90COMNTOOLS%
   - cmd: echo %VS140COMNTOOLS%
-  - cmd: dir 'C:\Program Files (x86)\Microsoft Visual Studio 9.0'
-  - cmd: dir 'C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC'
+  - cmd: dir "C:\Program Files (x86)\Microsoft Visual Studio 9.0"
+  - cmd: dir "C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC"
   - cmd: call "%VCVARSALL%" %ARCH%
   - cmd: cd c:\tools\vcpkg
   - cmd: git pull
