@@ -17,21 +17,21 @@ init:
   - cmd: dir "C:\Program Files (x86)\Microsoft Visual Studio 9.0"
   - cmd: dir "C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC"
   - cmd: call "%VCVARSALL%" %ARCH%
-  - cmd: cd c:\tools\vcpkg
-  - cmd: git pull
-  - cmd: .\bootstrap-vcpkg.bat
-  - cmd: vcpkg install glib:x64-windows
-                       libogg:x64-windows
-                       libtheora:x64-windows
-                       ffmpeg:x64-windows
-  - cmd: vcpkg integrate install
-  - cmd: cd %APPVEYOR_BUILD_FOLDER%
-  - python --version
+  #- cmd: cd c:\tools\vcpkg
+  #- cmd: git pull
+  #- cmd: .\bootstrap-vcpkg.bat
+  #- cmd: vcpkg install glib:x64-windows
+  #                     libogg:x64-windows
+  #                     libtheora:x64-windows
+  #                     ffmpeg:x64-windows
+  #- cmd: vcpkg integrate install
+  #- cmd: cd %APPVEYOR_BUILD_FOLDER%
+  #- python --version
 
-install: python -m pip install cibuildwheel==1.4.2
-
-build_script: python -m cibuildwheel --output-dir wheelhouse
-
-artifacts:
-  - path: "wheelhouse\\*.whl"
-    name: Wheels
+#install: python -m pip install cibuildwheel==1.4.2
+#
+#build_script: python -m cibuildwheel --output-dir wheelhouse
+#
+#artifacts:
+#  - path: "wheelhouse\\*.whl"
+#    name: Wheels
