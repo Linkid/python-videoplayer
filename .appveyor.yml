@@ -21,7 +21,7 @@ init:
   - cmd: cd %APPVEYOR_BUILD_FOLDER%
   - python --version
 
-install: python -m pip install cibuildwheel==1.3.0
+install: python -m pip install cibuildwheel==1.4.2
 
 build_script: python -m cibuildwheel --output-dir wheelhouse
 
