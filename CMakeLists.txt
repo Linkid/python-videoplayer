@@ -67,6 +67,8 @@ elseif(_VCPKG)
     set(LIBSWSCALE_INCLUDE_DIRS ${FFMPEG_libswscale_INCLUDE_DIRS})
     set(LIBSWSCALE_LIBRARIES ${FFMPEG_libswscale_LIBRARY})
 
+    find_path(MSINTTYPES_INCLUDE_DIRS NAMES msinttypes/stdin.h)
+
     find_package(OpenGL)
 
 else()
