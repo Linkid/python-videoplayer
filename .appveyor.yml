@@ -1,6 +1,5 @@
 environment:
   CIBW_ENVIRONMENT_WINDOWS: "VCPKG_BUILD=1 VCPKG_TOOLCHAIN='C:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake'"
-  CIBW_BEFORE_BUILD: "pip install cython scikit-build cmake"
   CIBW_BUILD: cp27-win_amd64
   #VCVARSALL: "C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/vcvarsall.bat"
   VCVARSALL: "C:\\Program Files (x86)\\Microsoft Visual Studio 9.0\\Common7\\Tools\\vsvars32.bat"
