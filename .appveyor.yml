@@ -16,7 +16,7 @@ init:
   - cmd: echo "%VS90COMNTOOLS%..\..\VC"
   - cmd: call "%VCVARSALL%" %ARCH%
   - cmd: cd c:\tools\vcpkg
-  - cmd: git co 2019.09
+  - cmd: git checkout 2019.09
   - cmd: git pull
   - cmd: .\bootstrap-vcpkg.bat
   - cmd: vcpkg install glib:x64-windows      # 2.52.3-14-3
