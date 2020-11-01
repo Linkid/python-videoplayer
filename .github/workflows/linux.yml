@@ -3,13 +3,13 @@ name: Build Linux wheels
 on: [push, pull_request]
 
 jobs:
-  build:
+  build-linux:
 
     name: Build wheels on Linux
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [2.7]
+        python-version: [2.7, '3.x']
 
     steps:
       - name: Checkout
