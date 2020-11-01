@@ -33,7 +33,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
-          python -m pip install cibuildwheel==1.6.4
+          #python -m pip install cibuildwheel==1.6.4
 
       - name: Test the lib
         run: |
@@ -43,16 +43,20 @@ jobs:
 
       - name: Build the wheel
         run: |
-          python -m cibuildwheel --output-dir wheelhouse
+          #python -m cibuildwheel --output-dir wheelhouse
+          python setup.py build_ext --inplace --force
+          python setup.py sdist
+          python setup.py bdist_wheel
 
-      - name: Test the wheel
-        run: |
-          python -m pip install wheelhouse/*.whl
-          mkdir -p tmp
-          cd tmp
-          python -c "from videoplayer import _VideoPlayer; print(_VideoPlayer.__version__)"
+      #- name: Test the wheel
+      #  run: |
+      #    python -m pip install wheelhouse/*.whl
+      #    mkdir -p tmp
+      #    cd tmp
+      #    python -c "from videoplayer import _VideoPlayer; print(_VideoPlayer.__version__)"
 
       - name: Upload the wheel
         uses: actions/upload-artifact@v2
         with:
-          path: ./wheelhouse/*.whl
+          #path: ./wheelhouse/*.whl
+          path: ./dist/*.whl
