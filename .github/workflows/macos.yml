@@ -9,7 +9,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        python-version: [2.7, '3.x']
+        python-version: [2.7, 3.6, 3.7]
 
     steps:
       - name: Checkout
@@ -25,7 +25,10 @@ jobs:
           brew update
           brew install \
             glib \
+            libogg \
+            theora \
             ffmpeg
+          ffmpeg --version
 
       - name: Install python dependencies
         run: |
