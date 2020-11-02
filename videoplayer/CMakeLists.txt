@@ -11,9 +11,9 @@ add_cython_target(_VideoPlayer _VideoPlayer.pyx)
 add_library(_VideoPlayer MODULE ${_VideoPlayer} VideoPlayer.c)
 target_include_directories(_VideoPlayer
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
-    PRIVATE ${GLIB2_INCLUDE_DIRS}
-    PRIVATE ${LIBSWSCALE_INCLUDE_DIRS}  # for osx
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+    PUBLIC ${GLIB2_INCLUDE_DIRS}
+    PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}  # for osx
 )
 target_link_libraries(_VideoPlayer
     ${GLIB2_LIBRARIES}
