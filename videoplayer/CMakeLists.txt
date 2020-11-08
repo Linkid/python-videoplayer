@@ -31,7 +31,7 @@ target_include_directories(_VideoPlayer
     PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}  # for osx
 )
 target_link_libraries(_VideoPlayer
-    ${GLIB2_LIBRARIES}
+    #${GLIB2_LIBRARIES}
     ${GLIB2_LINK_LIBRARIES}  # for osx
     ${OGG_LIBRARIES}
     ${THEORADEC_LIBRARIES}
