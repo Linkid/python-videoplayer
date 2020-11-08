@@ -9,9 +9,10 @@ operating_system=$1
 #
 # install system dependencies
 #
+echo ${operating_system}
 case $operating_system in
 
-    "linux")
+    "ubuntu*")
         # linux (centos 6)
         # arch
         echo "`cat /etc/redhat-release` (`arch`)"
@@ -41,6 +42,11 @@ case $operating_system in
             libogg \
             theora \
             ffmpeg
+    ;;
+
+    "windows*")
+        # windows
+        echo "windows"
     ;;
 
     *)
