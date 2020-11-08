@@ -39,6 +39,31 @@ if (WIN32 AND USE_WIN_DEP)
     find_library(LIBSWSCALE_LIBRARIES NAMES swscale libswscale PATHS "${DEPENDENCY_FOLDER}/lib")
     find_package(OpenGL)
 
+elseif(_VCPKG)
+    message(STATUS "Use vcpkg")
+
+    # set vcpkg vars
+    set(VCPKG_CRT_LINKAGE dynamic)
+    set(VCPKG_LIBRARY_LINKAGE dynamic)
+
+    # find deps
+    ## glib
+    find_path(GLIB2_INCLUDE_DIRS NAMES glib.h)
+    find_library(GLIB2_LINK_LIBRARIES glib-2.0)
+    ## ogg
+    find_path(OGG_INCLUDE_DIRS NAMES ogg/ogg.h)
+    find_library(OGG_LINK_LIBRARIES ogg libogg)
+    ## theora
+    find_path(THEORADEC_INCLUDE_DIRS NAMES theora/theoradec.h)
+    find_library(THEORADEC_LINK_LIBRARIES NAMES theoradec libtheoradec theora-dec)
+    ## libswscale
+    find_package(FFMPEG)
+    set(LIBSWSCALE_FOUND ${FFMPEG_libswscale_FOUND})
+    set(LIBSWSCALE_INCLUDE_DIRS ${FFMPEG_libswscale_INCLUDE_DIRS})
+    set(LIBSWSCALE_LIBRARIES ${FFMPEG_libswscale_LIBRARY})
+    ## opengl
+    find_package(OpenGL)
+
 else()
     message(STATUS "Use pkgconfig")
 

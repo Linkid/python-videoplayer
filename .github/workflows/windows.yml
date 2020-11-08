@@ -1,0 +1,75 @@
+name: Build Windows wheels
+
+on: [push, pull_request]
+
+jobs:
+  build-win:
+
+    name: Build wheels on Windows
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [2.7]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install python {{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install os dependencies
+        uses: lukka/run-vcpkg@v4
+        with:
+          # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
+          vcpkgArguments: glib libogg libtheora ffmpeg
+          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+          vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
+          #vcpkgTriplet: 
+
+      - name: Install python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install ninja
+          #python -m pip install cibuildwheel==1.6.4
+
+      - name: Install Visual C++ for Python 2.7
+        if: matrix.python-version == '2.7'
+        run: choco install vcpython27 -f -y
+
+      - uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Build 64-bit wheel
+        env:
+          DISTUTILS_USE_SDK: 1
+          MSSdk: 1
+        run: |
+          #python -m cibuildwheel --output-dir wheelhouse
+          python setup.py build_ext --inplace --force
+          python setup.py sdist
+          python setup.py bdist_wheel
+
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x86
+        if: always()
+
+      - name: Build 32-bit wheel
+        env:
+          DISTUTILS_USE_SDK: 1
+          MSSdk: 1
+        run: |
+          #python -m cibuildwheel --output-dir wheelhouse
+          python setup.py build_ext --inplace --force
+          python setup.py sdist
+          python setup.py bdist_wheel
+        if: always()
+
+      #- name: Upload vcpkg installed
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: vcpkg
+      #    path: path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
