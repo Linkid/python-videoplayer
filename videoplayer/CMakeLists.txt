@@ -45,6 +45,7 @@ target_link_libraries(_VideoPlayer
     #${GLIB2_LIBRARIES}
     ${GLIB2_LINK_LIBRARIES}  # for osx
     ${OGG_LIBRARIES}
+    ${OGG_LINK_LIBRARIES}  # for osx
     ${THEORADEC_LIBRARIES}
     ${OPENGL_LIBRARIES}
     ${LIBSWSCALE_LIBRARIES}
