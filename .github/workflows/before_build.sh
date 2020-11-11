@@ -30,7 +30,8 @@ case $operating_system in
             freeglut-devel \
             libogg-devel \
             libtheora-devel
-        rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
+        #rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
+        rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-7/$basearch/cheese-release-7-1.noarch.rpm
         yum -y install libswscale-devel
     ;;
 
