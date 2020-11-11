@@ -51,6 +51,17 @@ case ${operating_system} in
     "windows*")
         # windows
         echo "[*] windows"
+
+        export VCPKG_DEFAULT_TRIPLET=x64-windows
+        vcpkg install glib \
+                      libogg \
+                      libtheora \
+                      ffmpeg \
+                      msiinttypes
+        echo "[*] integrate"
+        vcpkg integrate install
+        echo "[*] list"
+        vcpkg list
     ;;
 
     *)
