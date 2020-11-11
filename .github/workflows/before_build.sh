@@ -9,11 +9,12 @@ operating_system=$1
 #
 # install system dependencies
 #
-echo ${operating_system}
 case $operating_system in
 
     "ubuntu*")
-        # linux (centos 6)
+        # linux (centos 6): manylinux2010
+        # linux (centos 7): manylinux2014
+        cat /etc/redhat-release
         # arch
         echo "`cat /etc/redhat-release` (`arch`)"
         if [[ `arch` == 'i686' ]]

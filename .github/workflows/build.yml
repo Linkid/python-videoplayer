@@ -27,6 +27,7 @@ jobs:
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.os }}"
+          CIBW_BUILD_VERBOSITY: 1
 
       #- name: Upload wheels
       #  uses: actions/upload-artifact@v2
