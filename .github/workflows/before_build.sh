@@ -37,7 +37,7 @@ case ${operating_system} in
         yum -y install libswscale-devel
     ;;
 
-    "macos")
+    "macos"*)
         # macos
         echo "[*] osx"
         brew update
@@ -48,7 +48,7 @@ case ${operating_system} in
             ffmpeg
     ;;
 
-    "windows*")
+    "windows"*)
         # windows
         echo "[*] windows"
 
