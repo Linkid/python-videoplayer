@@ -47,8 +47,8 @@ if os.getenv("VCPKG_BUILD"):
     platform_windows = "x86" if os.getenv("PYTHON_ARCH") == "32" else "x64"
     build_cmake_args.append('-D_VCPKG=ON')
     build_cmake_args.append('-DVCPKG_TARGET_TRIPLET:STRING={}-windows'.format(platform_windows))
-    print("xxx: " + build_cmake_args)
-    print("yyy: " + platform_windows)
+    print("xxx: {}".format(build_cmake_args))
+    print("yyy: {}".format(platform_windows))
 
 # setup
 setup(
