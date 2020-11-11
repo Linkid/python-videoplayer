@@ -28,6 +28,8 @@ jobs:
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
           vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
           #vcpkgTriplet: 
+        env:
+          VCPKG_DEFAULT_TRIPLET: "x64-windows"
 
       - name: Install python dependencies
         run: |
@@ -53,22 +55,22 @@ jobs:
           python setup.py sdist
           python setup.py bdist_wheel
 
-      - uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: x86
-        if: always()
+      #- uses: ilammy/msvc-dev-cmd@v1
+      #  with:
+      #    arch: x86
+      #  if: always()
 
-      - name: Build 32-bit wheel
-        env:
-          DISTUTILS_USE_SDK: 1
-          MSSdk: 1
-          VCPKG_BUILD: 1
-        run: |
-          #python -m cibuildwheel --output-dir wheelhouse
-          python setup.py build_ext --inplace --force
-          python setup.py sdist
-          python setup.py bdist_wheel
-        if: always()
+      #- name: Build 32-bit wheel
+      #  env:
+      #    DISTUTILS_USE_SDK: 1
+      #    MSSdk: 1
+      #    VCPKG_BUILD: 1
+      #  run: |
+      #    #python -m cibuildwheel --output-dir wheelhouse
+      #    python setup.py build_ext --inplace --force
+      #    python setup.py sdist
+      #    python setup.py bdist_wheel
+      #  if: always()
 
       #- name: Upload vcpkg installed
       #  uses: actions/upload-artifact@v2
