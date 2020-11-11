@@ -10,9 +10,9 @@ operating_system=$1
 # install system dependencies
 #
 echo "[+] Operating system: " ${operating_system}
-case $operating_system in
+case ${operating_system} in
 
-    "ubuntu*")
+    "ubuntu"*)
         # linux (centos 6): manylinux2010
         # linux (centos 7): manylinux2014
         cat /etc/redhat-release
