@@ -30,7 +30,7 @@ find_package(Cython REQUIRED)
 
 ## get deps
 if (WIN32 AND _WIN_DEP)
-    message(STATUS "Use downloaded dependencies")
+    message(STATUS "[-] Use downloaded dependencies")
 
     set(DEPENDENCY_FOLDER "${PROJECT_SOURCE_DIR}/win_dep")
     find_path(GLIB2_INCLUDE_DIRS NAMES glib.h PATHS "${DEPENDENCY_FOLDER}/include/glib-2.0")
@@ -41,7 +41,7 @@ if (WIN32 AND _WIN_DEP)
     find_package(OpenGL)
 
 elseif(_VCPKG)
-    message(STATUS "Use vcpkg")
+    message(STATUS "[-] Use vcpkg")
 
     # set vcpkg vars
     set(VCPKG_CRT_LINKAGE dynamic)
@@ -66,7 +66,7 @@ elseif(_VCPKG)
     find_package(OpenGL)
 
 else()
-    message(STATUS "Use pkgconfig")
+    message(STATUS "[-] Use pkgconfig")
 
     find_package(PkgConfig REQUIRED)
     pkg_search_module(GLIB2 REQUIRED glib-2.0>=2.28 IMPORTED_TARGET)
