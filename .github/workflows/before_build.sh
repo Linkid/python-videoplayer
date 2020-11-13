@@ -13,8 +13,9 @@ echo "[+] Operating system: " ${operating_system}
 case ${operating_system} in
 
     "ubuntu"*)
-        # linux (centos 6): manylinux2010
-        # linux (centos 7): manylinux2014
+        # linux (centos 5): manylinux1, glib 2.12.3, ogg 1.1.3, theora 1.0a7
+        # linux (centos 6): manylinux2010, glib 2.28.8, ogg 1.1.4, theora 1.1.0
+        # linux (centos 7): manylinux2014, glib 2.56.1, ogg 1.3.0, theora 1.1.1
         cat /etc/redhat-release
         # arch
         echo "[*] `cat /etc/redhat-release` (`arch`)"
@@ -32,9 +33,14 @@ case ${operating_system} in
             freeglut-devel \
             libogg-devel \
             libtheora-devel
-        rpm -Uvh
-        http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
-        #rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-7/$basearch/cheese-release-7-1.noarch.rpm
+
+        if [ grep "release 6" /etc/redhat-release ]
+        then
+            rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
+        elif [ grep "release 7" /etc/redhat-release ]
+        then
+            rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-7/$basearch/cheese-release-7-1.noarch.rpm
+        fi
         yum -y install libswscale-devel
     ;;
 
