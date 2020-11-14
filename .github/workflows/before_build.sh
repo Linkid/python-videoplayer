@@ -12,6 +12,7 @@ operating_system=$1
 compile_ffmpeg () {
     # https://trac.ffmpeg.org/wiki/CompilationGuide/Centos
     # enable only libswscale
+    yum install autoconf automake bzip2 bzip2-devel cmake freetype-devel gcc gcc-c++ git libtool make mercurial pkgconfig zlib-devel
     curl -O -L https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
     tar xjf ffmpeg-snapshot.tar.bz2
     cd ffmpeg
@@ -31,7 +32,7 @@ compile_ffmpeg () {
       --disable-doc
     make
     make install
-    #hash -d ffmpeg
+    hash -d ffmpeg
 }
 
 #
