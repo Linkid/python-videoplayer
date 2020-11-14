@@ -15,13 +15,7 @@ jobs:
             cibw-arch: cp27-manylinux_i686
             cibw-manylinux: manylinux1
           - runs-on: ubuntu-latest
-            cibw-arch: cp36-manylinux_i686
-            cibw-manylinux: manylinux1
-          - runs-on: ubuntu-latest
             cibw-arch: cp27-manylinux_x86_64
-            cibw-manylinux: manylinux1
-          - runs-on: ubuntu-latest
-            cibw-arch: cp36-manylinux_x86_64
             cibw-manylinux: manylinux1
 
           # centos6: OK
@@ -48,8 +42,6 @@ jobs:
 
           - runs-on: macos-latest
             cibw-arch: cp27-macosx_x86_64
-          - runs-on: macos-latest
-            cibw-arch: cp36-macosx_x86_64
 
           - runs-on: windows-latest
 
