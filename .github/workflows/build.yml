@@ -32,6 +32,24 @@ jobs:
             cibw-arch: cp36-manylinux_i686
             cibw-manylinux: manylinux2014
 
+          - runs-on: macos-latest
+            cibw-arch: cp27-macosx_x86_64
+
+          - runs-on: macos-latest
+            cibw-arch: cp35-macosx_x86_64
+
+          - runs-on: macos-latest
+            cibw-arch: cp36-macosx_x86_64
+
+          - runs-on: macos-latest
+            cibw-arch: cp37-macosx_x86_64
+
+          - runs-on: macos-latest
+            cibw-arch: cp37-macosx_x86_64
+
+          - runs-on: macos-latest
+            cibw-arch: cp39-macosx_x86_64
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -44,11 +62,8 @@ jobs:
       - name: Install cibuildwheel
         run: python -m pip install cibuildwheel==1.6.4
 
-      #- name: Install Visual C++ for Python 2.7
-      #  if: matrix.python-version == '2.7'
-      #  run: choco install vcpython27 -f -y
-
       - name: Build wheels
+        if: matrix.runs-on == linux-latest
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
