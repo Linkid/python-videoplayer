@@ -100,7 +100,7 @@ case ${operating_system} in
                       libogg \
                       libtheora \
                       ffmpeg \
-                      msiinttypes
+                      msinttypes
         echo "[*] integrate"
         vcpkg integrate install
         echo "[*] list"
