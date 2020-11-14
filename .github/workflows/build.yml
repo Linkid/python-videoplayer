@@ -24,6 +24,20 @@ jobs:
             cibw-arch: cp36-manylinux_x86_64
             cibw-manylinux: manylinux1
 
+          # centos6: OK
+          #- runs-on: ubuntu-latest
+          #  cibw-arch: cp27-manylinux_x86_64
+          #  cibw-manylinux: manylinux2010
+          #- runs-on: ubuntu-latest
+          #  cibw-arch: cp36-manylinux_x86_64
+          #  cibw-manylinux: manylinux2010
+          #- runs-on: ubuntu-latest
+          #  cibw-arch: cp27-manylinux_i686
+          #  cibw-manylinux: manylinux2010
+          #- runs-on: ubuntu-latest
+          #  cibw-arch: cp36-manylinux_i686
+          #  cibw-manylinux: manylinux2010
+
           # centos7
           - runs-on: ubuntu-latest
             cibw-arch: cp36-manylinux_x86_64
