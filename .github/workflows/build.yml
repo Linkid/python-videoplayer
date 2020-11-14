@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build_wheels:
-    name: Build wheels with cibuildwheel on ${{ matrix.os }} / ${{ matrix.cibw-arch }}
+    name: Build wheels with cibuildwheel on ${{ matrix.runs-on }} / ${{ matrix.cibw-arch }} (${{ matrix.cibw-manylinux }})
     runs-on: ${{ matrix.runs-on }}
     strategy:
       matrix:
