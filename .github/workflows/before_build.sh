@@ -9,7 +9,7 @@ operating_system=$1
 #
 # functions
 #
-compile_ffmeg () {
+compile_ffmpeg () {
     # https://trac.ffmpeg.org/wiki/CompilationGuide/Centos
     # enable only libswscale
     curl -O -L https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
