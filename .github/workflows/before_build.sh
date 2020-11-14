@@ -18,12 +18,10 @@ compile_ffmpeg () {
     ./configure \
       --disable-static \
       --enable-shared \
-      --enable-runtime-cpudetect \
       --enable-memalign-hack \
       --disable-everything \
       --disable-ffmpeg \
       --disable-ffplay \
-      --disable-ffserver \
       --disable-ffprobe \
       --disable-avdevice \
       --disable-avcodec \
