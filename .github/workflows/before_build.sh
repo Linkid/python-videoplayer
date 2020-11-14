@@ -13,23 +13,23 @@ compile_ffmpeg () {
     # https://trac.ffmpeg.org/wiki/CompilationGuide/Centos
     # enable only libswscale
     curl -O -L https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
-    tar xjvf ffmpeg-snapshot.tar.bz2
+    tar xjf ffmpeg-snapshot.tar.bz2
     cd ffmpeg
-    ./configure
-      --disable-static
-      --enable-shared
-      --enable-runtime-cpudetect
-      --enable-memalign-hack
-      --disable-everything
-      --disable-ffmpeg
-      --disable-ffplay
-      --disable-ffserver
-      --disable-ffprobe
-      --disable-avdevice
-      --disable-avcodec
-      --disable-avformat
-      --disable-avfilter
-      --disable-swresample
+    ./configure \
+      --disable-static \
+      --enable-shared \
+      --enable-runtime-cpudetect \
+      --enable-memalign-hack \
+      --disable-everything \
+      --disable-ffmpeg \
+      --disable-ffplay \
+      --disable-ffserver \
+      --disable-ffprobe \
+      --disable-avdevice \
+      --disable-avcodec \
+      --disable-avformat \
+      --disable-avfilter \
+      --disable-swresample \
       --disable-doc
     make
     make install
