@@ -13,7 +13,7 @@ compile_ffmpeg () {
     # https://trac.ffmpeg.org/wiki/CompilationGuide/Centos
     # enable only libswscale
     curl -O -L https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
-    tar xjvf ffmpeg-snapshot.tar.bz2 -C ffmpeg
+    tar xjvf ffmpeg-snapshot.tar.bz2
     cd ffmpeg
     ./configure
       --disable-static
