@@ -33,7 +33,7 @@ compile_ffmpeg () {
       --disable-doc
     make
     make install
-    hash -d ffmpeg
+    #hash -d ffmpeg
 }
 
 #
