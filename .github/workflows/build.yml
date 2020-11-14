@@ -10,24 +10,24 @@ jobs:
       matrix:
         #os: [ubuntu-18.04, windows-latest, macos-latest]
         include:
-          - runs-on: ubuntu-latest
-            cibw-arch: cp27-manylinux_x86_64
-            cibw-manylinux: manylinux2010
-          - runs-on: ubuntu-latest
-            cibw-arch: cp36-manylinux_x86_64
-            cibw-manylinux: manylinux2010
-
+          # centos5
           - runs-on: ubuntu-latest
             cibw-arch: cp27-manylinux_i686
-            cibw-manylinux: manylinux2010
+            cibw-manylinux: manylinux1
           - runs-on: ubuntu-latest
             cibw-arch: cp36-manylinux_i686
-            cibw-manylinux: manylinux2010
+            cibw-manylinux: manylinux1
+          - runs-on: ubuntu-latest
+            cibw-arch: cp27-manylinux_x86_64
+            cibw-manylinux: manylinux1
+          - runs-on: ubuntu-latest
+            cibw-arch: cp36-manylinux_x86_64
+            cibw-manylinux: manylinux1
 
+          # centos7
           - runs-on: ubuntu-latest
             cibw-arch: cp36-manylinux_x86_64
             cibw-manylinux: manylinux2014
-
           - runs-on: ubuntu-latest
             cibw-arch: cp36-manylinux_i686
             cibw-manylinux: manylinux2014
