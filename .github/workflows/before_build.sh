@@ -34,10 +34,11 @@ case ${operating_system} in
             libogg-devel \
             libtheora-devel
 
+        # ffmpeg-libswscale
         if [[ $( grep "release 6" /etc/redhat-release ) ]]
         then
             rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
-        elif [[ $( grep "release 7" /etc/redhat-release ) ]]
+        elif [[ $( grep "release 7" /etc/redhat-release ) ]] && [[ `arch` == 'x86_64' ]]
         then
             rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-7/$basearch/cheese-release-7-1.noarch.rpm
         fi
