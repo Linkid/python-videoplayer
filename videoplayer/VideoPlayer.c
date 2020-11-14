@@ -25,7 +25,7 @@
 #include "VideoPlayer.h"
 
 #include "glwrap.h"
-#include <swscale/swscale.h>
+#include <libswscale/swscale.h>
 #include <ogg/ogg.h>
 #include <theora/theoradec.h>
 
