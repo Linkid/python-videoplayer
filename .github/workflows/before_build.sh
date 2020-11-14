@@ -7,6 +7,36 @@
 operating_system=$1
 
 #
+# functions
+#
+compile_ffmeg () {
+    # https://trac.ffmpeg.org/wiki/CompilationGuide/Centos
+    # enable only libswscale
+    curl -O -L https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
+    tar xjvf ffmpeg-snapshot.tar.bz2 -C ffmpeg
+    cd ffmpeg
+    ./configure
+      --disable-static
+      --enable-shared
+      --enable-runtime-cpudetect
+      --enable-memalign-hack
+      --disable-everything
+      --disable-ffmpeg
+      --disable-ffplay
+      --disable-ffserver
+      --disable-ffprobe
+      --disable-avdevice
+      --disable-avcodec
+      --disable-avformat
+      --disable-avfilter
+      --disable-swresample
+      --disable-doc
+    make
+    make install
+    hash -d ffmpeg
+}
+
+#
 # install system dependencies
 #
 echo "[+] Operating system: " ${operating_system}
@@ -41,6 +71,8 @@ case ${operating_system} in
         elif [[ $( grep "release 7" /etc/redhat-release ) ]] && [[ `arch` == 'x86_64' ]]
         then
             rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-7/$basearch/cheese-release-7-1.noarch.rpm
+        else
+            compile_ffmpeg
         fi
         yum -y install libswscale-devel
     ;;
