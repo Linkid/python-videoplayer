@@ -49,15 +49,7 @@ jobs:
           - runs-on: macos-latest
             cibw-arch: cp27-macosx_x86_64
           - runs-on: macos-latest
-            cibw-arch: cp35-macosx_x86_64
-          - runs-on: macos-latest
             cibw-arch: cp36-macosx_x86_64
-          - runs-on: macos-latest
-            cibw-arch: cp37-macosx_x86_64
-          - runs-on: macos-latest
-            cibw-arch: cp37-macosx_x86_64
-          - runs-on: macos-latest
-            cibw-arch: cp39-macosx_x86_64
 
           - runs-on: windows-latest
 
