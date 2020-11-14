@@ -78,7 +78,11 @@ jobs:
         run: |
           choco install vcpython27 -f -y
 
+      #
+      # windows
+      #
       - uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
 
       - name: Build 64-bit wheel
         if: runner.os == 'Windows'
@@ -102,6 +106,9 @@ jobs:
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
           DISTUTILS_USE_SDK: 1
           MSSdk: 1
+      #
+      #
+      #
 
       - name: Build wheels
         if: runner.os != 'Windows'
