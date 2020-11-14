@@ -69,9 +69,9 @@ else()
     message(STATUS "[-] Use pkgconfig")
 
     find_package(PkgConfig REQUIRED)
-    pkg_search_module(GLIB2 REQUIRED glib-2.0>=2.28 IMPORTED_TARGET)
+    pkg_search_module(GLIB2 REQUIRED glib-2.0>=2.12 IMPORTED_TARGET)  # >=2.28
     pkg_search_module(OGG ogg>=1.1.0 IMPORTED_TARGET)  # OGG::OGG
-    pkg_search_module(THEORADEC theoradec>=1.1.0 IMPORTED_TARGET)  # THEORA::DEC
+    pkg_search_module(THEORADEC theoradec IMPORTED_TARGET)  # THEORA::DEC >=1.1.0
     #pkg_search_module(LIBSWSCALE libswscale>=1.1.3)  # FFMPEG::swscale
     find_path(LIBSWSCALE_INCLUDE_DIRS
         NAMES libswscale/swscale.h

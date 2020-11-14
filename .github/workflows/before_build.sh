@@ -67,14 +67,18 @@ case ${operating_system} in
         # ffmpeg-libswscale
         if [[ $( grep "release 6" /etc/redhat-release ) ]]
         then
+            echo "[*] Install RPM ffmpeg (centos6)"
             rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
+            yum -y install libswscale-devel
         elif [[ $( grep "release 7" /etc/redhat-release ) ]] && [[ `arch` == 'x86_64' ]]
         then
+            echo "[*] Install RPM ffmpeg (centos7, `arch`)"
             rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-7/$basearch/cheese-release-7-1.noarch.rpm
+            yum -y install libswscale-devel
         else
+            echo "[*] compile ffmpeg"
             compile_ffmpeg
         fi
-        yum -y install libswscale-devel
     ;;
 
     "macos"*)
