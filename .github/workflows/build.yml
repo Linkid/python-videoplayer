@@ -44,10 +44,12 @@ jobs:
       # windows
       #
       - uses: ilammy/msvc-dev-cmd@v1
-        if: runner.os == 'Windows'
+        #if: runner.os == 'Windows'
+        if: always()
 
       - name: Build 64-bit wheel
-        if: runner.os == 'Windows'
+        if: always()
+        #if: runner.os == 'Windows'
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
           CIBW_BUILD: cp27-win_amd64
@@ -58,12 +60,14 @@ jobs:
           VCPKG_TOOLCHAIN: "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
       - uses: ilammy/msvc-dev-cmd@v1
-        if: runner.os == 'Windows'
+        #if: runner.os == 'Windows'
+        if: always()
         with:
           arch: x86
 
       - name: Build 32-bit wheel
-        if: runner.os == 'Windows'
+        #if: runner.os == 'Windows'
+        if: always()
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
           CIBW_BUILD: cp27-win32
