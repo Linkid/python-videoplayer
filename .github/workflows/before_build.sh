@@ -102,8 +102,8 @@ case ${operating_system} in
                       msinttypes
         echo "[*] integrate"
         vcpkg integrate install
-        echo "[*] list"
-        vcpkg list
+        #echo "[*] list"
+        #vcpkg list
     ;;
 
     *)
