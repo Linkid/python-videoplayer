@@ -19,8 +19,6 @@ compile_ffmpeg () {
     ./configure \
       --disable-static \
       --enable-shared \
-      --enable-memalign-hack \
-      --disable-everything \
       --disable-ffmpeg \
       --disable-ffplay \
       --disable-ffprobe \
@@ -28,6 +26,7 @@ compile_ffmpeg () {
       --disable-avcodec \
       --disable-avformat \
       --disable-avfilter \
+      --disable-postproc \
       --disable-swresample \
       --disable-doc
     make
