@@ -55,8 +55,8 @@ target_include_directories(_VideoPlayer
 target_link_libraries(_VideoPlayer
     ${GLIB2_LINK_LIBRARIES}  # for osx
     #${GLIB2_LIBRARIES}
-    #${OGG_LINK_LIBRARIES}  # for osx
-    ${OGG_LIBRARIES}
+    ${OGG_LINK_LIBRARIES}  # for osx
+    #${OGG_LIBRARIES}
     ${THEORADEC_LINK_LIBRARIES}
     #${THEORADEC_LIBRARIES}
     ${OPENGL_LIBRARIES}
