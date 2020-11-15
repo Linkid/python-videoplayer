@@ -62,6 +62,8 @@ elseif(_VCPKG)
     set(LIBSWSCALE_FOUND ${FFMPEG_libswscale_FOUND})
     set(LIBSWSCALE_INCLUDE_DIRS ${FFMPEG_libswscale_INCLUDE_DIRS})
     set(LIBSWSCALE_LIBRARIES ${FFMPEG_libswscale_LIBRARY})
+    ## msinttypes
+    find_path(MSINTTYPES_INCLUDE_DIRS NAMES msinttypes/stdin.h)
     ## opengl
     find_package(OpenGL)
 
