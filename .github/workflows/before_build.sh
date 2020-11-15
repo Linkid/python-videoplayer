@@ -82,8 +82,8 @@ case ${operating_system} in
     "macos"*)
         # macos
         echo "[*] osx"
-        brew update
-        brew install \
+        brew update --quiet
+        brew install --quiet \
             glib \
             libogg \
             theora \
