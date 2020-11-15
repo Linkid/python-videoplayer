@@ -94,7 +94,13 @@ case ${operating_system} in
         # windows
         echo "[*] windows"
 
-        export VCPKG_DEFAULT_TRIPLET=x64-windows
+        if [[ $( echo ${CIBW_BUILD} | grep win32 ) ]]
+        then
+            export VCPKG_DEFAULT_TRIPLET=x86
+        else
+            export VCPKG_DEFAULT_TRIPLET=x64-windows
+        fi
+
         vcpkg install glib \
                       libogg \
                       libtheora \
