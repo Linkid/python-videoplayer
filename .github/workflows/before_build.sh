@@ -82,12 +82,12 @@ case ${operating_system} in
     "macos"*)
         # macos
         echo "[*] osx"
-        brew update --quiet
+        brew update --quiet > /dev/null
         brew install --quiet \
             glib \
             libogg \
             theora \
-            ffmpeg
+            ffmpeg > /dev/null
     ;;
 
     "windows"*)
