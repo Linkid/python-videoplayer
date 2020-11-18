@@ -96,7 +96,7 @@ case ${operating_system} in
 
         if [[ $( echo ${CIBW_BUILD} | grep win32 ) ]]
         then
-            export VCPKG_DEFAULT_TRIPLET=x86
+            export VCPKG_DEFAULT_TRIPLET=x86-windows
         else
             export VCPKG_DEFAULT_TRIPLET=x64-windows
         fi
