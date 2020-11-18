@@ -65,7 +65,7 @@ elseif(_VCPKG)
     ## msinttypes
     #find_path(MSINTTYPES_INCLUDE_DIRS NAMES msinttypes/stdin.h)
     #find_path(MSINTTYPES_INCLUDE_DIRS "msinttypes/inttypes.h")
-    find_path(MSINTTYPES_INCLUDE_DIRS NAMES "msinttypes/stdin.h" "msinttypes/inttypes.h")
+    find_path(MSINTTYPES_INCLUDE_DIRS NAMES "msinttypes/stdint.h" "msinttypes/inttypes.h")
     ## opengl
     find_package(OpenGL)
 
