@@ -24,6 +24,12 @@ jobs:
           - runs-on: windows-latest
 
     steps:
+      #- name: Cache build
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: build
+      #    key: {{ matrix.runs-on }}
+
       - name: Checkout
         uses: actions/checkout@v2
 
