@@ -44,10 +44,10 @@ jobs:
       #
       # windows
       #
-      #- name: Install Visual C++ for Python 2.7
-      #  if: runner.os == 'Windows'
-      #  run: |
-      #    choco install vcpython27 -f -y
+      - name: Install Visual C++ for Python 2.7
+        if: runner.os == 'Windows'
+        run: |
+          choco install vcpython27 -f -y
 
       - uses: ilammy/msvc-dev-cmd@v1
         #if: runner.os == 'Windows'
