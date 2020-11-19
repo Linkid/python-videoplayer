@@ -51,6 +51,7 @@ target_include_directories(_VideoPlayer
     PUBLIC ${THEORADEC_INCLUDE_DIRS}   # for osx 10.9
     PUBLIC ${LIBSWSCALE_INCLUDE_DIRS}  # for osx
     PUBLIC ${MSINTTYPES_INCLUDE_DIRS}  # for windows
+    PUBLIC ${PYTHON_INCLUDE_DIRS}  # for clang on windows
 )
 target_link_libraries(_VideoPlayer
     ${GLIB2_LINK_LIBRARIES}  # for osx

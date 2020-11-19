@@ -52,6 +52,8 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
         #if: runner.os == 'Windows'
         if: always()
+        with:
+          arch: x64
 
       - name: Build 64-bit wheel
         if: always()
