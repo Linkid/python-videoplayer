@@ -59,7 +59,7 @@ jobs:
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
           CIBW_BUILD: "cp37-win_amd64"
           CIBW_TEST_COMMAND: "pytest {package}/tests"
-          CIBW_TEST_REQUIRE: "pytest"
+          CIBW_TEST_REQUIRES: "pytest"
 
       #
       # 32-bit
@@ -89,7 +89,7 @@ jobs:
 #          CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
 #          CIBW_BUILD: "*-win32"
 #          CIBW_TEST_COMMAND: "pytest {package}/tests"
-#          CIBW_TEST_REQUIRE: "pytest"
+#          CIBW_TEST_REQUIRES: "pytest"
 #        if: always()
 #
 #      - name: Upload vcpkg installed
