@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install python {{ matrix.python-version }}
+      - name: Install python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
@@ -36,7 +36,7 @@ jobs:
 
       - name: Test the lib
         run: |
-          python setup.py check
+          #python setup.py check
           python setup.py build_ext --inplace --force
           python setup.py test
           python -c "from videoplayer import _VideoPlayer; print(_VideoPlayer.__version__)"
