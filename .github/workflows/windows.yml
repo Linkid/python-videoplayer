@@ -57,7 +57,7 @@ jobs:
           VCPKG_BUILD: 1
           VCPKG_TOOLCHAIN: "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
-          CIBW_BUILD: "cp27-win32"
+          CIBW_BUILD: "cp37-win_amd64"
           CIBW_TEST_COMMAND: "pytest {package}/tests"
           CIBW_BEFORE_TEST: "ls {package}/videoplayer"
           CIBW_TEST_REQUIRE: "pytest"
