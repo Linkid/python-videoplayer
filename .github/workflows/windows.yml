@@ -7,6 +7,15 @@ jobs:
 
     name: Build wheels on Windows
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x64
+            vcpkg_triplet: x64-windows
+            cibw-wheels: "cp37-win_amd64"
+            packages: >
+              glib libogg libtheora ffmpeg msinttypes
 
     steps:
       - name: Checkout
@@ -24,32 +33,27 @@ jobs:
         if: matrix.python-version == '2.7'
         run: choco install vcpython27 -f -y
 
-
-      #
-      # 64-bit
-      #
       - uses: ilammy/msvc-dev-cmd@v1
         with:
-          arch: x64
+          arch: ${{ matrix.arch }}
 
-      - name: Install os dependencies (x64)
+      - name: Install os dependencies (${{ matrix.arch }})
         uses: lukka/run-vcpkg@v4
         with:
           # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
-          vcpkgArguments: glib libogg libtheora ffmpeg msinttypes
+          vcpkgArguments: $${{ matrix.packages }}
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+          vcpkgTriplet: ${{ matrix.triplet }}
           vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
-          #vcpkgTriplet: 
-        env:
-          VCPKG_DEFAULT_TRIPLET: "x64-windows"
+          appendedCacheKey: ${{ hashFiles(matrix.packages) }}
 
       - name: Upload vcpkg installed
         uses: actions/upload-artifact@v2
         with:
-          name: vcpkg_x64
+          name: vcpkg_${{ matrix.arch }}
           path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
 
-      - name: Build 64-bit wheel
+      - name: Build ${{ matrix.arch }} wheel
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
           DISTUTILS_USE_SDK: 1
@@ -57,48 +61,6 @@ jobs:
           VCPKG_BUILD: 1
           VCPKG_TOOLCHAIN: "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ runner.os }}"
-          CIBW_BUILD: "cp37-win_amd64"
+          CIBW_BUILD: "${{ matrix.cibw-wheels }}"
           CIBW_TEST_COMMAND: "pytest {package}/tests"
           CIBW_TEST_REQUIRES: "pytest"
-
-      #
-      # 32-bit
-      #
-#      - uses: ilammy/msvc-dev-cmd@v1
-#        with:
-#          arch: x86
-#        if: always()
-#
-#      - name: Install os dependencies (x64)
-#        uses: lukka/run-vcpkg@v4
-#        with:
-#          # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
-#          vcpkgArguments: glib libogg libtheora ffmpeg msinttypes
-#          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
-#          vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
-#          #vcpkgTriplet: 
-#        env:
-#          VCPKG_DEFAULT_TRIPLET: "x64-windows"
-#
-#      - name: Build 32-bit wheel
-#        env:
-#          DISTUTILS_USE_SDK: 1
-#          MSSdk: 1
-#          VCPKG_BUILD: 1
-#          VCPKG_TOOLCHAIN: "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
-#          CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ runner.os }}"
-#          CIBW_BUILD: "*-win32"
-#          CIBW_TEST_COMMAND: "pytest {package}/tests"
-#          CIBW_TEST_REQUIRES: "pytest"
-#        if: always()
-#
-#      - name: Upload vcpkg installed
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: vcpkg_x86
-#          path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
-#
-#      - name: Upload wheels
-#        uses: actions/upload-artifact@v2
-#        with:
-#          path: ./wheelhouse/*.whl
