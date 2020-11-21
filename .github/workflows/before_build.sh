@@ -42,8 +42,8 @@ case ${operating_system} in
 
     "ubuntu"*)
         # linux (centos 5): manylinux1, glib 2.12.3, ogg 1.1.3, theora 1.0a7
-        # linux (centos 6): manylinux2010, glib 2.28.8, ogg 1.1.4, theora 1.1.0
-        # linux (centos 7): manylinux2014, glib 2.56.1, ogg 1.3.0, theora 1.1.1
+        # linux (centos 6): manylinux2010, glib 2.28.8, ogg 1.1.4, theora 1.1.0, ffmpeg 2.6.3
+        # linux (centos 7): manylinux2014, glib 2.56.1, ogg 1.3.0, theora 1.1.1, ffmpeg 2.6.2
         cat /etc/redhat-release
         # arch
         echo "[*] `cat /etc/redhat-release` (`arch`)"
@@ -63,14 +63,15 @@ case ${operating_system} in
             libtheora-devel
 
         # ffmpeg-libswscale
+        echo "[*] Install ffmpeg"
         if [[ $( grep "release 6" /etc/redhat-release ) ]]
         then
-            echo "[*] Install RPM ffmpeg (centos6)"
+            echo "[*] via Cheese (RPM for centos6)"
             rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-6/$basearch/cheese-release-6-1.noarch.rpm
             yum -y install libswscale-devel
         elif [[ $( grep "release 7" /etc/redhat-release ) ]] && [[ `arch` == 'x86_64' ]]
         then
-            echo "[*] Install RPM ffmpeg (centos7, `arch`)"
+            echo "[*] via Cheese (RPM for centos7)"
             rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-7/$basearch/cheese-release-7-1.noarch.rpm
             yum -y install libswscale-devel
         else
