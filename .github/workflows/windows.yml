@@ -66,3 +66,9 @@ jobs:
           CIBW_BUILD: "${{ matrix.cibw-wheels }}"
           CIBW_TEST_COMMAND: "pytest {package}/tests"
           CIBW_TEST_REQUIRES: "pytest"
+
+      - name: Upload wheels
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./wheelhouse/*.whl
+          name: wheels_${{ runner.os }}-${{ matrix.arch }}.zip
