@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: vcpkg_x64
-          path: path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
+          path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
 
       - name: Build 64-bit wheel
         run: python -m cibuildwheel --output-dir wheelhouse
@@ -95,8 +95,8 @@ jobs:
 #      - name: Upload vcpkg installed
 #        uses: actions/upload-artifact@v2
 #        with:
-#          name: vcpkg
-#          path: path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
+#          name: vcpkg_x86
+#          path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
 #
 #      - name: Upload wheels
 #        uses: actions/upload-artifact@v2
