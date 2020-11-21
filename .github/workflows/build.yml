@@ -55,6 +55,18 @@ jobs:
 #        with:
 #          arch: x64
 #
+#      - name: Install os dependencies
+#        uses: lukka/run-vcpkg@v4
+#        if: runner.os == 'Windows'
+#        with:
+#          # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
+#          vcpkgArguments: glib libogg libtheora ffmpeg msinttypes
+#          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+#          vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
+#          #vcpkgTriplet: 
+#        env:
+#          VCPKG_DEFAULT_TRIPLET: "x64-windows"
+#
 #      - name: Build 64-bit wheel
 #        if: always()
 #        #if: runner.os == 'Windows'
@@ -73,6 +85,18 @@ jobs:
         if: always()
         with:
           arch: x86
+
+      - name: Install os dependencies
+        uses: lukka/run-vcpkg@v4
+        if: runner.os == 'Windows'
+        with:
+          # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
+          vcpkgArguments: glib libogg libtheora ffmpeg msinttypes
+          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+          vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
+          #vcpkgTriplet: 
+        env:
+          VCPKG_DEFAULT_TRIPLET: "x86-windows"
 
       - name: Build 32-bit wheel
         #if: runner.os == 'Windows'
