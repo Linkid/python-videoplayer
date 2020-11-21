@@ -93,7 +93,7 @@ case ${operating_system} in
             glib \
             libogg \
             theora \
-            ffmpeg > /dev/null
+            ffmpeg
     ;;
 
     "windows"*)
