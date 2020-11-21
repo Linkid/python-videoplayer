@@ -7,75 +7,100 @@ jobs:
 
     name: Build wheels on Windows
     runs-on: windows-latest
-    strategy:
-      matrix:
-        python-version: [2.7]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install python {{ matrix.python-version }}
+      - name: Install python 3.7
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
 
-      - name: Install os dependencies
+      - name: Install cibuildwheel
+        run: python -m pip install cibuildwheel==1.6.4
+
+      - name: Install Visual C++ for Python 2.7
+        if: matrix.python-version == '2.7'
+        run: choco install vcpython27 -f -y
+
+
+      #
+      # 64-bit
+      #
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Install os dependencies (x64)
         uses: lukka/run-vcpkg@v4
         with:
           # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
-          vcpkgArguments: glib libogg libtheora ffmpeg
+          vcpkgArguments: glib libogg libtheora ffmpeg msinttypes
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
           vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
           #vcpkgTriplet: 
         env:
           VCPKG_DEFAULT_TRIPLET: "x64-windows"
 
-      - name: Install python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-          python -m pip install ninja
-          #python -m pip install cibuildwheel==1.6.4
-
-      - name: Install Visual C++ for Python 2.7
-        if: matrix.python-version == '2.7'
-        run: choco install vcpython27 -f -y
-
-      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Upload vcpkg installed
+        uses: actions/upload-artifact@v2
         with:
-          arch: x64
+          name: vcpkg_x64
+          path: path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
 
       - name: Build 64-bit wheel
+        run: python -m cibuildwheel --output-dir wheelhouse
         env:
           DISTUTILS_USE_SDK: 1
           MSSdk: 1
           VCPKG_BUILD: 1
           VCPKG_TOOLCHAIN: "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
-        run: |
-          #python -m cibuildwheel --output-dir wheelhouse
-          python setup.py build_ext --inplace --force
-          python setup.py bdist_wheel
+          CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
+          CIBW_BUILD: "cp27-win32"
+          CIBW_TEST_COMMAND: "pytest {package}/tests"
+          CIBW_BEFORE_TEST: "ls {package}/videoplayer"
+          CIBW_TEST_REQUIRE: "pytest"
 
-      #- uses: ilammy/msvc-dev-cmd@v1
-      #  with:
-      #    arch: x86
-      #  if: always()
-
-      #- name: Build 32-bit wheel
-      #  env:
-      #    DISTUTILS_USE_SDK: 1
-      #    MSSdk: 1
-      #    VCPKG_BUILD: 1
-      #  run: |
-      #    #python -m cibuildwheel --output-dir wheelhouse
-      #    python setup.py build_ext --inplace --force
-      #    python setup.py sdist
-      #    python setup.py bdist_wheel
-      #  if: always()
-
-      #- name: Upload vcpkg installed
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: vcpkg
-      #    path: path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
+      #
+      # 32-bit
+      #
+#      - uses: ilammy/msvc-dev-cmd@v1
+#        with:
+#          arch: x86
+#        if: always()
+#
+#      - name: Install os dependencies (x64)
+#        uses: lukka/run-vcpkg@v4
+#        with:
+#          # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
+#          vcpkgArguments: glib libogg libtheora ffmpeg msinttypes
+#          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+#          vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
+#          #vcpkgTriplet: 
+#        env:
+#          VCPKG_DEFAULT_TRIPLET: "x64-windows"
+#
+#      - name: Build 32-bit wheel
+#        env:
+#          DISTUTILS_USE_SDK: 1
+#          MSSdk: 1
+#          VCPKG_BUILD: 1
+#          VCPKG_TOOLCHAIN: "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+#          CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
+#          CIBW_BUILD: "*-win32"
+#          CIBW_TEST_COMMAND: "pytest {package}/tests"
+#          CIBW_BEFORE_TEST: "ls {package}/videoplayer"
+#          CIBW_TEST_REQUIRE: "pytest"
+#        if: always()
+#
+#      - name: Upload vcpkg installed
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: vcpkg
+#          path: path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
+#
+#      - name: Upload wheels
+#        uses: actions/upload-artifact@v2
+#        with:
+#          path: ./wheelhouse/*.whl
