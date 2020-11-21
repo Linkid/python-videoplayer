@@ -37,9 +37,9 @@ jobs:
           CIBW_BUILD: "${{ matrix.cibw-arch }}"
           CIBW_MANYLINUX_X86_64_IMAGE: "${{ matrix.cibw-manylinux }}"
           CIBW_MANYLINUX_I686_IMAGE: "${{ matrix.cibw-manylinux }}"
-          #CIBW_BEFORE_TEST: "ls {package}/videoplayer && unzip -l /tmp/cibuildwheel/repaired_wheel/*.whl"
-          #CIBW_TEST_COMMAND: "pytest {package}/tests"
-          #CIBW_TEST_REQUIRES: "pytest"
+          CIBW_BEFORE_TEST: "ls {project}/videoplayer && unzip -l /tmp/cibuildwheel/repaired_wheel/*.whl"
+          CIBW_TEST_COMMAND: "pytest {package}/tests"
+          CIBW_TEST_REQUIRES: "pytest"
 
       - name: Upload wheels
         uses: actions/upload-artifact@v2
