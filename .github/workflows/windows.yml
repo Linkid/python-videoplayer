@@ -43,7 +43,7 @@ jobs:
         uses: lukka/run-vcpkg@v4
         with:
           # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
-          vcpkgArguments: $${{ env.packages }}
+          vcpkgArguments: ${{ env.packages }}
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
           vcpkgTriplet: ${{ matrix.triplet }}
           vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
