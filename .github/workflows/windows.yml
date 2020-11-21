@@ -2,6 +2,10 @@ name: Build Windows wheels
 
 on: [push, pull_request]
 
+env:
+  packages: >
+    glib libogg libtheora ffmpeg msinttypes
+
 jobs:
   build-win:
 
@@ -14,8 +18,6 @@ jobs:
           - arch: x64
             vcpkg_triplet: x64-windows
             cibw-wheels: "cp37-win_amd64"
-            packages: >
-              glib libogg libtheora ffmpeg msinttypes
 
     steps:
       - name: Checkout
@@ -41,17 +43,17 @@ jobs:
         uses: lukka/run-vcpkg@v4
         with:
           # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
-          vcpkgArguments: $${{ matrix.packages }}
+          vcpkgArguments: $${{ env.packages }}
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
           vcpkgTriplet: ${{ matrix.triplet }}
           vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
-          appendedCacheKey: ${{ hashFiles(matrix.packages) }}
+          appendedCacheKey: ${{ hashFiles(env.packages) }}
 
       - name: Upload vcpkg installed
         uses: actions/upload-artifact@v2
         with:
           name: vcpkg_${{ matrix.arch }}
-          path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
+          path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_ROOT_OUT }}
 
       - name: Build ${{ matrix.arch }} wheel
         run: python -m cibuildwheel --output-dir wheelhouse
