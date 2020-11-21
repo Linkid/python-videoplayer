@@ -43,16 +43,18 @@ jobs:
         run: choco install vcpython27 -f -y
 
       - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
 
       - name: Build 64-bit wheel
         env:
           DISTUTILS_USE_SDK: 1
           MSSdk: 1
           VCPKG_BUILD: 1
+          VCPKG_TOOLCHAIN: "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
         run: |
           #python -m cibuildwheel --output-dir wheelhouse
           python setup.py build_ext --inplace --force
-          python setup.py sdist
           python setup.py bdist_wheel
 
       #- uses: ilammy/msvc-dev-cmd@v1
