@@ -74,6 +74,11 @@ case ${operating_system} in
             echo "[*] via Cheese (RPM for centos7)"
             rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-7/$basearch/cheese-release-7-1.noarch.rpm
             yum -y install libswscale-devel
+        elif [[ $( grep "release 8" /etc/redhat-release ) && (`arch` == 'x86_64' || `arch` == 'aarch64') ]]
+        then
+            echo "[*] via RPM Fusio (RPM for centos8)"
+            dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+            dnf install ffmpeg-devel
         else
             echo "[*] compile ffmpeg"
             compile_ffmpeg
