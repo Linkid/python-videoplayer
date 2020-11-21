@@ -4,7 +4,7 @@
 #set -e
 
 # get the operating system
-operating_system=$1
+operating_system=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 
 #
 # functions
