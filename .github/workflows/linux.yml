@@ -37,8 +37,8 @@ jobs:
           CIBW_BUILD: "${{ matrix.cibw-arch }}"
           CIBW_MANYLINUX_X86_64_IMAGE: "${{ matrix.cibw-manylinux }}"
           CIBW_MANYLINUX_I686_IMAGE: "${{ matrix.cibw-manylinux }}"
-          CIBW_BEFORE_TEST: "cd /tmp"
-          CIBW_TEST_COMMAND: "pytest {project}/tests"
+          CIBW_BEFORE_TEST: "cp -r {project}/tests /tmp/"
+          CIBW_TEST_COMMAND: "pytest /tmp/tests"
           CIBW_TEST_REQUIRES: "pytest"
 
       - name: Upload wheels
