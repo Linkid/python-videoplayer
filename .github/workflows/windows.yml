@@ -68,7 +68,6 @@ jobs:
           VCPKG_TOOLCHAIN: "${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ runner.os }}"
           CIBW_BUILD: "${{ matrix.cibw-wheels }}"
-          CIBW_SKIP: "cp35*"
           CIBW_BEFORE_TEST: "cp -r {project}/tests /tmp/"
           CIBW_TEST_COMMAND: "pytest /tmp/tests"
           CIBW_TEST_REQUIRES: "pytest"

@@ -11,7 +11,7 @@ jobs:
       matrix:
         include:
           - runs-on: ubuntu-latest
-            cibw-arch: "cp37-manylinux*"
+            cibw-arch: "*manylinux*"
             cibw-manylinux: "manylinux2010"
 
           #- runs-on: ubuntu-latest
@@ -35,7 +35,6 @@ jobs:
         env:
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
           CIBW_BUILD: "${{ matrix.cibw-arch }}"
-          CIBW_SKIP: "cp35*"
           CIBW_MANYLINUX_X86_64_IMAGE: "${{ matrix.cibw-manylinux }}"
           CIBW_MANYLINUX_I686_IMAGE: "${{ matrix.cibw-manylinux }}"
           CIBW_BEFORE_TEST: "cp -r {project}/tests /tmp/"

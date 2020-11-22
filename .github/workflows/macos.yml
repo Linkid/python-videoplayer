@@ -35,7 +35,6 @@ jobs:
         env:
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ runner.os }}"
           CIBW_BUILD: "*macosx*"
-          CIBW_SKIP: "cp35*"
           #CIBW_TEST_COMMAND: "pytest {package}/tests"
           #CIBW_TEST_REQUIRES: "pytest"
 
