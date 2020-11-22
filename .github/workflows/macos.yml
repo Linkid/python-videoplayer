@@ -35,8 +35,9 @@ jobs:
         env:
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ runner.os }}"
           CIBW_BUILD: "*macosx*"
-          #CIBW_TEST_COMMAND: "pytest {package}/tests"
-          #CIBW_TEST_REQUIRES: "pytest"
+          CIBW_BEFORE_TEST: "cp -r {project}/tests /tmp/"
+          CIBW_TEST_COMMAND: "pytest /tmp/tests"
+          CIBW_TEST_REQUIRES: "pytest"
 
       - name: Upload wheels
         uses: actions/upload-artifact@v2
