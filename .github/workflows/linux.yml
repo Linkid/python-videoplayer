@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: ./wheelhouse/*.whl
-          name: wheels_${{ runner.os }}.zip
+          name: wheels_${{ runner.os }}
 
 
   build_sdist:
