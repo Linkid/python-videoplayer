@@ -16,7 +16,7 @@ jobs:
       matrix:
         include:
           - arch: x64
-            vcpkg_triplet: x64-windows
+            vcpkg_triplet: "x64-windows"
             cibw-wheels: "cp37-win_amd64"
 
     steps:
@@ -47,9 +47,9 @@ jobs:
           vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
           appendedCacheKey: ${{ hashFiles(env.packages) }}
           # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
-          # vcpkgTriplet: ${{ matrix.triplet }}
-        env:
-          VCPKG_DEFAULT_TRIPLET: "${{ matrix.triplet }}"
+          vcpkgTriplet: ${{ matrix.vcpkg_triplet }}
+        #env:
+        #  VCPKG_DEFAULT_TRIPLET: "${{ matrix.vcpkg_triplet }}"
 
       - name: Upload vcpkg installed
         uses: actions/upload-artifact@v2
