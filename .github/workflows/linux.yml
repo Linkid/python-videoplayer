@@ -12,11 +12,15 @@ jobs:
         include:
           - runs-on: ubuntu-latest
             cibw-arch: "*manylinux*"
-            cibw-manylinux: "manylinux2010"
+            cibw-manylinux: "manylinux1"
 
           - runs-on: ubuntu-latest
-            cibw-arch: "*manylinux_x86_64"
-            cibw-manylinux: "manylinux2014"
+            cibw-arch: "*manylinux*"
+            cibw-manylinux: "manylinux2010"
+
+          #- runs-on: ubuntu-latest
+          #  cibw-arch: "*manylinux_x86_64"
+          #  cibw-manylinux: "manylinux2014"
 
     steps:
       - name: Checkout
