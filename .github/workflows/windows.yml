@@ -54,11 +54,15 @@ jobs:
         #env:
         #  VCPKG_DEFAULT_TRIPLET: "${{ matrix.vcpkg_triplet }}"
 
+      - name: Export vcpkg ports
+        run: vcpkg export ${{ env.packages }}
+
       - name: Upload vcpkg installed
         uses: actions/upload-artifact@v2
         with:
           name: vcpkg_${{ matrix.arch }}
-          path: ${{ runner.workspace }}/vcpkg/installed/*
+          path: ${{ runner.workspace }}/vcpkg/vcpkg-export*
+          #path: ${{ runner.workspace }}/vcpkg/installed/*
           #path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
 
       - name: Build ${{ matrix.arch }} wheel
