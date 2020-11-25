@@ -17,7 +17,10 @@ jobs:
         include:
           - arch: x64
             vcpkg_triplet: "x64-windows"
-            cibw-wheels: "cp37-win_amd64"
+            cibw-wheels: "cp27-win_amd64"
+          - arch: x86
+            vcpkg_triplet: "x86-windows"
+            cibw-wheels: "cp27-win32"
 
     steps:
       - name: Checkout
