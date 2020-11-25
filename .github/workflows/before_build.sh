@@ -28,6 +28,7 @@ compile_ffmpeg () {
       --disable-avfilter \
       --disable-postproc \
       --disable-swresample \
+      --disable-x86asm \
       --disable-doc
     make
     make install
@@ -71,7 +72,7 @@ case ${operating_system} in
             yum -y install libswscale-devel
         elif [[ $( grep "release 7" /etc/redhat-release ) && `arch` == 'x86_64' ]]
         then
-            echo "[*] via Cheese (RPM for centos7)"
+            echo "[*] via Cheese (RPM for centos7 (x64)"
             rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-7/$basearch/cheese-release-7-1.noarch.rpm
             yum -y install libswscale-devel
         elif [[ $( grep "release 8" /etc/redhat-release ) && (`arch` == 'x86_64' || `arch` == 'aarch64') ]]
