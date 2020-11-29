@@ -31,14 +31,12 @@ jobs:
 
       - name: Export vcpkg ports
         run: |
-          vcpkg list
-          vcpkg install ${{ env.packages }}
-          vcpkg export --zip ${{ env.packages }}
+          ${{ github.workspace }}\vcpkg\vcpkg list
+          ${{ github.workspace }}\vcpkg\vcpkg install ${{ env.packages }}
+          ${{ github.workspace }}\vcpkg\vcpkg export --zip ${{ env.packages }}
         env:
           VCPKG_TARGET_ARCHITECTURE: "${{ matrix.arch }}"
           VCPKG_DEFAULT_TRIPLET: "${{ matrix.vcpkg_triplet }}"
-          VCPKG_ROOT: "${{ github.workspace }}/vcpkg"
-          RUNVCPKG_VCPKG_ROOT: "${{ github.workspace }}/vcpkg"
 
       - name: Upload vcpkg installed
         uses: actions/upload-artifact@v2
