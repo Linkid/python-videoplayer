@@ -25,12 +25,13 @@ jobs:
         with:
           vcpkgArguments: ${{ env.packages }}
           vcpkgDirectory: '${{ github.workspace }}/vcpkg'
-          vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
+          #vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
           vcpkgTriplet: ${{ matrix.vcpkg_triplet }}
-          appendedCacheKey: ${{ hashFiles(env.packages) }}
+          #appendedCacheKey: ${{ hashFiles(env.packages) }}
 
       - name: Export vcpkg ports
         run: |
+          echo ${{ hashFiles(env.packages) }}
           ${{ github.workspace }}\vcpkg\vcpkg list
           ${{ github.workspace }}\vcpkg\vcpkg install ${{ env.packages }}
           ${{ github.workspace }}\vcpkg\vcpkg export --zip ${{ env.packages }}
