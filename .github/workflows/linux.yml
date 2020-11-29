@@ -8,6 +8,7 @@ jobs:
     name: Build wheels on Linux (${{ matrix.cibw-arch }} ${{ matrix.cibw-manylinux }})
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         include:
           - runs-on: ubuntu-latest
@@ -18,9 +19,13 @@ jobs:
             cibw-arch: "*manylinux*"
             cibw-manylinux: "manylinux2010"
 
-          #- runs-on: ubuntu-latest
-          #  cibw-arch: "*manylinux_x86_64"
-          #  cibw-manylinux: "manylinux2014"
+          - runs-on: ubuntu-latest
+            cibw-arch: "*manylinux_x86_64"
+            cibw-manylinux: "manylinux2014"
+
+          - runs-on: ubuntu-latest
+            cibw-arch: "*manylinux2014_i686"
+            cibw-manylinux: "manylinux2014"
 
     steps:
       - name: Checkout
@@ -37,7 +42,7 @@ jobs:
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
+          #CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
           CIBW_BUILD: "${{ matrix.cibw-arch }}"
           CIBW_MANYLINUX_X86_64_IMAGE: "${{ matrix.cibw-manylinux }}"
           CIBW_MANYLINUX_I686_IMAGE: "${{ matrix.cibw-manylinux }}"
