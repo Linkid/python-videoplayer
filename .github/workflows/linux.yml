@@ -24,7 +24,7 @@ jobs:
             cibw-manylinux: "manylinux2014"
 
           - runs-on: ubuntu-latest
-            cibw-arch: "*manylinux2014_i686"
+            cibw-arch: "*manylinux_i686"
             cibw-manylinux: "manylinux2014"
 
     steps:
