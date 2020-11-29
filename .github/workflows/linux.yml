@@ -11,25 +11,29 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          #- runs-on: ubuntu-latest
-          #  cibw-arch: "*manylinux*"
-          #  cibw-manylinux: "manylinux1"
+          - runs-on: ubuntu-latest
+            cibw-arch: "cp27-manylinux_x86_64"
+            cibw-manylinux: "manylinux1"
+
+          - runs-on: ubuntu-latest
+            cibw-arch: "cp27-manylinux_i686"
+            cibw-manylinux: "manylinux1"
+
+          - runs-on: ubuntu-latest
+            cibw-arch: "cp37-manylinux_x86_64"
+            cibw-manylinux: "manylinux1"
+
+          - runs-on: ubuntu-latest
+            cibw-arch: "cp37-manylinux_i686"
+            cibw-manylinux: "manylinux1"
 
           #- runs-on: ubuntu-latest
           #  cibw-arch: "*manylinux*"
           #  cibw-manylinux: "manylinux2010"
 
           #- runs-on: ubuntu-latest
-          #  cibw-arch: "*manylinux_x86_64"
+          #  cibw-arch: "cp3*-manylinux_x86_64"
           #  cibw-manylinux: "manylinux2014"
-
-          - runs-on: ubuntu-latest
-            cibw-arch: "cp27-manylinux_i686"
-            cibw-manylinux: "manylinux2014"
-
-          - runs-on: ubuntu-latest
-            cibw-arch: "cp39-manylinux_i686"
-            cibw-manylinux: "manylinux2014"
 
     steps:
       - name: Checkout
@@ -48,11 +52,11 @@ jobs:
         env:
           CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ matrix.runs-on }}"
           CIBW_BUILD: "${{ matrix.cibw-arch }}"
-          #CIBW_MANYLINUX_X86_64_IMAGE: "${{ matrix.cibw-manylinux }}"
+          CIBW_MANYLINUX_X86_64_IMAGE: "${{ matrix.cibw-manylinux }}"
           CIBW_MANYLINUX_I686_IMAGE: "${{ matrix.cibw-manylinux }}"
-          #CIBW_BEFORE_TEST: "cp -r {project}/tests /tmp/"
-          #CIBW_TEST_COMMAND: "pytest /tmp/tests"
-          #CIBW_TEST_REQUIRES: "pytest"
+          CIBW_BEFORE_TEST: "cp -r {project}/tests /tmp/"
+          CIBW_TEST_COMMAND: "pytest /tmp/tests"
+          CIBW_TEST_REQUIRES: "pytest"
 
       - name: Upload wheels
         uses: actions/upload-artifact@v2
