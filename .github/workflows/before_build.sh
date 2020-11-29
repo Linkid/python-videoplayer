@@ -42,7 +42,7 @@ echo "[+] Operating system: " ${operating_system}
 case ${operating_system} in
 
     "ubuntu"*)
-        # linux (centos 5): manylinux1, glib 2.12.3, ogg 1.1.3, theora 1.0a7
+        # linux (centos 5): manylinux1, glib 2.12.3, ogg 1.1.3, theora 1.0a7 (no theoradec)
         # linux (centos 6): manylinux2010, glib 2.28.8, ogg 1.1.4, theora 1.1.0, ffmpeg 2.6.3
         # linux (centos 7): manylinux2014, glib 2.56.1, ogg 1.3.0, theora 1.1.1, ffmpeg 2.6.2
         cat /etc/redhat-release
@@ -75,11 +75,11 @@ case ${operating_system} in
             echo "[*] via Cheese (RPM for centos7 (x64)"
             rpm -Uvh http://www.nosuchhost.net/~cheese/fedora/packages/epel-7/$basearch/cheese-release-7-1.noarch.rpm
             yum -y install libswscale-devel
-        elif [[ $( grep "release 8" /etc/redhat-release ) && (`arch` == 'x86_64' || `arch` == 'aarch64') ]]
-        then
-            echo "[*] via RPM Fusio (RPM for centos8)"
-            dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-            dnf install ffmpeg-devel
+        #elif [[ $( grep "release 8" /etc/redhat-release ) && (`arch` == 'x86_64' || `arch` == 'aarch64') ]]
+        #then
+        #    echo "[*] via RPM Fusion (RPM for centos8)"
+        #    dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+        #    dnf install ffmpeg-devel
         else
             echo "[*] compile ffmpeg"
             compile_ffmpeg
