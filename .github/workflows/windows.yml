@@ -31,13 +31,13 @@ jobs:
 
       - name: Export vcpkg ports
         run: |
-          echo ${{ hashFiles(env.packages) }}
           ${{ github.workspace }}\vcpkg\vcpkg list
           ${{ github.workspace }}\vcpkg\vcpkg install ${{ env.packages }}
           ${{ github.workspace }}\vcpkg\vcpkg export --zip ${{ env.packages }}
         env:
           VCPKG_TARGET_ARCHITECTURE: "${{ matrix.arch }}"
           VCPKG_DEFAULT_TRIPLET: "${{ matrix.vcpkg_triplet }}"
+          TOTO: "${{ hashFiles(env.packages) }}"
 
       - name: Upload vcpkg installed
         uses: actions/upload-artifact@v2
@@ -46,82 +46,82 @@ jobs:
           path: ${{ runner.workspace }}/vcpkg-export*
 
 
-  build-win:
-
-    name: Build wheels on Windows
-    runs-on: windows-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - arch: x64
-            vcpkg_triplet: "x64-windows"
-            cibw-wheels: "cp27-win_amd64"
-            python-version: '2.7'
-          - arch: x86
-            vcpkg_triplet: "x86-windows"
-            cibw-wheels: "cp27-win32"
-            python-version: '2.7'
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Install python 3.7
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-
-      - name: Install cibuildwheel
-        run: python -m pip install cibuildwheel==1.7.0
-
-      - name: Install Visual C++ for Python 2.7
-        if: matrix.python-version == '2.7'
-        run: choco install vcpython27 -f -y
-
-      - uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: ${{ matrix.arch }}
-
-      - name: Install os dependencies (${{ matrix.arch }})
-        uses: lukka/run-vcpkg@v4
-        with:
-          vcpkgArguments: ${{ env.packages }}
-          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
-          vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
-          appendedCacheKey: ${{ hashFiles(env.packages) }}
-          # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
-          vcpkgTriplet: ${{ matrix.vcpkg_triplet }}
-        #env:
-        #  VCPKG_DEFAULT_TRIPLET: "${{ matrix.vcpkg_triplet }}"
-
-      #- name: Export vcpkg ports
-      #  run: vcpkg export --zip ${{ env.packages }}
-
-      #- name: Upload vcpkg installed
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: vcpkg_${{ matrix.arch }}
-      #    path: ${{ runner.workspace }}/vcpkg/vcpkg-export*
-      #    #path: ${{ runner.workspace }}/vcpkg/installed/*
-      #    #path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
-
-      - name: Build ${{ matrix.arch }} wheel
-        run: python -m cibuildwheel --output-dir wheelhouse
-        env:
-          DISTUTILS_USE_SDK: 1
-          MSSdk: 1
-          VCPKG_BUILD: 1
-          #VCPKG_TOOLCHAIN: "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
-          VCPKG_TOOLCHAIN: "${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-          CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ runner.os }}"
-          CIBW_BUILD: "${{ matrix.cibw-wheels }}"
-          CIBW_BEFORE_TEST: "cp -r {project}/tests .."
-          CIBW_TEST_COMMAND: "pytest {project}/../tests"
-          CIBW_TEST_REQUIRES: "pytest"
-
-      - name: Upload wheels
-        uses: actions/upload-artifact@v2
-        with:
-          path: ./wheelhouse/*.whl
-          name: wheels_${{ runner.os }}-${{ matrix.arch }}
+#  build-win:
+#
+#    name: Build wheels on Windows
+#    runs-on: windows-latest
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        include:
+#          - arch: x64
+#            vcpkg_triplet: "x64-windows"
+#            cibw-wheels: "cp27-win_amd64"
+#            python-version: '2.7'
+#          - arch: x86
+#            vcpkg_triplet: "x86-windows"
+#            cibw-wheels: "cp27-win32"
+#            python-version: '2.7'
+#
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#
+#      - name: Install python 3.7
+#        uses: actions/setup-python@v2
+#        with:
+#          python-version: 3.7
+#
+#      - name: Install cibuildwheel
+#        run: python -m pip install cibuildwheel==1.7.0
+#
+#      - name: Install Visual C++ for Python 2.7
+#        if: matrix.python-version == '2.7'
+#        run: choco install vcpython27 -f -y
+#
+#      - uses: ilammy/msvc-dev-cmd@v1
+#        with:
+#          arch: ${{ matrix.arch }}
+#
+#      - name: Install os dependencies (${{ matrix.arch }})
+#        uses: lukka/run-vcpkg@v4
+#        with:
+#          vcpkgArguments: ${{ env.packages }}
+#          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+#          vcpkgGitCommitId: e9ff3cd5a04cd0e8122ff56e9873985ff71aa3ca  # 2020-11-01
+#          appendedCacheKey: ${{ hashFiles(env.packages) }}
+#          # vcpkgArguments: '@${{ github.workspace }}/${{ matrix.vcpkg-response-file }}'
+#          vcpkgTriplet: ${{ matrix.vcpkg_triplet }}
+#        #env:
+#        #  VCPKG_DEFAULT_TRIPLET: "${{ matrix.vcpkg_triplet }}"
+#
+#      #- name: Export vcpkg ports
+#      #  run: vcpkg export --zip ${{ env.packages }}
+#
+#      #- name: Upload vcpkg installed
+#      #  uses: actions/upload-artifact@v2
+#      #  with:
+#      #    name: vcpkg_${{ matrix.arch }}
+#      #    path: ${{ runner.workspace }}/vcpkg/vcpkg-export*
+#      #    #path: ${{ runner.workspace }}/vcpkg/installed/*
+#      #    #path: vcpkg/installed/${{ env.RUNVCPKG_VCPKG_TRIPLET_OUT }}
+#
+#      - name: Build ${{ matrix.arch }} wheel
+#        run: python -m cibuildwheel --output-dir wheelhouse
+#        env:
+#          DISTUTILS_USE_SDK: 1
+#          MSSdk: 1
+#          VCPKG_BUILD: 1
+#          #VCPKG_TOOLCHAIN: "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+#          VCPKG_TOOLCHAIN: "${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+#          CIBW_BEFORE_BUILD: "bash {package}/.github/workflows/before_build.sh ${{ runner.os }}"
+#          CIBW_BUILD: "${{ matrix.cibw-wheels }}"
+#          CIBW_BEFORE_TEST: "cp -r {project}/tests .."
+#          CIBW_TEST_COMMAND: "pytest {project}/../tests"
+#          CIBW_TEST_REQUIRES: "pytest"
+#
+#      - name: Upload wheels
+#        uses: actions/upload-artifact@v2
+#        with:
+#          path: ./wheelhouse/*.whl
+#          name: wheels_${{ runner.os }}-${{ matrix.arch }}
