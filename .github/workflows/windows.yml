@@ -30,7 +30,7 @@ jobs:
           appendedCacheKey: ${{ hashFiles(env.packages) }}
 
       - name: Export vcpkg ports
-        run: vcpkg export --zip ${{ env.packages }}
+        run: ${{ github.workspace }}/vcpkg/vcpkg export --zip ${{ env.packages }}
         env:
           VCPKG_TARGET_ARCHITECTURE: "${{ matrix.arch }}"
           VCPKG_DEFAULT_TRIPLET: "${{ matrix.vcpkg_triplet }}"
