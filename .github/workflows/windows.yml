@@ -30,10 +30,15 @@ jobs:
           appendedCacheKey: ${{ hashFiles(env.packages) }}
 
       - name: Export vcpkg ports
-        run: ${{ github.workspace }}/vcpkg/vcpkg export --zip ${{ env.packages }}
+        run: |
+          vcpkg list
+          vcpkg install ${{ env.packages }}
+          vcpkg export --zip ${{ env.packages }}
         env:
           VCPKG_TARGET_ARCHITECTURE: "${{ matrix.arch }}"
           VCPKG_DEFAULT_TRIPLET: "${{ matrix.vcpkg_triplet }}"
+          VCPKG_ROOT: "${{ github.workspace }}/vcpkg"
+          RUNVCPKG_VCPKG_ROOT: "${{ github.workspace }}/vcpkg"
 
       - name: Upload vcpkg installed
         uses: actions/upload-artifact@v2
