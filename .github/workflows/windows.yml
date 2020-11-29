@@ -55,7 +55,7 @@ jobs:
         #  VCPKG_DEFAULT_TRIPLET: "${{ matrix.vcpkg_triplet }}"
 
       - name: Export vcpkg ports
-        run: vcpkg export ${{ env.packages }}
+        run: vcpkg export --zip ${{ env.packages }}
 
       - name: Upload vcpkg installed
         uses: actions/upload-artifact@v2
