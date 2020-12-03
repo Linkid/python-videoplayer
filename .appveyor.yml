@@ -19,9 +19,9 @@ init:
 
 install:
   - "%PYTHON%\\python.exe -m pip install wheel"
-  - "%PYTHON_DIR%\\python.exe -m pip install -U scikit-ci scikit-ci-addons"
-  - "%PYTHON_DIR%\\python.exe -m ci_addons --install ../addons"
-  - ps: ../addons/appveyor/rolling-build.ps1
+  - "%PYTHON%\\python.exe -m pip install -U scikit-ci scikit-ci-addons"
+  - "%PYTHON%\\python.exe -m ci_addons --install ../addons"
+  - "%PYTHON%\\python.exe ../addons/appveyor/patch_vs2008.py"
 
 build_script:
   - "%PYTHON%\\python.exe setup.py build_ext -f -i"
