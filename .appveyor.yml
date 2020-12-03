@@ -28,5 +28,5 @@ build_script:
   - "%PYTHON%\\python.exe setup.py bdist_wheel"
 
 artifacts:
-  - path: "dist\*.whl"
+  - path: dist\*.whl
     name: Wheels
