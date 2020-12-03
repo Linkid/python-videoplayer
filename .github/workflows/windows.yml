@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: vcpkg_${{ matrix.arch }}
-          path: ${{ github.workspace }}/vcpkg-export*
+          path: ${{ env.VCPKG_ROOT }}/vcpkg-export*
 
 
 #  build-win:
