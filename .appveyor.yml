@@ -3,8 +3,10 @@ environment:
   matrix:
     - PYTHON: "C:/Python27-x64"
       TRIPLET: x64-windows
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
     - PYTHON: "C:/Python27"
       TRIPLET: x86-windows
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
 
 init:
   - cmd: set VCPKG_DEFAULT_TRIPLET=%TRIPLET%
