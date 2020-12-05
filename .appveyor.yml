@@ -10,17 +10,17 @@ environment:
 
 init:
   - cmd: set VCPKG_DEFAULT_TRIPLET=%TRIPLET%
-#  - cmd: cd c:\tools\vcpkg
-#  - cmd: vcpkg update
-  - cmd: git clone https://github.com/Microsoft/vcpkg.git
-  - cmd: cd vcpkg
-  - cmd: .\bootstrap-vcpkg.bat
-  - cmd: .\vcpkg install glib:%TRIPLET%       # 2.52.3-14-3
-  - cmd: .\vcpkg install libogg:%TRIPLET%     # 1.3.4
-  - cmd: .\vcpkg install libtheora:%TRIPLET%  # 1.2.0alpha1-20170719~vcpkg1-3
-  - cmd: .\vcpkg install ffmpeg[swscale]:%TRIPLET%     # 4.2
-  - cmd: .\vcpkg install msinttypes:%TRIPLET% # 2018-02-25
-  - cmd: .\vcpkg integrate install
+  - cmd: cd c:\tools\vcpkg
+  - cmd: vcpkg update
+#  - cmd: git clone https://github.com/Microsoft/vcpkg.git
+#  - cmd: cd vcpkg
+#  - cmd: .\bootstrap-vcpkg.bat
+  - cmd: vcpkg install glib:%TRIPLET%       # 2.52.3-14-3
+  - cmd: vcpkg install libogg:%TRIPLET%     # 1.3.4
+  - cmd: vcpkg install libtheora:%TRIPLET%  # 1.2.0alpha1-20170719~vcpkg1-3
+  - cmd: vcpkg install ffmpeg[swscale]:%TRIPLET%     # 4.2
+  - cmd: vcpkg install msinttypes:%TRIPLET% # 2018-02-25
+  - cmd: vcpkg integrate install
   - cmd: cd %APPVEYOR_BUILD_FOLDER%
 
 install:
