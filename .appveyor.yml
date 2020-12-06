@@ -2,11 +2,18 @@ cache: c:\tools\vcpkg\installed\
 environment:
   matrix:
     - PYTHON: "C:/Python27-x64"
+      PYTHON_DIR: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
       TRIPLET: x64-windows
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       VCPKG_BUILD: 1
       VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+
     - PYTHON: "C:/Python27"
+      PYTHON_DIR: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
       TRIPLET: x86-windows
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       VCPKG_BUILD: 1
