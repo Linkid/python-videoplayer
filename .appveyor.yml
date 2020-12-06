@@ -16,6 +16,7 @@ init:
   - cmd: set VCPKG_DEFAULT_TRIPLET=%TRIPLET%
 #  - cmd: cd c:\tools\vcpkg                  # vcpkg 2020.02.04-nohash / VS 2019
 #  - cmd: vcpkg update
+  - cmd: cd c:\projects
   - cmd: git clone -b 2020.07 --single-branch https://github.com/Microsoft/vcpkg.git
   - cmd: cd vcpkg
   - cmd: .\bootstrap-vcpkg.bat
