@@ -40,6 +40,7 @@ install:
   - "%PYTHON%\\python.exe -m pip install -U scikit-ci scikit-ci-addons"
   - "%PYTHON%\\python.exe -m ci_addons --install ../addons"
   - "%PYTHON%\\python.exe ../addons/appveyor/patch_vs2008.py"
+  - "%PYTHON%\\python.exe -m pip install cython scikit-build cmake ninja"
 
 build_script:
   - "%PYTHON%\\python.exe setup.py build_ext -f -i"
