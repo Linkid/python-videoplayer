@@ -22,6 +22,7 @@ environment:
       VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
 
 init:
+  - cmd: set PATH=%PYTHON_DIR%;%PYTHON_DIR%\\Scripts;%PATH%
   - cmd: set VCPKG_DEFAULT_TRIPLET=%TRIPLET%
 #  - cmd: cd c:\tools\vcpkg                  # vcpkg 2020.02.04-nohash / VS 2019
 #  - cmd: vcpkg update
