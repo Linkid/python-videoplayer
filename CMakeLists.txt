@@ -63,7 +63,7 @@ elseif(_VCPKG)
     set(LIBSWSCALE_INCLUDE_DIRS ${FFMPEG_libswscale_INCLUDE_DIRS})
     set(LIBSWSCALE_LIBRARIES ${FFMPEG_libswscale_LIBRARY})
     ## msinttypes
-    find_path(MSINTTYPES_INCLUDE_DIRS NAMES msinttypes/stdin.h)
+    find_path(MSINTTYPES_INCLUDE_DIRS NAMES msinttypes/stdint.h)
     #find_path(MSINTTYPES_INCLUDE_DIRS "msinttypes/inttypes.h")
     #find_path(MSINTTYPES_INCLUDE_DIRS NAMES "msinttypes/stdint.h" "msinttypes/inttypes.h")
     ## opengl
