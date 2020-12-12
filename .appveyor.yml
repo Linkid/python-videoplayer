@@ -10,6 +10,7 @@ environment:
       VCPKG_BUILD: 1
       #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
       VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TAG: 2020.07
 
     - PYTHON: "C:/Python27"
       PYTHON_DIR: "C:\\Python27"
@@ -20,6 +21,7 @@ environment:
       VCPKG_BUILD: 1
       #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
       VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TAG: 2020.07
 
 init:
   - cmd: set PATH=%PYTHON_DIR%;%PYTHON_DIR%\Scripts;%PATH%;
@@ -28,7 +30,7 @@ init:
 #  - cmd: cd c:\tools\vcpkg                  # vcpkg 2020.02.04-nohash / VS 2019
 #  - cmd: vcpkg update
   - cmd: cd c:\projects
-  - cmd: git clone -b 2020.07 --single-branch https://github.com/Microsoft/vcpkg.git
+  - cmd: git clone -b %VCPKG_TAG% --single-branch https://github.com/Microsoft/vcpkg.git
   - cmd: cd vcpkg
   - cmd: .\bootstrap-vcpkg.bat
   - cmd: vcpkg install glib:%TRIPLET%       # 2.52.3-14-3
