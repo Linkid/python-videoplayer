@@ -10,7 +10,73 @@ environment:
       VCPKG_BUILD: 1
       #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
       VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
-      VCPKG_TAG: 2020.07
+      VCPKG_TAG: 2020.11-1
+
+    - PYTHON: "C:/Python27-x64"
+      PYTHON_DIR: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+      TRIPLET: x64-windows
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      VCPKG_BUILD: 1
+      #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TAG: 2020.06
+
+    - PYTHON: "C:/Python27-x64"
+      PYTHON_DIR: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+      TRIPLET: x64-windows
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      VCPKG_BUILD: 1
+      #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TAG: 2020.04
+
+    - PYTHON: "C:/Python27-x64"
+      PYTHON_DIR: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+      TRIPLET: x64-windows
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      VCPKG_BUILD: 1
+      #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TAG: 2020.02
+
+    - PYTHON: "C:/Python27-x64"
+      PYTHON_DIR: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+      TRIPLET: x64-windows
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      VCPKG_BUILD: 1
+      #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TAG: 2020.01
+
+    - PYTHON: "C:/Python27-x64"
+      PYTHON_DIR: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+      TRIPLET: x64-windows
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      VCPKG_BUILD: 1
+      #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TAG: 2019.12
+
+    - PYTHON: "C:/Python27-x64"
+      PYTHON_DIR: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+      TRIPLET: x64-windows
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+      VCPKG_BUILD: 1
+      #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
+      VCPKG_TAG: 2019.06
 
     - PYTHON: "C:/Python27"
       PYTHON_DIR: "C:\\Python27"
