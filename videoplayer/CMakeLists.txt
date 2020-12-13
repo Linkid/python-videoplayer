@@ -35,6 +35,8 @@ message(STATUS "zzzz LIBSWSCALE_LIBDIR: ${LIBSWSCALE_LIBDIR}")
 message(STATUS "zzzz LIBSWSCALE_LINK_LIBRARIES: ${LIBSWSCALE_LINK_LIBRARIES}")
 message(STATUS "zzzz LIBSWSCALE_INCLUDE_DIRS: ${LIBSWSCALE_INCLUDE_DIRS}")
 message(STATUS "zzzz LIBSWSCALE_LIBRARY_DIRS: ${LIBSWSCALE_LIBRARY_DIRS}")
+
+message(STATUS "zzzz MSINTTYPES_INCLUDE_DIRS: ${MSINTTYPES_INCLUDE_DIRS}")
 # -------------- #
 
 
@@ -43,6 +45,7 @@ add_cython_target(_VideoPlayer _VideoPlayer.pyx)
 
 # compile the extension with the lib
 add_library(_VideoPlayer MODULE ${_VideoPlayer} VideoPlayer.c)
+target_compile_features(JSONUtils PRIVATE cxx_std_11)  # set the language standard to c++11
 target_include_directories(_VideoPlayer
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
