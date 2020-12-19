@@ -45,7 +45,6 @@ add_cython_target(_VideoPlayer _VideoPlayer.pyx)
 
 # compile the extension with the lib
 add_library(_VideoPlayer MODULE ${_VideoPlayer} VideoPlayer.c)
-target_compile_features(_VideoPlayer PRIVATE cxx_std_11)  # set the language standard to c++11
 target_include_directories(_VideoPlayer
     INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
