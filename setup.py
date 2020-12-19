@@ -51,6 +51,8 @@ if os.getenv("VCPKG_BUILD"):
     print("xxx: {}".format(build_cmake_args))
     #print("yyy: {}".format(platform_windows))
     print("yyy: {}".format(os.getenv("VCPKG_TOOLCHAIN")))
+if os.getenv("WIN_BUILD"):
+    build_cmake_args.append('-D_WIN_DEP=ON')
 
 # setup
 setup(

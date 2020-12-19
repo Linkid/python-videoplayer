@@ -7,10 +7,11 @@ environment:
       PYTHON_ARCH: "64"
       TRIPLET: x64-windows
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      VCPKG_BUILD: 1
+      WIN_BUILD: 1
+      #VCPKG_BUILD: 1
       #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
-      VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
-      VCPKG_TAG: 2020.11-1
+      #VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
+      #VCPKG_TAG: 2020.11-1
 
     - PYTHON: "C:/Python27"
       PYTHON_DIR: "C:\\Python27"
@@ -18,28 +19,32 @@ environment:
       PYTHON_ARCH: "32"
       TRIPLET: x86-windows
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      VCPKG_BUILD: 1
+      WIN_BUILD: 1
+      #VCPKG_BUILD: 1
       #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
-      VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
-      VCPKG_TAG: 2020.07
+      #VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
+      #VCPKG_TAG: 2020.07
 
 init:
   - cmd: set PATH=%PYTHON_DIR%;%PYTHON_DIR%\Scripts;%PATH%;
   - cmd: echo %PATH%
-  - cmd: set VCPKG_DEFAULT_TRIPLET=%TRIPLET%
+#  - cmd: set VCPKG_DEFAULT_TRIPLET=%TRIPLET%
 #  - cmd: cd c:\tools\vcpkg                  # vcpkg 2020.02.04-nohash / VS 2019
 #  - cmd: vcpkg update
-  - cmd: cd c:\projects
-  - cmd: git clone -b %VCPKG_TAG% --single-branch https://github.com/Microsoft/vcpkg.git
-  - cmd: cd vcpkg
-  - cmd: .\bootstrap-vcpkg.bat
-  - cmd: vcpkg install glib:%TRIPLET%       # 2.52.3-14-3
-  - cmd: vcpkg install libogg:%TRIPLET%     # 1.3.4
-  - cmd: vcpkg install libtheora:%TRIPLET%  # 1.2.0alpha1-20170719~vcpkg1-3
-  - cmd: vcpkg install ffmpeg:%TRIPLET%     # 4.3.1
-  - cmd: vcpkg install msinttypes:%TRIPLET% # 2018-02-25
-  - cmd: vcpkg integrate install
-  - cmd: cd %APPVEYOR_BUILD_FOLDER%
+#  - cmd: cd c:\projects
+#  - cmd: git clone -b %VCPKG_TAG% --single-branch https://github.com/Microsoft/vcpkg.git
+#  - cmd: cd vcpkg
+#  - cmd: .\bootstrap-vcpkg.bat
+#  - cmd: vcpkg install glib:%TRIPLET%       # 2.52.3-14-3
+#  - cmd: vcpkg install libogg:%TRIPLET%     # 1.3.4
+#  - cmd: vcpkg install libtheora:%TRIPLET%  # 1.2.0alpha1-20170719~vcpkg1-3
+#  - cmd: vcpkg install ffmpeg:%TRIPLET%     # 4.3.1
+#  - cmd: vcpkg install msinttypes:%TRIPLET% # 2018-02-25
+#  - cmd: vcpkg integrate install
+#  - cmd: cd %APPVEYOR_BUILD_FOLDER%
+  - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip -OutFile deppack.zip
+  - cmd: 7z x deppack.zip -y # > nul
+  - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
 
 install:
   - "%PYTHON%\\python.exe -m pip install wheel"

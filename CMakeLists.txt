@@ -32,12 +32,24 @@ find_package(Cython REQUIRED)
 if (WIN32 AND _WIN_DEP)
     message(STATUS "[-] Use downloaded dependencies")
 
+    message(STATUS "[x] deps: ${PROJECT_SOURCE_DIR}/win_dep")
     set(DEPENDENCY_FOLDER "${PROJECT_SOURCE_DIR}/win_dep")
+
+    # glib
     find_path(GLIB2_INCLUDE_DIRS NAMES glib.h PATHS "${DEPENDENCY_FOLDER}/include/glib-2.0")
-    find_library(GLIB2_LIBRARIES NAMES glib-2.0 PATHS "${DEPENDENCY_FOLDER}/lib")
-    find_library(OGG_LIBRARIES NAMES ogg libogg PATHS "${DEPENDENCY_FOLDER}/lib")
+    find_library(GLIB2_LINK_LIBRARIES NAMES glib-2.0 PATHS "${DEPENDENCY_FOLDER}/lib")
+    # ogg
+    find_path(OGG_INCLUDE_DIRS NAMES ogg/ogg.h PATHS "${DEPENDENCY_FOLDER}/include/")
+    find_library(OGG_LINK_LIBRARIES NAMES ogg libogg PATHS "${DEPENDENCY_FOLDER}/lib")
+    # theora
+    find_path(THEORADEC_INCLUDE_DIRS NAMES theora/theoradec.h PATHS "${DEPENDENCY_FOLDER}/include")
     find_library(THEORADEC_LIBRARIES NAMES theoradec libtheoradec theora-dec PATHS "${DEPENDENCY_FOLDER}/lib")
+    # libswscale
+    find_path(LIBSWSCALE_INCLUDE_DIRS NAMES libswscale/swscale.h PATHS "${DEPENDENCY_FOLDER}/include")
     find_library(LIBSWSCALE_LIBRARIES NAMES swscale libswscale PATHS "${DEPENDENCY_FOLDER}/lib")
+    # msinttypes
+    find_path(MSINTTYPES_INCLUDE_DIRS NAMES msinttypes/stdint.h PATHS "${DEPENDENCY_FOLDER}/include")
+    # opengl
     find_package(OpenGL)
 
 elseif(_VCPKG)
