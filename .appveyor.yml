@@ -44,10 +44,10 @@ init:
 #  - cmd: cd %APPVEYOR_BUILD_FOLDER%
 
 build_script:
-  - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip
-  - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=0
-  - ps: wget http://dl.dropboxusercontent.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=0
-  - ps: wget http://dl.dropboxusercontent.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=1
+  - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip -OutFile deppack.3.zip
+  - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=0 -OutFile deppack.2.zip
+  - ps: wget http://dl.dropboxusercontent.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=0 -OutFile deppack.0.zip
+  - ps: wget http://dl.dropboxusercontent.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=1 -OutFile deppack.1.zip
 
 
 artifacts:
