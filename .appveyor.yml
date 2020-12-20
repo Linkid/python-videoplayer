@@ -44,12 +44,14 @@ init:
 #  - cmd: cd %APPVEYOR_BUILD_FOLDER%
 
 build_script:
-  - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip
+  - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip -OutFile deppack.zip
 
 
 artifacts:
   - path: "fofix-win32-deppack-20130304-updated.zip"
-    name: zipo
+    name: zipo1
+  - path: "deppack.zip"
+    name: zipo2
     #  - ps: 7z x fofix-win32-deppack-20130304-updated.zip
     #  - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
     #
