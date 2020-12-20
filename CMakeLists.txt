@@ -51,7 +51,7 @@ if (WIN32 AND _WIN_DEP)
     find_path(LIBSWSCALE_INCLUDE_DIRS NAMES libswscale/swscale.h PATHS "${DEPENDENCY_FOLDER}/include")
     find_library(LIBSWSCALE_LIBRARIES NAMES swscale libswscale PATHS "${DEPENDENCY_FOLDER}/lib")
     # msinttypes
-    find_path(MSINTTYPES_INCLUDE_DIRS NAMES msinttypes/stdint.h PATHS "${DEPENDENCY_FOLDER}/include")
+    find_path(MSINTTYPES_INCLUDE_DIRS NAMES stdint.h PATHS "${DEPENDENCY_FOLDER}/include/msinttypes")
     # opengl
     find_package(OpenGL)
 
