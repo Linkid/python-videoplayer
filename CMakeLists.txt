@@ -36,7 +36,7 @@ if (WIN32 AND _WIN_DEP)
     set(DEPENDENCY_FOLDER "${PROJECT_SOURCE_DIR}/win_dep")
 
     # glib
-    find_path(GLIB2_INCLUDE_DIRS NAMES glib.h PATHS "${DEPENDENCY_FOLDER}/include/glib-2.0")
+    find_path(GLIB2_INCLUDE_DIRS NAMES glib.h glibconfig.h PATHS "${DEPENDENCY_FOLDER}/include/glib-2.0" "${DEPENDENCY_FOLDER}/lib/include/glib-2.0")
     find_library(GLIB2_LINK_LIBRARIES NAMES glib-2.0 PATHS "${DEPENDENCY_FOLDER}/lib")
     # ogg
     find_path(OGG_INCLUDE_DIRS NAMES ogg/ogg.h PATHS "${DEPENDENCY_FOLDER}/include/")
