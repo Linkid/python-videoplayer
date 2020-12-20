@@ -57,8 +57,7 @@ install:
 
       7z x glib2.tar.xz
       tar xf glib2.tar
-      Get-ChildItem
-      Get-ChildItem mingw32
+      xcopy /s /y mingw32\* .
       cd $env:APPVEYOR_BUILD_FOLDER
 #      wget http://repo.msys2.org/mingw/i686/mingw-w64-i686-libogg-1.3.4-3-any.pkg.tar.xz -OutFile libogg.tar.xz
 #      wget http://repo.msys2.org/mingw/i686/mingw-w64-i686-libtheora-1.1.1-4-any.pkg.tar.xz -OutFile libtheora.tar.xz
@@ -74,7 +73,6 @@ install:
 #        Rename-Item $_.FullName $new_fullname
 #      }
 #      # Copy all libs and includes under the dependencies folder
-#      xcopy /s /y mingw32\* .
 #      bash -c "mv mingw32/* ."
 
   - "%PYTHON%\\python.exe -m pip install wheel"
