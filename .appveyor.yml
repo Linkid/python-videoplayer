@@ -46,7 +46,8 @@ init:
 
 
 artifacts:
-  - path: *.zip
+  - path: "*.zip"
+    name: zipo
     #  - ps: 7z x fofix-win32-deppack-20130304-updated.zip
     #  - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
     #
