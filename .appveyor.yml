@@ -55,7 +55,7 @@ install:
       cd $env:APPVEYOR_BUILD_FOLDER\win_dep
       wget http://repo.msys2.org/mingw/i686/mingw-w64-i686-glib2-2.62.1-1-any.pkg.tar.xz -OutFile glib2.tar.xz
 
-      7z x glib2.tar.xz
+      tar xJf glib2.tar.xz
       Get-ChildItem
       Get-ChildItem mingw32
       cd $env:APPVEYOR_BUILD_FOLDER
