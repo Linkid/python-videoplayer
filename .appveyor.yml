@@ -48,7 +48,8 @@ install:
   - ps: wget http://linkid.free.fr/fofix/fofix-win32-deppack-20130304-updated.zip -OutFile deppack.zip
   - ps: 7z x deppack.zip
   - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
-  - cmd: set PATH=%%APPVEYOR_BUILD_FOLDER%\win_dep;%PATH%;
+  - cmd: set PATH=%APPVEYOR_BUILD_FOLDER%\win_dep;%PATH%;
+  - cmd: echo %PATH%
   - "%PYTHON%\\python.exe -m pip install wheel"
   - "%PYTHON%\\python.exe -m pip install -U scikit-ci scikit-ci-addons"
   - "%PYTHON%\\python.exe -m ci_addons --install ../addons"
