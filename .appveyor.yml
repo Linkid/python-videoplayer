@@ -45,11 +45,26 @@ init:
 #  - ps: Invoke-WebRequest -Uri https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=1 -O temp.zip; Get-Item temp.zip | Expand-Archive -DestinationPath "FolderName"; Remove-Item temp.zip
 
 install:
-  - ps: wget http://linkid.free.fr/fofix/fofix-win32-deppack-20130304-updated.zip -OutFile deppack.zip
-  - ps: 7z x deppack.zip
-  - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
-  - cmd: set PATH=%APPVEYOR_BUILD_FOLDER%\win_dep;%PATH%;
-  - cmd: echo %PATH%
+#  - ps: wget http://linkid.free.fr/fofix/fofix-win32-deppack-20130304-updated.zip -OutFile deppack.zip
+#  - ps: 7z x deppack.zip
+#  - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
+#  - cmd: set PATH=%APPVEYOR_BUILD_FOLDER%\win_dep;%PATH%;
+#  - cmd: echo %PATH%
+  - ps: |
+      bash -c "mkdir -p win_dep"
+      cd $env:APPVEYOR_BUILD_FOLDER\win_dep
+      bash -c "wget -O - http://repo.msys2.org/mingw/i686/mingw-w64-i686-glib2-2.62.1-1-any.pkg.tar.xz | tar xJv"
+      bash -c "wget -O - http://repo.msys2.org/mingw/i686/mingw-w64-i686-libogg-1.3.4-3-any.pkg.tar.xz | tar xJv"
+      bash -c "wget -O - http://repo.msys2.org/mingw/i686/mingw-w64-i686-libtheora-1.1.1-4-any.pkg.tar.xz | tar xJv"
+      bash -c "wget -O - http://repo.msys2.org/mingw/i686/mingw-w64-i686-ffmpeg-4.2.1-2-any.pkg.tar.xz | tar xJv"
+      Get-ChildItem mingw32\lib\lib*.dll.a | %{
+        $new_name = $_.Name.SubString(3) -replace ".dll.a", ".lib"
+        $new_fullname = Join-Path $_.DirectoryName $new_name
+        Rename-Item $_.FullName $new_fullname
+      }
+      # Copy all libs and includes under Kodi's dependencies folder
+      xcopy /s /y mingw32\*.* .
+
   - "%PYTHON%\\python.exe -m pip install wheel"
   - "%PYTHON%\\python.exe -m pip install -U scikit-ci scikit-ci-addons"
   - "%PYTHON%\\python.exe -m ci_addons --install ../addons"
