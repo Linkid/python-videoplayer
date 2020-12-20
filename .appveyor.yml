@@ -42,6 +42,8 @@ init:
 #  - cmd: vcpkg install msinttypes:%TRIPLET% # 2018-02-25
 #  - cmd: vcpkg integrate install
 #  - cmd: cd %APPVEYOR_BUILD_FOLDER%
+
+build_script:
   - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip
 
 
