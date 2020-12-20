@@ -42,34 +42,22 @@ init:
 #  - cmd: vcpkg install msinttypes:%TRIPLET% # 2018-02-25
 #  - cmd: vcpkg integrate install
 #  - cmd: cd %APPVEYOR_BUILD_FOLDER%
+#  - ps: Invoke-WebRequest -Uri https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=1 -O temp.zip; Get-Item temp.zip | Expand-Archive -DestinationPath "FolderName"; Remove-Item temp.zip
+  - ps: wget http://linkid.free.fr/fofix/fofix-win32-deppack-20130304-updated.zip -OutFile toto.zip
+  - ps: 7z x fofix-win32-deppack-20130304-updated.zip
+  - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
+
+install:
+  - "%PYTHON%\\python.exe -m pip install wheel"
+  - "%PYTHON%\\python.exe -m pip install -U scikit-ci scikit-ci-addons"
+  - "%PYTHON%\\python.exe -m ci_addons --install ../addons"
+  - "%PYTHON%\\python.exe ../addons/appveyor/patch_vs2008.py"
+  - "%PYTHON%\\python.exe -m pip install cython scikit-build cmake ninja"
 
 build_script:
-  - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip -OutFile deppack.3.zip
-  - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=0 -OutFile deppack.2.zip
-  - ps: wget http://dl.dropboxusercontent.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=0 -OutFile deppack.0.zip
-  - ps: wget http://dl.dropboxusercontent.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=1 -OutFile deppack.1.zip
-  - ps: wget http://dl.dropboxusercontent.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?raw=1 -OutFile deppack.7.zip
-  - ps: Invoke-WebRequest -Uri https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=1 -O temp.zip; Get-Item temp.zip | Expand-Archive -DestinationPath "FolderName"; Remove-Item temp.zip
-  - ps: wget http://linkid.free.fr/fofix/fofix-win32-deppack-20130304-updated.zip -OutFile toto.zip
-
+  - "%PYTHON%\\python.exe setup.py build_ext -f -i"
+  - "%PYTHON%\\python.exe setup.py bdist_wheel"
 
 artifacts:
-  - path: '*.zip*'
-  - path: 'wC7UolMEz'
-    #  - ps: 7z x fofix-win32-deppack-20130304-updated.zip
-    #  - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
-    #
-    #install:
-    #  - "%PYTHON%\\python.exe -m pip install wheel"
-    #  - "%PYTHON%\\python.exe -m pip install -U scikit-ci scikit-ci-addons"
-    #  - "%PYTHON%\\python.exe -m ci_addons --install ../addons"
-    #  - "%PYTHON%\\python.exe ../addons/appveyor/patch_vs2008.py"
-    #  - "%PYTHON%\\python.exe -m pip install cython scikit-build cmake ninja"
-    #
-    #build_script:
-    #  - "%PYTHON%\\python.exe setup.py build_ext -f -i"
-    #  - "%PYTHON%\\python.exe setup.py bdist_wheel"
-    #
-    #artifacts:
-    #  - path: dist\*.whl
-    #    name: Wheels
+  - path: dist\*.whl
+    name: Wheels
