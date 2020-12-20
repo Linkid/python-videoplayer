@@ -43,7 +43,8 @@ init:
 #  - cmd: vcpkg integrate install
 #  - cmd: cd %APPVEYOR_BUILD_FOLDER%
   - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip -OutFile deppack.zip
-  - cmd: 7z x deppack.zip -y # > nul
+  - ps: bash -c "wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip"
+  - cmd: 7z x fofix-win32-deppack-20130304-updated.zip -y # > nul
   - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
 
 install:
