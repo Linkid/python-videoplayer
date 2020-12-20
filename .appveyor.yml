@@ -43,21 +43,24 @@ init:
 #  - cmd: vcpkg integrate install
 #  - cmd: cd %APPVEYOR_BUILD_FOLDER%
   - ps: wget https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip
-  - ps: ls -l
-  - ps: 7z x fofix-win32-deppack-20130304-updated.zip
-  - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
 
-install:
-  - "%PYTHON%\\python.exe -m pip install wheel"
-  - "%PYTHON%\\python.exe -m pip install -U scikit-ci scikit-ci-addons"
-  - "%PYTHON%\\python.exe -m ci_addons --install ../addons"
-  - "%PYTHON%\\python.exe ../addons/appveyor/patch_vs2008.py"
-  - "%PYTHON%\\python.exe -m pip install cython scikit-build cmake ninja"
-
-build_script:
-  - "%PYTHON%\\python.exe setup.py build_ext -f -i"
-  - "%PYTHON%\\python.exe setup.py bdist_wheel"
 
 artifacts:
-  - path: dist\*.whl
-    name: Wheels
+  - path: *.zip
+    #  - ps: 7z x fofix-win32-deppack-20130304-updated.zip
+    #  - ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
+    #
+    #install:
+    #  - "%PYTHON%\\python.exe -m pip install wheel"
+    #  - "%PYTHON%\\python.exe -m pip install -U scikit-ci scikit-ci-addons"
+    #  - "%PYTHON%\\python.exe -m ci_addons --install ../addons"
+    #  - "%PYTHON%\\python.exe ../addons/appveyor/patch_vs2008.py"
+    #  - "%PYTHON%\\python.exe -m pip install cython scikit-build cmake ninja"
+    #
+    #build_script:
+    #  - "%PYTHON%\\python.exe setup.py build_ext -f -i"
+    #  - "%PYTHON%\\python.exe setup.py bdist_wheel"
+    #
+    #artifacts:
+    #  - path: dist\*.whl
+    #    name: Wheels
