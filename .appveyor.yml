@@ -50,8 +50,8 @@ build_script:
   - ps: wget http://dl.dropboxusercontent.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=1 -OutFile deppack.1.zip
   - ps: wget http://dl.dropboxusercontent.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?raw=1 -OutFile deppack.7.zip
   - ps: Invoke-WebRequest -Uri https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=1 -O temp.zip; Get-Item temp.zip | Expand-Archive -DestinationPath "FolderName"; Remove-Item temp.zip
+  - ps: wget http://dl.free.fr/wC7UolMEz.content
   - ps: wget http://dl.free.fr/wC7UolMEz
-  - ps: Invoke-WebRequest -Uri http://dl.free.fr/wC7UolMEz -O temp.zip
 
 
 artifacts:
