@@ -68,6 +68,12 @@ install:
       tar xf libtheora.tar
       tar xf ffmpeg.tar
 
+      Get-ChildItem mingw32\lib\lib*.dll.a | %{
+        $new_name = $_.Name.SubString(3) -replace ".dll.a", ".lib"
+        $new_fullname = Join-Path $_.DirectoryName $new_name
+        Rename-Item $_.FullName $new_fullname
+      }
+
       xcopy /s /y mingw32\* .
 
       bash -c "mkdir include/msinttypes"
