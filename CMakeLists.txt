@@ -46,7 +46,7 @@ if (WIN32 AND _WIN_DEP)
     find_library(OGG_LINK_LIBRARIES NAMES ogg libogg PATHS "${DEPENDENCY_FOLDER}/lib")
     # theora
     find_path(THEORADEC_INCLUDE_DIRS NAMES theora/theoradec.h PATHS "${DEPENDENCY_FOLDER}/include")
-    find_library(THEORADEC_LIBRARIES NAMES theoradec libtheoradec theora-dec PATHS "${DEPENDENCY_FOLDER}/lib")
+    find_library(THEORADEC_LINK_LIBRARIES NAMES theoradec libtheoradec theora-dec PATHS "${DEPENDENCY_FOLDER}/lib")
     # libswscale
     find_path(LIBSWSCALE_INCLUDE_DIRS NAMES libswscale/swscale.h PATHS "${DEPENDENCY_FOLDER}/include")
     find_library(LIBSWSCALE_LIBRARIES NAMES swscale libswscale PATHS "${DEPENDENCY_FOLDER}/lib")
