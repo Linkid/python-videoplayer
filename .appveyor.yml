@@ -78,6 +78,7 @@ install:
 
       bash -c "mkdir include/msinttypes"
       wget https://raw.githubusercontent.com/chemeris/msinttypes/master/stdint.h -OutFile include\msinttypes\stdint.h
+      wget https://raw.githubusercontent.com/chemeris/msinttypes/master/inttypes.h -OutFile include\msinttypes\inttypes.h
       cd $env:APPVEYOR_BUILD_FOLDER
 
   - "%PYTHON%\\python.exe -m pip install wheel"

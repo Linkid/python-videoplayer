@@ -38,8 +38,6 @@ if (WIN32 AND _WIN_DEP)
     # glib
     find_path(GLIB2_INCLUDE_DIRS_0 NAMES glib.h PATHS "${DEPENDENCY_FOLDER}/include/glib-2.0")
     find_path(GLIB2_INCLUDE_DIRS_1 NAMES glibconfig.h PATHS "${DEPENDENCY_FOLDER}/lib/glib-2.0/include")
-    message(STATUS "GLIB2_INCLUDE_DIRS_0: ${GLIB2_INCLUDE_DIRS_0}")
-    message(STATUS "GLIB2_INCLUDE_DIRS_1: ${GLIB2_INCLUDE_DIRS_1}")
     list(APPEND GLIB2_INCLUDE_DIRS ${GLIB2_INCLUDE_DIRS_0})
     list(APPEND GLIB2_INCLUDE_DIRS ${GLIB2_INCLUDE_DIRS_1})
     find_library(GLIB2_LINK_LIBRARIES NAMES glib-2.0 PATHS "${DEPENDENCY_FOLDER}/lib")
@@ -53,7 +51,10 @@ if (WIN32 AND _WIN_DEP)
     find_path(LIBSWSCALE_INCLUDE_DIRS NAMES libswscale/swscale.h PATHS "${DEPENDENCY_FOLDER}/include")
     find_library(LIBSWSCALE_LIBRARIES NAMES swscale libswscale PATHS "${DEPENDENCY_FOLDER}/lib")
     # msinttypes
-    find_path(MSINTTYPES_INCLUDE_DIRS NAMES stdint.h PATHS "${DEPENDENCY_FOLDER}/include/msinttypes")
+    find_path(MSINTTYPES_INCLUDE_DIRS_0 NAMES stdint.h PATHS "${DEPENDENCY_FOLDER}/include/msinttypes")
+    find_path(MSINTTYPES_INCLUDE_DIRS_1 NAMES inttypes.h PATHS "${DEPENDENCY_FOLDER}/include/msinttypes")
+    list(APPEND MSINTTYPES_INCLUDE_DIRS ${MSINTTYPES_INCLUDE_DIRS_0})
+    list(APPEND MSINTTYPES_INCLUDE_DIRS ${MSINTTYPES_INCLUDE_DIRS_1})
     # opengl
     find_package(OpenGL)
 
