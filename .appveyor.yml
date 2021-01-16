@@ -10,6 +10,7 @@ environment:
       WIN_BUILD: 1
       MINGW_ARCH: "x86_64"
       MINGW_DIR: "mingw64"
+      WHL: "videoplayer-1.1.dev0-cp27-cp27m-win_amd64.whl"
       #VCPKG_BUILD: 1
       #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
       #VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
@@ -24,6 +25,7 @@ environment:
       WIN_BUILD: 1
       MINGW_ARCH: "i686"
       MINGW_DIR: "mingw32"
+      WHL: "videoplayer-1.1.dev0-cp27-cp27m-win32.whl"
       #VCPKG_BUILD: 1
       #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
       #VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
@@ -98,8 +100,7 @@ build_script:
       bash -c "mkdir -p tmp"
       bash -c "mv tests tmp/"
       cd tmp
-  - "%PYTHON%\\python.exe -m pip install ../dist/videoplayer-1.1.dev0-cp27-cp27m-win32.whl"
-  - "%PYTHON%\\python.exe -m pip install ../dist/videoplayer-1.1.dev0-cp27-cp27m-win_amd64.whl"
+  - "%PYTHON%\\python.exe -m pip install ../dist/%WHL%"
   - "%PYTHON%\\python.exe -m pip install pytest"
   - "%PYTHON%\\python.exe -m pytest tests"
 
