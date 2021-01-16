@@ -9,6 +9,7 @@ environment:
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       WIN_BUILD: 1
       MINGW_ARCH: "x86_64"
+      MINGW_DIR: "mingw64"
       #VCPKG_BUILD: 1
       #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
       #VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
@@ -22,6 +23,7 @@ environment:
       APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
       WIN_BUILD: 1
       MINGW_ARCH: "i686"
+      MINGW_DIR: "mingw32"
       #VCPKG_BUILD: 1
       #VCPKG_TOOLCHAIN: C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
       #VCPKG_TOOLCHAIN: C:/projects/vcpkg/scripts/buildsystems/vcpkg.cmake
@@ -70,13 +72,13 @@ install:
       tar xf libtheora.tar
       tar xf ffmpeg.tar
 
-      Get-ChildItem mingw32\lib\lib*.dll.a | %{
+      Get-ChildItem ${env:MINGW_DIR}\lib\lib*.dll.a | %{
         $new_name = $_.Name.SubString(3) -replace ".dll.a", ".lib"
         $new_fullname = Join-Path $_.DirectoryName $new_name
         Rename-Item $_.FullName $new_fullname
       }
 
-      xcopy /s /y "mingw${env:PYTHON_ARCH}"\* .
+      xcopy /s /y ${env:MINGW_DIR}\* .
 
       bash -c "mkdir include/msinttypes"
       wget https://raw.githubusercontent.com/chemeris/msinttypes/master/stdint.h -OutFile include\msinttypes\stdint.h
