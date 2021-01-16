@@ -1,4 +1,4 @@
-cache: c:\tools\vcpkg\installed\
+#cache: c:\tools\vcpkg\installed\
 environment:
   matrix:
     - PYTHON: "C:/Python27-x64"
