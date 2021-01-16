@@ -100,6 +100,8 @@ build_script:
       bash -c "mkdir -p tmp"
       bash -c "mv tests tmp/"
       cd tmp
+      wget http://download.blender.org/peach/trailer/trailer_400p.ogg -OutFile tests/trailer_bick-buck-bunny_400p.ogg
+      wget http://download.blender.org/peach/trailer/trailer_iphone.m4v -OutFile tests/trailer_bick-buck-bunny_iphone.m4v
   - "%PYTHON%\\python.exe -m pip install ../dist/%WHL%"
   - "%PYTHON%\\python.exe -m pip install pytest"
   - "%PYTHON%\\python.exe -m pytest tests"
