@@ -76,7 +76,7 @@ install:
         Rename-Item $_.FullName $new_fullname
       }
 
-      xcopy /s /y mingw32\* .
+      xcopy /s /y "mingw${env:PYTHON_ARCH}"\* .
 
       bash -c "mkdir include/msinttypes"
       wget https://raw.githubusercontent.com/chemeris/msinttypes/master/stdint.h -OutFile include\msinttypes\stdint.h
