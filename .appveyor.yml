@@ -96,11 +96,11 @@ build_script:
   - "%PYTHON%\\python.exe setup.py bdist_wheel"
   - ps: |
       bash -c "mkdir -p tmp"
-      bash -c "mv test tmp/"
+      bash -c "mv tests tmp/"
       cd tmp
   - "%PYTHON%\\python.exe -m pip install ../dist/*.whl"
   - "%PYTHON%\\python.exe -m pip install pytest"
-  - "%PYTHON%\\python.exe -m pytest test"
+  - "%PYTHON%\\python.exe -m pytest tests"
 
 artifacts:
   - path: dist\*.whl
