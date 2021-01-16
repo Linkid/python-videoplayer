@@ -98,7 +98,8 @@ build_script:
       bash -c "mkdir -p tmp"
       bash -c "mv tests tmp/"
       cd tmp
-  - "%PYTHON%\\python.exe -m pip install ../dist/*.whl"
+  - "%PYTHON%\\python.exe -m pip install ../dist/videoplayer-1.1.dev0-cp27-cp27m-win32.whl"
+  - "%PYTHON%\\python.exe -m pip install ../dist/videoplayer-1.1.dev0-cp27-cp27m-win_amd64.whl"
   - "%PYTHON%\\python.exe -m pip install pytest"
   - "%PYTHON%\\python.exe -m pytest tests"
 
