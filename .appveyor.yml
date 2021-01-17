@@ -1,5 +1,7 @@
 #cache: c:\tools\vcpkg\installed\
 environment:
+  SDL_AUDIODRIVER: dummy  # handle alsa issues
+
   matrix:
     - PYTHON: "C:/Python27-x64"
       PYTHON_DIR: "C:\\Python27-x64"
