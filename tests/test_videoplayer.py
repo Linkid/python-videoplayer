@@ -31,8 +31,6 @@ class VideoPlayerTest(unittest.TestCase):
         filepath_m4v = os.path.join(dirname, filename_m4v)
         # download dataset
         ## test if file exists
-        print(dirname)
-        assert False
         if not os.path.isfile(filepath_ogg):
             urllib.urlretrieve(url_ogg, filepath_ogg)
         if not os.path.isfile(filepath_m4v):
