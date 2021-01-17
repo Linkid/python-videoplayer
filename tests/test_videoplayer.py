@@ -9,10 +9,10 @@ from videoplayer._VideoPlayer import VideoPlayer
 from videoplayer._VideoPlayer import VideoPlayerError
 
 
-if sys.version_info.major == 3:
-    import urllib.request as urllib
-else:
-    import urllib
+#if sys.verson_info.major == 3:
+#    import urllib.request as urllib
+#else:
+#    import urllib
 
 
 class VideoPlayerTest(unittest.TestCase):
@@ -31,10 +31,10 @@ class VideoPlayerTest(unittest.TestCase):
         filepath_m4v = os.path.join(dirname, filename_m4v)
         # download dataset
         ## test if file exists
-        if not os.path.isfile(filepath_ogg):
-            urllib.urlretrieve(url_ogg, filepath_ogg)
-        if not os.path.isfile(filepath_m4v):
-            urllib.urlretrieve(url_m4v, filepath_m4v)
+        #if not os.path.isfile(filepath_ogg):
+        #    urllib.urlretrieve(url_ogg, filepath_ogg)
+        #if not os.path.isfile(filepath_m4v):
+        #    urllib.urlretrieve(url_m4v, filepath_m4v)
 
     def setUp(self):
         # set paths
