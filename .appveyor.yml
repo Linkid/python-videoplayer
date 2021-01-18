@@ -105,9 +105,9 @@ build_script:
       wget http://download.blender.org/peach/trailer/trailer_400p.ogg -OutFile tests/trailer_bick-buck-bunny_400p.ogg
       wget http://download.blender.org/peach/trailer/trailer_iphone.m4v -OutFile tests/trailer_bick-buck-bunny_iphone.m4v
   - "%PYTHON%\\python.exe -m pip install ../dist/%WHL%"
-  - "%PYTHON%\\python.exe -m pip install pytest"
   - "%PYTHON%\\python.exe -c \"from videoplayer import _VideoPlayer; print(_VideoPlayer.__version__)\""
-  - "%PYTHON%\\python.exe -m pytest tests"
+  #- "%PYTHON%\\python.exe -m pip install pytest"
+  #- "%PYTHON%\\python.exe -m pytest tests"
 
 artifacts:
   - path: dist\*.whl
