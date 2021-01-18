@@ -53,8 +53,8 @@ init:
 #  - ps: Invoke-WebRequest -Uri https://www.dropbox.com/s/p8xv4pktq670q9i/fofix-win32-deppack-20130304-updated.zip?dl=1 -O temp.zip; Get-Item temp.zip | Expand-Archive -DestinationPath "FolderName"; Remove-Item temp.zip
 
 install:
-  - ps: wget http://linkid.free.fr/fofix/fofix-win32-deppack-20130304-updated.zip -OutFile deppack.zip
-  - ps: 7z x deppack.zip
+  #- ps: wget http://linkid.free.fr/fofix/fofix-win32-deppack-20130304-updated.zip -OutFile deppack.zip
+  #- ps: 7z x deppack.zip
   #- ps: bash -c "mv fofix-win32-deppack-20130304-updated/deps win_dep"
   - cmd: set PATH=%APPVEYOR_BUILD_FOLDER%\win_dep;%PATH%;
   - cmd: echo %PATH%
