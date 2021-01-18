@@ -119,6 +119,38 @@ case ${operating_system} in
         #vcpkg list
     ;;
 
+    "mingw"*)
+        mkdir -p win_dep
+        cd win_dep
+        wget "http://repo.msys2.org/mingw/${MINGW_ARCH}/mingw-w64-${MINGW_ARCH}-glib2-2.64.2-1-any.pkg.tar.xz" -OutFile glib2.tar.xz
+        wget "http://repo.msys2.org/mingw/${MINGW_ARCH}/mingw-w64-${MINGW_ARCH}-libogg-1.3.4-3-any.pkg.tar.xz" -OutFile libogg.tar.xz
+        wget "http://repo.msys2.org/mingw/${MINGW_ARCH}/mingw-w64-${MINGW_ARCH}-libtheora-1.1.1-4-any.pkg.tar.xz" -OutFile libtheora.tar.xz
+        wget "http://repo.msys2.org/mingw/${MINGW_ARCH}/mingw-w64-${MINGW_ARCH}-ffmpeg-4.2.2-4-any.pkg.tar.xz" -OutFile ffmpeg.tar.xz
+
+        7z x glib2.tar.xz
+        7z x libogg.tar.xz
+        7z x libtheora.tar.xz
+        7z x ffmpeg.tar.xz
+
+        tar xf glib2.tar
+        tar xf libogg.tar
+        tar xf libtheora.tar
+        tar xf ffmpeg.tar
+
+        libs=`find ${MINGW_DIR} -name "lib*.dll.a"`
+        for f in $libs
+        do
+            mv -- "$f" "${f%.dll.a}.lib"
+        done
+        #find ${MINGW_DIR} -name "lib*.dll.a" -exec sh -c 'f={}; mv -- "$f" "${f%.dll.a}.lib"' \;
+        mv ${MINGW_DIR}/* .
+
+        mkdir -p include/msinttypes
+        wget https://raw.githubusercontent.com/chemeris/msinttypes/master/stdint.h -OutFile include\msinttypes\stdint.h
+        wget https://raw.githubusercontent.com/chemeris/msinttypes/master/inttypes.h -OutFile include\msinttypes\inttypes.h
+        cd ..
+    ;;
+
     *)
         echo "[*] no OS: " ${operating_system}
     ;;
