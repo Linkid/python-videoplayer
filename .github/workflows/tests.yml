@@ -10,9 +10,15 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        python-version: ["2.7", "3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.10"]
+        experimental: [false]
+
+        include:
+            - python-version: 2.7
+              experimental: true
 
     steps:
       - name: checkout

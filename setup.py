@@ -71,6 +71,7 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.10',
         'Topic :: Multimedia',
         'Topic :: Software Development :: Libraries',
     ],
